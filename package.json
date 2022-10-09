@@ -1,0 +1,11 @@
+{
+  "name": "web-chat",
+  "version": "0.1.0",
+  "description": "Web chat like Telegram",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Bosikov (legionerab3000@yandex.ru)",
+  "license": "ISC"
+}
