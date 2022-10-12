@@ -10,6 +10,7 @@
   },
   "author": "Alexander Bosikov (legionerab3000@yandex.ru)",
   "license": "ISC",
+  "browserslist": "> 0.5, last 2 versions, not dead",
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "parcel": "^2.7.0"
