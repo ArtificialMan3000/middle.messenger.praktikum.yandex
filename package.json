@@ -2,17 +2,17 @@
   "name": "web-chat",
   "version": "0.1.0",
   "description": "Web chat like Telegram",
-  "main": "index.js",
   "scripts": {
-    "dev": "parcel index.hbs",
-    "build": "parcel build index.hbs",
+    "dev": "parcel serve 'src/*.hbs' --no-cache",
+    "build": "parcel build 'src/*.hbs'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Alexander Bosikov (legionerab3000@yandex.ru)",
+  "author": "Alexander Bosikov <legionerab3000@yandex.ru>",
   "license": "ISC",
-  "browserslist": "> 0.5, last 2 versions, not dead",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "^1.0.9",
-    "parcel": "^2.7.0"
+    "parcel": "^2.7.0",
+    "handlebars": "^4.7.7"
   }
 }

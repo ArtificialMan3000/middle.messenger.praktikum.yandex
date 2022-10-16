@@ -1,0 +1,30 @@
+<div class="site-wrapper">
+<div class="background">
+  <div class="window">
+    <h1 class="window__header">Авторизация</h1>
+    <p class="window__error">Сообщение об ошибке</p>
+    <form class="window__form auth-form">
+      {{#with formIds}}
+        <div class="auth-form__fields">
+          <div class="auth-form__text-field-block text-field-block">
+            <label for="{{loginId}}" class="text-field-block__label ally-only">Логин</label>
+            <input class="text-field-block__input" id="{{loginId}}" type="text" placeholder="Логин">
+          </div>
+
+          <div class="auth-form__password-field-block password-field-block">
+            <label for="{{passwordId}}" class="password-field-block__label ally-only">
+              Пароль
+            </label>
+            <input class="password-field-block__input" id="{{passwordId}}" type="password" placeholder="Пароль">
+          </div>
+        </div>
+        <div class="auth-form__buttons">
+          <button class="auth-form__button button" type="submit">Войти</button>
+          <a class="auth-form__button button" href="reg.hbs">Регистрация</a>
+        </div>
+      {{/with}}
+    </form>
+  </div>
+</div>
+
+</div>
