@@ -3,16 +3,18 @@
   "version": "0.1.0",
   "description": "Web chat like Telegram",
   "scripts": {
-    "dev": "parcel serve 'src/*.hbs' --no-cache",
-    "build": "parcel build 'src/*.hbs'",
+    "dev": "parcel serve 'static/*.html' --no-cache",
+    "build": "parcel build 'static/*.html'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alexander Bosikov <legionerab3000@yandex.ru>",
   "license": "ISC",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "^1.0.9",
-    "parcel": "^2.7.0",
-    "handlebars": "^4.7.7"
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@parcel/resolver-glob": "^2.7.0",
+    "@parcel/transformer-sass": "2.7.0",
+    "handlebars": "^4.7.7",
+    "parcel": "^2.7.0"
   }
 }
