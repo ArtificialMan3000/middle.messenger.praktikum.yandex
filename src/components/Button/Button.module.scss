@@ -1,0 +1,11 @@
+@import '~/src/scss/variables';
+
+.button {
+  display: block;
+  padding: 5px;
+  text-transform: uppercase;
+  border: 1px solid #040911;
+  text-align: center;
+  background-color: $brand-color;
+  cursor: pointer;
+}

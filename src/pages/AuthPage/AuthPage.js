@@ -1,8 +1,8 @@
-import template from './AuthPage.hbs';
+import tpl from './AuthPage.hbs';
+import * as css from './AuthPage.module.scss';
+import { AuthForm } from '~/src/components/AuthForm';
+import { Window } from '~/src/components/Window';
 
-const formIds = {
-  loginId: 'login',
-  passwordId: 'password',
+export const AuthPage = (props) => {
+  return tpl({ ...props, css, Window: Window({ children: AuthForm }) });
 };
-
-export const AuthPage = (props) => template({ ...props, formIds });
