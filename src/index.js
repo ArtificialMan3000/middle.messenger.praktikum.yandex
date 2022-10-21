@@ -11,7 +11,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const appElem = document.querySelector('#app');
   const currentPageName = appElem.dataset.page;
   let currentPage;
-  console.log(currentPageName);
 
   switch (currentPageName) {
     case 'main':
