@@ -1,7 +1,10 @@
 @import '~/src/scss/variables';
 
 .site-wrapper {
-  min-height: 100vh;
-  background-color: $brand-color;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 100vh;
+  padding: 50px;
+  background-color: $brand-color;
 }

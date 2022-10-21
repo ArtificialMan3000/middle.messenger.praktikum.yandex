@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Web chat like Telegram",
   "scripts": {
-    "dev": "parcel serve 'static/*.html' --no-cache",
-    "build": "parcel build 'static/*.html'",
+    "dev": "parcel serve 'static/*.html' 'static/img/*.jpg' --no-cache",
+    "build": "parcel build 'static/*.html' 'static/img/*.jpg'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alexander Bosikov <legionerab3000@yandex.ru>",

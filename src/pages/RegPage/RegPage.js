@@ -7,5 +7,9 @@ import { Window } from '~/src/components/Window';
 Object.assign(css, sharedCss);
 
 export const RegPage = (props) => {
-  return tpl({ ...props, css, Window: Window({ children: RegForm }) });
+  return tpl({
+    ...props,
+    css,
+    Window: Window({ header: 'Регистрация', children: RegForm }),
+  });
 };

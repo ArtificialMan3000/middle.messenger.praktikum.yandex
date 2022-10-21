@@ -1,59 +1,7 @@
-<div class="site-wrapper">
-<div class="background">
-  <a href="chats.html" class="backlink">
-    К чатам
-  </a>
-  <div class="profile-avatar">
-    <img src="#" alt="Картинка профиля" class="profile-avatar__img">
-    <p class="profile-avatar__name">Имя Фамилия</p>
+<div class="{{css.site-wrapper}}">
+  {{{Backlink}}}
+  <div class="{{css.container}}">
+    {{{FullAvatar}}}
+    {{{Window}}}
   </div>
-  <div class="window">
-    <p class="window__error">Сообщение об ошибке</p>
-    <form class="window__form profile-form">
-      {{#with formIds}}
-        <div class="profile-form__fields">
-          <div class="profile-form__text-field-block text-field-block">
-            <label for="{{nameId}}" class="text-field-block__label ally-only">Имя</label>
-            <input class="text-field-block__input" id="{{nameId}}" type="text" value="Имя" disabled>
-            <img class="edit-icon" src="#" alt="Нажмите, чтобы редактировать имя">
-          </div>
-          
-          <div class="profile-form__text-field-block text-field-block">
-            <label for="{{lastnameId}}" class="text-field-block__label ally-only">Фамилия</label>
-            <input class="text-field-block__input" id="{{lastnameId}}" type="text" value="Фамилия" disabled>
-            <img class="edit-icon" src="#" alt="Нажмите, чтобы редактировать фамилию">
-          </div>
-
-          <div class="profile-form__text-field-block text-field-block">
-            <label for="{{loginId}}" class="text-field-block__label ally-only">Логин</label>
-            <input class="text-field-block__input" id="{{loginId}}" type="text" value="Логин" disabled>
-            <img class="edit-icon" src="#" alt="Нажмите, чтобы редактировать логин">
-          </div>
-
-          <div class="profile-form__email-field-block email-field-block">
-            <label for="{{emailId}}" class="email-field-block__label ally-only">Email</label>
-            <input class="email-field-block__input" id="{{emailId}}" type="email" value="Email" disabled>
-            <img class="edit-icon" src="#" alt="Нажмите, чтобы редактировать email">
-          </div>
-
-          <div class="profile-form__tel-field-block tel-field-block">
-            <label for="{{phoneId}}" class="tel-field-block__label ally-only">Телефон</label>
-            <input class="tel-field-block__input" id="{{phoneId}}" type="tel" value="Телефон" disabled>
-            <img class="edit-icon" src="#" alt="Нажмите, чтобы редактировать телефон">
-          </div>
-
-          <div class="profile-form__text-field-block text-field-block">
-            <label for="{{chatnameId}}" class="text-field-block__label ally-only">Имя в чате</label>
-            <input class="text-field-block__input" id="{{chatnameId}}" type="text" value="Имя в чате" disabled>
-            <img class="edit-icon" src="#" alt="Нажмите, чтобы редактировать имя в чате">
-          </div>
-        </div>
-        <div class="profile-form__buttons">
-          <button class="profile-form__button button" type="submit">Выйти</button>
-          <a class="profile-form__button button" href="change-password.html">Изменить пароль</a>
-        </div>
-      {{/with}}
-    </form>
-  </div>
-</div>
 </div>
