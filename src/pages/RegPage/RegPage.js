@@ -1,12 +1,8 @@
-import template from './RegPage.hbs';
+import tpl from './RegPage.hbs';
+import * as css from './RegPage.module.scss';
+import { RegForm } from '~/src/components/RegForm';
+import { Window } from '~/src/components/Window';
 
-const formIds = {
-  nameId: 'name',
-  lastnameId: 'lastname',
-  loginId: 'login',
-  emailId: 'email',
-  phoneId: 'phone',
-  passwordId: 'password',
+export const RegPage = (props) => {
+  return tpl({ ...props, css, Window: Window({ children: RegForm }) });
 };
-
-export const RegPage = (props) => template({ ...props, formIds });
