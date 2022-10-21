@@ -1,0 +1,7 @@
+@import '~/src/scss/variables';
+
+.site-wrapper {
+  min-height: 100vh;
+  background-color: $brand-color;
+  display: flex;
+}

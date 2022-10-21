@@ -1,3 +1,6 @@
-import template from './ChatsPage.hbs';
+import tpl from './ChatsPage.hbs';
+import * as sharedCss from '~/src/scss/shared.module.scss';
 
-export { template as ChatsPage };
+export const ChatsPage = (props) => {
+  return tpl({ ...props, css: sharedCss });
+};
