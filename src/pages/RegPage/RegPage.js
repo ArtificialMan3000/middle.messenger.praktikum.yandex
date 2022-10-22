@@ -9,7 +9,7 @@ Object.assign(css, sharedCss);
 export const RegPage = (props) => {
   return tpl({
     ...props,
-    css,
     Window: Window({ header: 'Регистрация', children: RegForm }),
+    css,
   });
 };
