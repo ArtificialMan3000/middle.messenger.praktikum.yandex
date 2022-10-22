@@ -6,19 +6,19 @@ import { Button } from '../Button';
 export const RegForm = (props) => {
   return tpl({
     ...props,
-    NameField: Field({
+    FirstNameField: Field({
       className: css.field,
       type: 'text',
-      id: 'name',
-      name: 'name',
+      id: 'first_name',
+      name: 'first_name',
       label: 'Имя',
       placeholder: 'Имя',
     }),
-    LastnameField: Field({
+    SecondNameField: Field({
       className: css.field,
       type: 'text',
-      id: 'lastname',
-      name: 'lastname',
+      id: 'second_name',
+      name: 'second_name',
       label: 'Фамилия',
       placeholder: 'Фамилия',
     }),

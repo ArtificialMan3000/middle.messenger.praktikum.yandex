@@ -6,19 +6,19 @@ import { Button } from '../Button';
 export const ProfileForm = (props) => {
   return tpl({
     ...props,
-    NameField: EditField({
+    FirstNameField: EditField({
       className: css.field,
       type: 'text',
-      id: 'name',
-      name: 'name',
+      id: 'first_name',
+      name: 'first_name',
       label: 'Имя',
       value: 'Имя',
     }),
-    LastnameField: EditField({
+    SecondNameField: EditField({
       className: css.field,
       type: 'text',
-      id: 'lastname',
-      name: 'lastname',
+      id: 'second_name',
+      name: 'second_name',
       label: 'Фамилия',
       value: 'Фамилия',
     }),
@@ -46,11 +46,11 @@ export const ProfileForm = (props) => {
       label: 'Телефон',
       value: 'Телефон',
     }),
-    ChatnameField: EditField({
+    DisplayNameField: EditField({
       className: css.field,
       type: 'text',
-      id: 'chatname',
-      name: 'chatname',
+      id: 'display_name',
+      name: 'display_name',
       label: 'Имя в чате',
       value: 'Имя в чате',
     }),
