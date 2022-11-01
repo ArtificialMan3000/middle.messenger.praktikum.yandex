@@ -2,8 +2,9 @@ import tpl from './AuthForm.hbs';
 import * as css from './AuthForm.module.scss';
 import { Field } from '../Field';
 import { Button } from '../Button';
+import { Component } from '~/src/typings/types';
 
-export const AuthForm = (props) => {
+export const AuthForm: Component = (props) => {
   return tpl({
     ...props,
     LoginField: Field({

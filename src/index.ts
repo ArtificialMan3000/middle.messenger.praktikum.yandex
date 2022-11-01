@@ -39,6 +39,6 @@ window.addEventListener('DOMContentLoaded', () => {
         currentPage = E404Page;
     }
 
-    appElem.innerHTML = currentPage();
+    appElem.innerHTML = currentPage({});
   }
 });

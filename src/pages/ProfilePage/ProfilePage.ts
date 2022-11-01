@@ -5,10 +5,11 @@ import { Backlink } from '~/src/components/Backlink';
 import { FullAvatar } from '~/src/components/FullAvatar';
 import { ProfileForm } from '~/src/components/ProfileForm';
 import { Window } from '~/src/components/Window';
+import { Component } from '~/src/typings/types';
 
 Object.assign(css, sharedCss);
 
-export const ProfilePage = (props) => {
+export const ProfilePage: Component = (props) => {
   return tpl({
     ...props,
     css,

@@ -2,8 +2,9 @@ import tpl from './ChangePasswordForm.hbs';
 import * as css from './ChangePasswordForm.module.scss';
 import { Field } from '../Field';
 import { Button } from '../Button';
+import { Component } from '~/src/typings/types';
 
-export const ChangePasswordForm = (props) => {
+export const ChangePasswordForm: Component = (props) => {
   return tpl({
     ...props,
     OldPasswordField: Field({

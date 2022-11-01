@@ -1,67 +1,68 @@
-import tpl from './ProfileForm.hbs';
-import * as css from './ProfileForm.module.scss';
-import { EditField } from '../EditField';
+import tpl from './RegForm.hbs';
+import * as css from './RegForm.module.scss';
+import { Field } from '../Field';
 import { Button } from '../Button';
+import { Component } from '~/src/typings/types';
 
-export const ProfileForm = (props) => {
+export const RegForm: Component = (props) => {
   return tpl({
     ...props,
-    FirstNameField: EditField({
+    FirstNameField: Field({
       className: css.field,
       type: 'text',
       id: 'first_name',
       name: 'first_name',
       label: 'Имя',
-      value: 'Имя',
+      placeholder: 'Имя',
     }),
-    SecondNameField: EditField({
+    SecondNameField: Field({
       className: css.field,
       type: 'text',
       id: 'second_name',
       name: 'second_name',
       label: 'Фамилия',
-      value: 'Фамилия',
+      placeholder: 'Фамилия',
     }),
-    LoginField: EditField({
+    LoginField: Field({
       className: css.field,
       type: 'text',
       id: 'login',
       name: 'login',
       label: 'Логин',
-      value: 'Логин',
+      placeholder: 'Логин',
     }),
-    EmailField: EditField({
+    EmailField: Field({
       className: css.field,
       type: 'email',
       id: 'email',
       name: 'email',
       label: 'Email',
-      value: 'Email',
+      placeholder: 'Email',
     }),
-    PhoneField: EditField({
+    PhoneField: Field({
       className: css.field,
       type: 'tel',
       id: 'phone',
       name: 'phone',
       label: 'Телефон',
-      value: 'Телефон',
+      placeholder: 'Телефон',
     }),
-    DisplayNameField: EditField({
+    PasswordField: Field({
       className: css.field,
-      type: 'text',
-      id: 'display_name',
-      name: 'display_name',
-      label: 'Имя в чате',
-      value: 'Имя в чате',
+      type: 'password',
+      id: 'password',
+      name: 'password',
+      label: 'Пароль',
+      placeholder: 'Пароль',
     }),
-    LeaveButton: Button({
+    RegButton: Button({
       className: css.button,
-      text: 'Выйти',
+      text: 'Зарегистрироваться',
     }),
-    ChangePasswordButton: Button({
+    EnterButton: Button({
       className: css.button,
-      text: 'Изменить пароль',
-      href: 'change-password.html',
+      text: 'Войти',
+      href: 'auth.html',
     }),
   });
 };

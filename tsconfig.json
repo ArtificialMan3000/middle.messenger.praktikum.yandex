@@ -8,7 +8,7 @@
     "module": "CommonJS",
     "strictNullChecks": true,
     "sourceMap": true,
-
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "plugins": [
