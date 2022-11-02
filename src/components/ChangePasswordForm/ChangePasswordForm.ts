@@ -4,9 +4,9 @@ import { Field } from '../Field';
 import { Button } from '../Button';
 import { Component } from '~/src/typings/types';
 
-export const ChangePasswordForm: Component = (props) => {
+export const ChangePasswordForm: Component = (properties) => {
   return tpl({
-    ...props,
+    ...properties,
     OldPasswordField: Field({
       className: css.field,
       type: 'password',

@@ -4,9 +4,9 @@ import { Field } from '../Field';
 import { Button } from '../Button';
 import { Component } from '~/src/typings/types';
 
-export const AuthForm: Component = (props) => {
+export const AuthForm: Component = (properties) => {
   return tpl({
-    ...props,
+    ...properties,
     LoginField: Field({
       className: css.field,
       type: 'text',

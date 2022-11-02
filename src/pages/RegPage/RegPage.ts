@@ -7,9 +7,9 @@ import { Component } from '~/src/typings/types';
 
 Object.assign(css, sharedCss);
 
-export const RegPage: Component = (props) => {
+export const RegPage: Component = (properties) => {
   return tpl({
-    ...props,
+    ...properties,
     Window: Window({ header: 'Регистрация', children: RegForm }),
     css,
   });

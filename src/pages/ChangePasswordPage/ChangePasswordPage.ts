@@ -5,9 +5,9 @@ import { ChangePasswordForm } from '~/src/components/ChangePasswordForm';
 import { Window } from '~/src/components/Window';
 import { Component } from '~/src/typings/types';
 
-export const ChangePasswordPage: Component = (props) => {
+export const ChangePasswordPage: Component = (properties) => {
   return tpl({
-    ...props,
+    ...properties,
     Window: Window({
       header: 'Сменить пароль',
       children: ChangePasswordForm,

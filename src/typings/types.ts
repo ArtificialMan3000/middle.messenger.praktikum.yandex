@@ -1,5 +1,5 @@
-type Props = Record<string, unknown> & {
+type Properties = Record<string, unknown> & {
   children?: Component;
 };
 
-export type Component = (props: Props) => string;
+export type Component = (properties: Properties) => string;

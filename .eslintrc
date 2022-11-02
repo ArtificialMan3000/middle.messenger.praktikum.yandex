@@ -14,10 +14,9 @@
     "airbnb-base",
     "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended",
-    "plugin:unicorn/recommended",
     "plugin:prettier/recommended",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier", "unicorn", "import"]
+  "plugins": ["@typescript-eslint", "prettier", "import"]
 }

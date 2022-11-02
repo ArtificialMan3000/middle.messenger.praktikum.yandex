@@ -4,9 +4,9 @@ import { AuthForm } from '~/src/components/AuthForm';
 import { Window } from '~/src/components/Window';
 import { Component } from '~/src/typings/types';
 
-export const AuthPage: Component = (props) => {
+export const AuthPage: Component = (properties) => {
   return tpl({
-    ...props,
+    ...properties,
     Window: Window({ header: 'Авторизация', children: AuthForm }),
     css: sharedCss,
   });

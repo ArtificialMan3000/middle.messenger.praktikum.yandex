@@ -4,9 +4,9 @@ import { Field } from '../Field';
 import { Button } from '../Button';
 import { Component } from '~/src/typings/types';
 
-export const RegForm: Component = (props) => {
+export const RegForm: Component = (properties) => {
   return tpl({
-    ...props,
+    ...properties,
     FirstNameField: Field({
       className: css.field,
       type: 'text',

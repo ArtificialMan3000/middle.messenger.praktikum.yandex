@@ -9,9 +9,9 @@ import { Component } from '~/src/typings/types';
 
 Object.assign(css, sharedCss);
 
-export const ProfilePage: Component = (props) => {
+export const ProfilePage: Component = (properties) => {
   return tpl({
-    ...props,
+    ...properties,
     css,
     Window: Window({ children: ProfileForm }),
     FullAvatar: FullAvatar({ imageSrc: 'img/avatar.jpg', name: 'Имя Фамилия' }),

@@ -4,9 +4,9 @@ import { EditField } from '../EditField';
 import { Button } from '../Button';
 import { Component } from '~/src/typings/types';
 
-export const ProfileForm: Component = (props) => {
+export const ProfileForm: Component = (properties) => {
   return tpl({
-    ...props,
+    ...properties,
     FirstNameField: EditField({
       className: css.field,
       type: 'text',

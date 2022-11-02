@@ -8,37 +8,45 @@ import { RegPage } from '~/src/pages/RegPage';
 import { AuthPage } from '~/src/pages/AuthPage';
 
 window.addEventListener('DOMContentLoaded', () => {
-  const appElem = document.querySelector<HTMLElement>('#app');
-  if (appElem) {
-    const currentPageName = appElem.dataset.page;
+  const appElement = document.querySelector<HTMLElement>('#app');
+  if (appElement) {
+    const currentPageName = appElement.dataset.page;
     let currentPage;
 
     switch (currentPageName) {
-      case 'main':
+      case 'main': {
         currentPage = MainPage;
         break;
-      case 'auth':
+      }
+      case 'auth': {
         currentPage = AuthPage;
         break;
-      case 'reg':
+      }
+      case 'reg': {
         currentPage = RegPage;
         break;
-      case 'chats':
+      }
+      case 'chats': {
         currentPage = ChatsPage;
         break;
-      case 'profile':
+      }
+      case 'profile': {
         currentPage = ProfilePage;
         break;
-      case 'changePassword':
+      }
+      case 'changePassword': {
         currentPage = ChangePasswordPage;
         break;
-      case '500':
+      }
+      case '500': {
         currentPage = E500Page;
         break;
-      default:
+      }
+      default: {
         currentPage = E404Page;
+      }
     }
 
-    appElem.innerHTML = currentPage({});
+    appElement.innerHTML = currentPage({});
   }
 });
