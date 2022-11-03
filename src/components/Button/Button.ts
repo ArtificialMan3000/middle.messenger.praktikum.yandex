@@ -8,10 +8,11 @@ type Properties = {
   text?: string;
 };
 
-export const Button = ({ className, href, type, text }: Properties) => {
-  if (!type) {
-    type = 'button';
-  }
-
+export const Button = ({
+  className,
+  href,
+  type = 'button',
+  text,
+}: Properties) => {
   return tpl({ className, href, type, text, css });
 };

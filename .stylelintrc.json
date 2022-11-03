@@ -9,5 +9,13 @@
       { "ignoreShorthands": ["padding", "margin"] }
     ]
   },
+  "overrides": [
+    {
+      "files": ["*.module.*", "**/*.module.*"],
+      "rules": {
+        "selector-class-pattern": null
+      }
+    }
+  ],
   "ignoreFiles": ["./dist/*", "**/node_modules/**"]
 }
