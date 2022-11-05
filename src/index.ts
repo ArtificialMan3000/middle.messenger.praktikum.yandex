@@ -47,6 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    appElement.innerHTML = currentPage({});
+    appElement.append(new ChatsPage({}).getContent());
+    // appElement.innerHTML = currentPage({});
   }
 });

@@ -1,7 +1,21 @@
 import tpl from './Backlink.hbs';
 import * as css from './Backlink.module.scss';
-import { Component } from '~/src/typings/types';
+import {
+  Component,
+  extendClassName,
+  TComponentProps,
+} from '~/src/view/Component';
 
-export const Backlink: Component = ({ href, text }) => {
-  return tpl({ href, text, css });
-};
+type TProps = TComponentProps;
+
+export class Backlink extends Component {
+  constructor(props?: TProps) {
+    const className = extendClassName(css.link, props?.className);
+    super('a', { ...props, className });
+  }
+
+  render() {
+    const { text } = this.props;
+    return tpl({ text, css });
+  }
+}

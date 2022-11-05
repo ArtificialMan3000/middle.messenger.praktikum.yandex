@@ -1,4 +1,5 @@
-import { TProps, TComponentMeta } from './types';
+import { v4 as uuid } from 'uuid';
+import { TEventsMap, TComponentProps, TComponentMeta } from './types';
 import { EventBus } from '../../controller/EventBus/EventBus';
 
 export class Component {
@@ -13,15 +14,22 @@ export class Component {
 
   #meta: TComponentMeta;
 
-  props: TProps;
+  #DOMEvents: TEventsMap;
+
+  props: TComponentProps;
 
   eventBus: EventBus;
 
-  constructor(tagName = 'div', props = {}) {
+  uuid: string;
+
+  constructor(tagName = 'div', props: TComponentProps = {}) {
     this.#meta = {
       tagName,
       props,
     };
+
+    this.uuid = uuid();
+    this.#DOMEvents = {};
 
     this.props = this.#makePropsProxy(props);
 
@@ -41,6 +49,7 @@ export class Component {
   #createResources() {
     const { tagName } = this.#meta;
     this.#element = this.#createDocumentElement(tagName);
+    this.element.setAttribute(`data-${this.uuid}`, '');
   }
 
   init() {
@@ -51,33 +60,35 @@ export class Component {
   }
 
   #componentDidMount() {
-    this.componentDidMount();
+    this.componentDidMount(this.props);
   }
 
-  componentDidMount: (oldProps?: TProps) => unknown;
+  componentDidMount(oldProps?: TComponentProps) {}
 
   dispatchComponentDidMount() {
     this.eventBus.emit(Component.EVENTS.FLOW_CDM);
   }
 
-  #componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  #componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response) {
+      console.log('render');
+
       this.eventBus.emit(Component.EVENTS.FLOW_RENDER);
     }
   }
 
   // Может переопределять пользователь, необязательно трогать
-  componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
     return !this.#shallowCompare(oldProps, newProps);
   }
 
-  setProps = (nextProps: TProps) => {
-    if (!nextProps) {
+  setComponentProps = (nextComponentProps: TComponentProps) => {
+    if (!nextComponentProps) {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    Object.assign(this.props, nextComponentProps);
   };
 
   get element() {
@@ -85,28 +96,65 @@ export class Component {
   }
 
   #render() {
+    const renderedElement = document.querySelector(
+      `[data-${this.uuid}]`
+    ) as HTMLElement | null;
+    if (!renderedElement) {
+      this.#createResources();
+    } else {
+      this.#element = renderedElement;
+    }
+
     const block = this.render();
+    console.log(block);
+
+    const { className, events, attr: attributes } = this.props;
+    if (className) {
+      this.#element.className = className;
+    }
+    if (attributes) {
+      Object.keys(attributes).forEach((attr) => {
+        this.#element.setAttribute(attr, attributes[attr]);
+      });
+    }
     // Этот небезопасный метод для упрощения логики
     // Используйте шаблонизатор из npm или напишите свой безопасный
     // Нужно не в строку компилировать (или делать это правильно),
     // либо сразу в DOM-элементы возвращать из compile DOM-ноду
+
+    if (events) {
+      Object.entries(events).forEach(([eventName, listeners]) => {
+        const currEvents = this.#DOMEvents[eventName];
+        listeners.forEach((listener) => {
+          if (currEvents && !currEvents.includes(listener)) {
+            this.#element.removeEventListener(eventName, listener);
+          } else {
+            this.#element.addEventListener(eventName, listener);
+          }
+        });
+      });
+      this.#DOMEvents = events;
+    }
+
     if (block) {
       this.#element.innerHTML = block;
+      console.dir(this.#element);
     }
   }
 
   // Может переопределять пользователь, необязательно трогать
-  render: () => string | void;
+  render(): string | void {}
 
   getContent() {
     return this.element;
   }
 
-  #makePropsProxy(props: TProps) {
+  #makePropsProxy(props: TComponentProps) {
     return new Proxy(props, {
       set: (target, key, value) => {
         if (typeof key === 'string') {
-          // console.log(this);
+          console.log(key);
+
           const oldProps = { ...target };
           const newProps = target;
           newProps[key] = value;
@@ -135,7 +183,7 @@ export class Component {
     this.#element.style.display = 'none';
   }
 
-  #shallowCompare(oldProps: TProps, newProps: TProps) {
+  #shallowCompare(oldProps: TComponentProps, newProps: TComponentProps) {
     const oldKeys = Object.keys(oldProps);
     const newKeys = Object.keys(newProps);
     if (oldKeys.length !== newKeys.length) {

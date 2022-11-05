@@ -1,14 +1,16 @@
 import tpl from './EditField.hbs';
 import * as css from './EditField.module.scss';
-import { Component } from '~/src/typings/types';
+import { Component, TComponentProps } from '~src/view/Component';
 
-export const EditField: Component = ({
-  className,
-  type,
-  id,
-  name,
-  label,
-  value,
-}) => {
-  return tpl({ className, type, id, name, label, value, css });
+type TProps = TComponentProps;
+
+export class EditField extends Component {
+  constructor(props: TProps) {
+    super('div', props);
+  }
+
+  render() {
+    const { className, type, id, name, label, value } = this.props;
+    return tpl({ className, type, id, name, label, value, css });
+  }
 };

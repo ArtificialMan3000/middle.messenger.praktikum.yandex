@@ -1,7 +1,23 @@
 import tpl from './ChatsPage.hbs';
 import * as sharedCss from '~/src/scss/shared.module.scss';
-import { Component } from '~/src/typings/types';
+import {
+  Component,
+  extendClassName,
+  TComponentProps,
+} from '~src/view/Component';
 
-export const ChatsPage: Component = (properties) => {
-  return tpl({ ...properties, css: sharedCss });
+type TProps = TComponentProps;
+
+export class ChatsPage extends Component {
+  constructor(props: TProps) {
+    const className = extendClassName(
+      `${sharedCss['site-wrapper']}`,
+      props.className
+    );
+    super('div', { ...props, className });
+  }
+
+  render() {
+    return tpl({ css: sharedCss });
+  }
 };

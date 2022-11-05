@@ -1,7 +1,5 @@
-<div class="{{css.window}}">
-  {{#if header}}
-    <h1 class="{{css.header}}">{{header}}</h1>
-  {{/if}}
-  <p class="{{css.error}}">Сообщение об ошибке</p>
-  {{{children}}}
-</div>
+{{#if header}}
+  <h1 class="{{css.header}}">{{header}}</h1>
+{{/if}}
+<p class="{{css.error}}">{{errorText}}</p>
+{{{content}}}

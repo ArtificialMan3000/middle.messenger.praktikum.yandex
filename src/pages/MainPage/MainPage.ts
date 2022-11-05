@@ -1,6 +1,14 @@
 import tpl from './MainPage.hbs';
-import { Component } from '~/src/typings/types';
+import { Component, TComponentProps } from '~src/view/Component';
 
-export const MainPage: Component = () => {
-  return tpl({});
+type TProps = TComponentProps;
+
+export class MainPage extends Component {
+  constructor(props: TProps) {
+    super('div', props);
+  }
+
+  render() {
+    return tpl({});
+  }
 };
