@@ -1,14 +1,14 @@
 @import "./variables";
 
-.site-wrapper {
+.siteWrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  min-height: 100vh;
-  padding: 50px;
+  height: 100vh;
+  overflow-y: hidden;
   background-color: $brand-color;
 }
 
-.danger-bg {
+.dangerBg {
   background-color: rgb(240 25 25);
 }

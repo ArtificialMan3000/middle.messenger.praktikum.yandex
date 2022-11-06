@@ -13,11 +13,8 @@ type TProps = TComponentProps;
 
 export class AuthPage extends Component {
   constructor(props: TProps) {
-    const className = extendClassName(
-      sharedCss['site-wrapper'],
-      props.className
-    );
-    super('div', { ...props, className });
+    const className = extendClassName(sharedCss.siteWrapper, props.className);
+    super({ ...props, className }, 'div');
   }
 
   render() {

@@ -12,7 +12,7 @@ type TProps = TComponentProps;
 
 export class RegForm extends Component {
   constructor(props?: TProps) {
-    super('form', props);
+    super(props, 'form');
   }
 
   render() {

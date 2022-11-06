@@ -1,0 +1,26 @@
+.root {
+  --input-height: 40px;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.messages {
+  flex-grow: 1;
+  padding: 10px;
+
+  .messagesList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .message {
+      margin-top: 15px;
+    }
+  }
+}
+
+.input {
+  height: var(--input-height);
+}

@@ -19,7 +19,7 @@ export class Button extends Component {
   constructor(props: TProps) {
     const { className = '', attributes } = props;
     const newClassName = extendClassName(css.button, className);
-    super('button', { ...props, className: newClassName });
+    super({ ...props, className: newClassName }, 'button');
 
     this.type = attributes?.type || 'button';
   }

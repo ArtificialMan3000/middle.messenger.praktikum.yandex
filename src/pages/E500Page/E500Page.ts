@@ -14,10 +14,10 @@ type TProps = TComponentProps;
 export class E500Page extends Component {
   constructor(props: TProps) {
     const className = extendClassName(
-      `${css['site-wrapper']} ${css['danger-bg']}`,
+      `${css.siteWrapper} ${css.dangerBg}`,
       props.className
     );
-    super('div', { ...props, className });
+    super({ ...props, className }, 'div');
   }
 
   render() {

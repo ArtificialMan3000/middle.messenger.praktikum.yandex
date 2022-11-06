@@ -23,7 +23,7 @@ type TProps = TComponentProps;
 
 export class AuthForm extends Component {
   constructor(props?: TProps) {
-    super('form', props);
+    super(props, 'form');
   }
 
   render() {

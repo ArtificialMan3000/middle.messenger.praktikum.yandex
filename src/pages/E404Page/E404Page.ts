@@ -13,11 +13,8 @@ type TProps = TComponentProps;
 
 export class E404Page extends Component {
   constructor(props: TProps) {
-    const className = extendClassName(
-      `${css['site-wrapper']}`,
-      props.className
-    );
-    super('div', { ...props, className });
+    const className = extendClassName(`${css.siteWrapper}`, props.className);
+    super({ ...props, className }, 'div');
   }
 
   render() {

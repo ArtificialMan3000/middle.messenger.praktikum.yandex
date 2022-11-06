@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  padding: 5px;
+}

@@ -11,43 +11,43 @@ window.addEventListener('DOMContentLoaded', () => {
   const appElement = document.querySelector<HTMLElement>('#app');
   if (appElement) {
     const currentPageName = appElement.dataset.page;
-    let currentPage;
+    let CurrentPage;
 
     switch (currentPageName) {
       case 'main': {
-        currentPage = MainPage;
+        CurrentPage = MainPage;
         break;
       }
       case 'auth': {
-        currentPage = AuthPage;
+        CurrentPage = AuthPage;
         break;
       }
       case 'reg': {
-        currentPage = RegPage;
+        CurrentPage = RegPage;
         break;
       }
       case 'chats': {
-        currentPage = ChatsPage;
+        CurrentPage = ChatsPage;
         break;
       }
       case 'profile': {
-        currentPage = ProfilePage;
+        CurrentPage = ProfilePage;
         break;
       }
       case 'changePassword': {
-        currentPage = ChangePasswordPage;
+        CurrentPage = ChangePasswordPage;
         break;
       }
       case '500': {
-        currentPage = E500Page;
+        CurrentPage = E500Page;
         break;
       }
       default: {
-        currentPage = E404Page;
+        CurrentPage = E404Page;
       }
     }
 
-    appElement.append(new ChatsPage({}).getContent());
+    appElement.append(new CurrentPage({}).getContent());
     // appElement.innerHTML = currentPage({});
   }
 });

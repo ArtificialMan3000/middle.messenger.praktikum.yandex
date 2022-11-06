@@ -11,7 +11,7 @@ type TProps = TComponentProps;
 export class Backlink extends Component {
   constructor(props?: TProps) {
     const className = extendClassName(css.link, props?.className);
-    super('a', { ...props, className });
+    super({ ...props, className }, 'a');
   }
 
   render() {

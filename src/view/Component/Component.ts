@@ -22,7 +22,7 @@ export class Component {
 
   uuid: string;
 
-  constructor(tagName = 'div', props: TComponentProps = {}) {
+  constructor(props: TComponentProps = {}, tagName = 'div') {
     this.#meta = {
       tagName,
       props,

@@ -1,0 +1,43 @@
+.page {
+  --profile-height: 100px;
+  --search-height: 40px;
+  --chats-height: calc(100% - (var(--profile-height) + var(--search-height)));
+
+  display: flex;
+  align-items: stretch;
+  align-self: stretch;
+  width: 100%;
+  height: 100%;
+}
+
+.col1 {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+}
+
+.col2 {
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.profile {
+  width: 100%;
+  height: var(--profile-height);
+}
+
+.search {
+  width: 100%;
+  height: var(--search-height);
+}
+
+.chats {
+  width: 100%;
+  height: var(--chats-height);
+  overflow-y: auto;
+}
+
+.mainChat {
+  flex-grow: 1;
+}

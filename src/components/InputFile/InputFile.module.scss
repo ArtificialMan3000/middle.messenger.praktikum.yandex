@@ -1,0 +1,14 @@
+@import "~/src/scss/mixins";
+
+.root {
+  @include root;
+}
+
+.label {
+  display: block;
+  cursor: pointer;
+}
+
+.input {
+  display: none;
+}

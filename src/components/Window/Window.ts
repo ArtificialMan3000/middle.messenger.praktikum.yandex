@@ -9,7 +9,7 @@ import {
 export class Window extends Component {
   constructor(props: TComponentProps) {
     const className = extendClassName(css.window, props.className);
-    super('div', { ...props, className });
+    super({ ...props, className }, 'div');
   }
 
   render() {

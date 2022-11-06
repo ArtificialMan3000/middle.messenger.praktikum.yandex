@@ -11,7 +11,7 @@ type TProps = TComponentProps;
 export class FullAvatar extends Component {
   constructor(props: TProps) {
     const className = extendClassName(css.avatar, props.className);
-    super('div', { ...props, className });
+    super({ ...props, className }, 'div');
   }
 
   render() {

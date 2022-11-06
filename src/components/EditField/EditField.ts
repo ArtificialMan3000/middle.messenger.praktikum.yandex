@@ -6,7 +6,7 @@ type TProps = TComponentProps;
 
 export class EditField extends Component {
   constructor(props: TProps) {
-    super('div', props);
+    super(props, 'div');
   }
 
   render() {

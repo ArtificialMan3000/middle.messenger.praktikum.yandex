@@ -10,7 +10,7 @@ type TProps =
 
 export class Button extends Component {
   constructor(props: TProps) {
-    super('a', props);
+    super(props, 'a');
     this.props.className += ` ${css.button}`;
   }
 
