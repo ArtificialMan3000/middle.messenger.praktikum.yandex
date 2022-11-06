@@ -19,7 +19,7 @@ yarn start
 
 После запуска проект доступен по адресу http://localhost:3000
 
-[Интернет-версия](https://635408746b1a762cb2311aeb--tranquil-babka-e91d4b.netlify.app)
+[Интернет-версия](https://6367a120ab7ee400081024a8--tranquil-babka-e91d4b.netlify.app/)
 
 ## Стиль разработки
 
