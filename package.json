@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Web chat like Telegram",
   "scripts": {
-    "start": "yarn build && node server.js",
+    "start": "yarn build && ts-node server.ts",
     "dev": "parcel serve 'static/*.html' 'static/img/*.jpg' --no-cache",
     "build": "parcel build 'static/*.html' 'static/img/*.jpg'",
     "test": "echo \"Error: no test specified\" && exit 1",
