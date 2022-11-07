@@ -6,9 +6,9 @@ import { Window } from '~/src/components/Window';
 import {
   Component,
   extendClassName,
-  getComponentAsHTML,
   TComponentProps,
 } from '~src/view/Component';
+import { submitFormHandlers } from '~src/controller/formHandlers';
 
 Object.assign(css, sharedCss);
 
@@ -21,13 +21,15 @@ export class RegPage extends Component {
   }
 
   render() {
-    return tpl({
-      Window: getComponentAsHTML(
-        new Window({
-          header: 'Регистрация',
-          content: getComponentAsHTML(new RegForm()),
-        })
-      ),
+    return this.compile(tpl, {
+      Window: new Window({
+        header: 'Регистрация',
+        content: new RegForm({
+          events: {
+            submit: submitFormHandlers,
+          },
+        }),
+      }),
       css,
     });
   }

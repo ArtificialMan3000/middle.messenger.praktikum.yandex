@@ -17,15 +17,17 @@ export class Button extends Component {
   type: string;
 
   constructor(props: TProps) {
-    const { className = '', attributes } = props;
-    const newClassName = extendClassName(css.button, className);
-    super({ ...props, className: newClassName }, 'button');
+    const { className = '', attr } = props;
 
-    this.type = attributes?.type || 'button';
+    const newClassName = extendClassName(css.button, className);
+
+    const type = attr?.type || 'button';
+
+    super({ ...props, className: newClassName, attr: { type } }, 'button');
   }
 
   render() {
-    console.log('button render');
+    // console.log('button render');
 
     const { text } = this.props;
 

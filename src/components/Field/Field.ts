@@ -11,6 +11,14 @@ export class Field extends Component {
 
   render() {
     const { className, type, id, name, label, placeholder } = this.props;
-    return tpl({ className, type, id, name, label, placeholder, css });
+    return this.compile(tpl, {
+      className,
+      type,
+      id,
+      name,
+      label,
+      placeholder,
+      css,
+    });
   }
 }

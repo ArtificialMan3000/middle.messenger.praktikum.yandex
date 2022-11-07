@@ -9,6 +9,6 @@ export class MainPage extends Component {
   }
 
   render() {
-    return tpl({});
+    return this.compile(tpl, {});
   }
 };
