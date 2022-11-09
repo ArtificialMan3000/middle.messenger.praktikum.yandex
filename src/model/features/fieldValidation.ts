@@ -8,30 +8,30 @@ type TValidationRule = {
 export const validationRules: Record<string, TValidationRule> = {};
 
 validationRules.first_name = {
-  regexp: /^[A-ZА-Я][A-ZА-Яa-zа-я-]*/,
+  regexp: /^[A-ZА-Я][A-ZА-Яa-zа-я-]*$/,
 };
 
 validationRules.second_name = validationRules.first_name;
 
 validationRules.login = {
   regexp: /[A-Za-z\-_0-9]*/,
-  excludeRegexp: /[0-9]+/,
+  excludeRegexp: /^[0-9]+$/,
   minLength: 3,
   maxLength: 20,
 };
 
 validationRules.email = {
-  regexp: /[A-Za-z0-9-]+@[A-Za-z0-9-]+\.[A-Za-z0-9-]+/,
+  regexp: /^[A-Za-z0-9-.]+@[A-Za-z0-9-]+\.[A-Za-z0-9-]+$/,
 };
 
 validationRules.password = {
-  regexp: /(?=.*\d)(?=.*[A-Z]).*/,
+  regexp: /^(?=.*\d)(?=.*[A-Z]).*$/,
   minLength: 8,
   maxLength: 40,
 };
 
 validationRules.phone = {
-  regexp: /^\+?\d+/,
+  regexp: /^\+?\d+$/,
   minLength: 10,
   maxLength: 15,
 };
