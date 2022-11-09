@@ -1,7 +1,7 @@
 import { getComponentAsHTML } from '~/src/view/Component';
 import { Component } from '~src/view/Component';
-import { InputFile } from '../InputFile';
-import { InputText } from '../InputText';
+import { MessageInputFile } from '../MessageInputFile';
+import { MessageInputText } from '../MessageInputText';
 import tpl from './MessageInput.hbs';
 import * as css from './MessageInput.module.scss';
 
@@ -10,10 +10,10 @@ export class MessageInput extends Component {
     return tpl({
       css,
       InputFile: getComponentAsHTML(
-        new InputFile({ className: css.inputFile })
+        new MessageInputFile({ className: css.inputFile })
       ),
       InputText: getComponentAsHTML(
-        new InputText({ className: css.inputText })
+        new MessageInputText({ className: css.inputText })
       ),
     });
   }

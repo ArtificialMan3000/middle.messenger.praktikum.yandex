@@ -8,7 +8,7 @@ import {
 } from './types';
 import { EventBus } from '../../controller/EventBus/EventBus';
 
-export class Component {
+export class Component<TProps extends TComponentProps = TComponentProps> {
   static EVENTS: Record<string, string> = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -22,7 +22,7 @@ export class Component {
 
   #DOMEvents: TEventsMap;
 
-  props: TComponentProps;
+  props: TProps;
 
   children: TComponentChildren;
 
@@ -30,7 +30,9 @@ export class Component {
 
   #uuid: string;
 
-  constructor(props: TComponentProps = {}, tagName = 'div') {
+  innerComponents: Record<string, Component>;
+
+  constructor(props: TProps, tagName = 'div') {
     this.eventBus = new EventBus();
 
     this.#meta = {
@@ -75,11 +77,17 @@ export class Component {
 
   #componentDidMount() {
     this.componentDidMount(this.props);
+
+    if (this.innerComponents) {
+      Object.values(this.innerComponents).forEach((component) => {
+        component.eventBus.emit(Component.EVENTS.FLOW_CDM);
+      });
+    }
   }
 
-  #componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
+  #componentDidUpdate(oldProps: TProps, newProps: TProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
-    if (response) {
+    if (response !== false) {
       this.eventBus.emit(Component.EVENTS.FLOW_RENDER);
     }
   }
@@ -88,9 +96,9 @@ export class Component {
     this.#element.innerHTML = '';
 
     this.#setClassName();
-    
+
     this.#setAttributes();
-    
+
     const content = this.render();
 
     if (content) {
@@ -101,10 +109,10 @@ export class Component {
   }
 
   // * #region For user implementation
-  componentDidMount: (oldProps?: TComponentProps) => unknown =
-    function componentDidMount() {};
 
-  componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
+  componentDidMount(oldProps?: TProps) {}
+
+  componentDidUpdate(oldProps: TProps, newProps: TProps): boolean | void {
     return !this.#shallowCompare(oldProps, newProps);
   }
 
@@ -116,23 +124,22 @@ export class Component {
     this.eventBus.emit(Component.EVENTS.FLOW_CDM);
   }
 
-  setProps = (nextProps: TComponentProps) => {
+  setProps = (nextProps: TProps) => {
     if (!nextProps) {
       return;
     }
+    console.log(nextProps);
 
     Object.assign(this.props, nextProps);
   };
 
-  #makePropsProxy(props: TComponentProps) {
+  #makePropsProxy(props: TProps) {
     return new Proxy(props, {
       set: (target, key, value) => {
         if (typeof key === 'string') {
-          // console.log(key);
-
           const oldProps = { ...target };
           const newProps = target;
-          newProps[key] = value;
+          newProps[key as keyof TProps] = value;
 
           this.eventBus.emit(Component.EVENTS.FLOW_CDU, oldProps, newProps);
           return true;
@@ -182,7 +189,7 @@ export class Component {
 
             // console.log(listener);
 
-            this.#element.addEventListener(eventName, listener);
+            this.#element.addEventListener(eventName, (evt) => listener(evt));
           }
         });
       });
@@ -190,21 +197,23 @@ export class Component {
     }
   }
 
-  compile(template: TemplateDelegate, propsWithComponents: TComponentProps) {
+  compile(template: TemplateDelegate, propsWithComponents: TProps) {
     const propsAndStubs = { ...propsWithComponents };
 
-    const innerComponents =
+    this.innerComponents =
       this.#extractComponentsFromProps(propsWithComponents);
 
-    Object.entries(innerComponents).forEach(([key, value]) => {
-      propsAndStubs[key] = `<div data-${value.props.__id}></div>`;
+    Object.entries(this.innerComponents).forEach(([key, value]) => {
+      // Не смог разрулить здесь тайпскрипт
+      propsAndStubs[key as keyof TProps] =
+        `<div data-${value.props.__id}></div>` as any;
     });
 
     const fragment = document.createElement('template');
 
     fragment.innerHTML = template(propsAndStubs);
 
-    Object.values(innerComponents).forEach((child) => {
+    Object.values(this.innerComponents).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-${child.props.__id}`);
       stub?.replaceWith(child.getContent());
     });
@@ -242,7 +251,7 @@ export class Component {
 
   // * #region Helpers
 
-  #shallowCompare(oldProps: TComponentProps, newProps: TComponentProps) {
+  #shallowCompare(oldProps: TProps, newProps: TProps) {
     const oldKeys = Object.keys(oldProps);
     const newKeys = Object.keys(newProps);
     if (oldKeys.length !== newKeys.length) {
@@ -257,7 +266,7 @@ export class Component {
     return !isNotEqual;
   }
 
-  #extractComponentsFromProps(propsWithComponents: TComponentProps) {
+  #extractComponentsFromProps(propsWithComponents: TProps) {
     const components: Record<string, Component> = {};
 
     Object.entries(propsWithComponents).forEach(([key, value]) => {

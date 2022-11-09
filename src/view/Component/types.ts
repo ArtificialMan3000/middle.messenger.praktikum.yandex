@@ -2,7 +2,7 @@ import type { Component } from './Component';
 
 export type TEventsMap = Record<string, EventListener[]>;
 
-export type TComponentProps = Record<string, unknown> & {
+export type TComponentProps = Record<string, any> & {
   className?: string;
   attr?: Record<string, string>;
   events?: TEventsMap;
