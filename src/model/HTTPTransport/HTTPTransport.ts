@@ -110,8 +110,3 @@ export class HTTPTransport {
     });
   };
 }
-
-console.dir(HTTPTransport);
-
-const trans = new HTTPTransport();
-trans.get('yandex.ru').then((res) => console.log(res.response));

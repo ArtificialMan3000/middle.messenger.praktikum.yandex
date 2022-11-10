@@ -41,9 +41,6 @@ validationRules.message = {
 };
 
 export const isFieldValid = (fieldName: string, fieldValue: string) => {
-  // console.log('field name', fieldName);
-  // console.log('field value', fieldValue);
-
   if (!validationRules[fieldName]) {
     throw new TypeError('Incorrect name for valudation');
   }

@@ -174,20 +174,11 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     if (events) {
       Object.entries(events).forEach(([eventName, listeners]) => {
         const currEvents = this.#DOMEvents[eventName];
-        // console.log('events', events);
 
         listeners.forEach((listener) => {
           if (currEvents && !currEvents.includes(listener)) {
-            // console.log('remove');
-
             this.#element.removeEventListener(eventName, listener);
           } else {
-            // console.log('add');
-            // console.dir(this.#element);
-            // console.log(eventName);
-
-            // console.log(listener);
-
             this.#element.addEventListener(eventName, (evt) => listener(evt));
           }
         });
