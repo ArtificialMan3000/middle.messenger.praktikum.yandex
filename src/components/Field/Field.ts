@@ -16,22 +16,6 @@ export class Field extends Component<TProps> {
     super(props, 'div');
   }
 
-  // onInputFocus(evt: Event, component: Component) {
-  //   const { name = '' } = this.props;
-  //   if (fieldHandlers[name]) {
-  //     fieldHandlers[name](evt, component);
-  //   }
-  //   console.log('focus');
-  // }
-
-  // onInputBlur(evt: Event, component: Component) {
-  //   const { name = '' } = this.props;
-  //   if (fieldHandlers[name]) {
-  //     fieldHandlers[name](evt, component);
-  //   }
-  //   console.log('blur');
-  // }
-
   render() {
     const {
       className,
@@ -40,8 +24,6 @@ export class Field extends Component<TProps> {
       name = '',
       label,
       placeholder = '',
-      onInputFocus = () => {},
-      onInputBlur = () => {},
     } = this.props;
 
     const input: Component = new Input({
@@ -51,10 +33,6 @@ export class Field extends Component<TProps> {
         type,
         id,
         name,
-      },
-      events: {
-        focus: [(evt) => onInputFocus(evt, input)],
-        blur: [(evt) => onInputBlur(evt, input)],
       },
     });
 

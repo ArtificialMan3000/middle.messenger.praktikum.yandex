@@ -8,7 +8,8 @@ import {
   extendClassName,
   TComponentProps,
 } from '~src/view/Component';
-import { submitFormHandlers } from '~src/controller/formHandlers';
+import { setValidityStatus } from '~src/model/features/fieldValidation';
+import { outputForm } from '~src/model/features/outputForm';
 
 Object.assign(css, sharedCss);
 
@@ -20,13 +21,41 @@ export class RegPage extends Component {
     super({ ...props, className }, 'div');
   }
 
+  addEvents() {
+    this.element.querySelectorAll('input').forEach((input) => {
+      input.addEventListener('focus', (evt) => {
+        setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+      });
+
+      input.addEventListener('blur', (evt) => {
+        setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+      });
+    });
+
+    super.addEvents();
+  }
+
   render() {
     return this.compile(tpl, {
       Window: new Window({
         header: 'Регистрация',
         content: new RegForm({
           events: {
-            submit: submitFormHandlers,
+            submit: [
+              (evt: Event) => {
+                evt.preventDefault();
+                if (evt.target) {
+                  outputForm(evt.target as HTMLFormElement);
+                }
+              },
+              (evt: Event) => {
+                const form = evt.target as HTMLFormElement;
+                const inputs = form.querySelectorAll('input');
+                inputs.forEach((input) => {
+                  setValidityStatus(input, css.notValid);
+                });
+              },
+            ],
           },
         }),
       }),

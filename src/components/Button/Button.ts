@@ -27,23 +27,8 @@ export class Button extends Component {
   }
 
   render() {
-    // console.log('button render');
-
     const { text } = this.props;
 
     return tpl({ text });
   }
 }
-
-// const button = new Button({
-//   tagName: 'a',
-// });
-
-// export const Button = ({
-//   className,
-//   href,
-//   type = 'button',
-//   text,
-// }: Properties) => {
-//   return tpl({ className, href, type, text, css });
-// };

@@ -41,8 +41,8 @@ validationRules.message = {
 };
 
 export const isFieldValid = (fieldName: string, fieldValue: string) => {
-  console.log('field name', fieldName);
-  console.log('field value', fieldValue);
+  // console.log('field name', fieldName);
+  // console.log('field value', fieldValue);
 
   if (!validationRules[fieldName]) {
     throw new TypeError('Incorrect name for valudation');
@@ -95,4 +95,17 @@ export const isFieldValid = (fieldName: string, fieldValue: string) => {
     isValidByMaxLength;
 
   return isValid;
+};
+
+export const setValidityStatus = (
+  input: HTMLInputElement,
+  className: string
+) => {
+  const { name, value } = input;
+  const isValid = isFieldValid(name, value);
+  if (isValid) {
+    input.classList.remove(className);
+  } else {
+    input.classList.add(className);
+  }
 };

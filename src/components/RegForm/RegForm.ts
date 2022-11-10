@@ -4,7 +4,6 @@ import { Field } from '../Field';
 import { Button } from '../Button';
 import { Component, TComponentProps } from '~src/view/Component';
 import { ButtonLink } from '../ButtonLink';
-import { fieldHandler } from '~src/controller/fieldHandler';
 
 type TProps = TComponentProps;
 
@@ -21,8 +20,6 @@ export class RegForm extends Component {
       name: 'first_name',
       label: 'Имя',
       placeholder: 'Имя',
-      onInputFocus: fieldHandler,
-      onInputBlur: fieldHandler,
     });
 
     const SecondNameField = new Field({
@@ -32,8 +29,6 @@ export class RegForm extends Component {
       name: 'second_name',
       label: 'Фамилия',
       placeholder: 'Фамилия',
-      onInputFocus: fieldHandler,
-      onInputBlur: fieldHandler,
     });
 
     const LoginField = new Field({
@@ -43,8 +38,6 @@ export class RegForm extends Component {
       name: 'login',
       label: 'Логин',
       placeholder: 'Логин',
-      onInputFocus: fieldHandler,
-      onInputBlur: fieldHandler,
     });
 
     const EmailField = new Field({
@@ -54,8 +47,6 @@ export class RegForm extends Component {
       name: 'email',
       label: 'Email',
       placeholder: 'Email',
-      onInputFocus: fieldHandler,
-      onInputBlur: fieldHandler,
     });
 
     const PhoneField = new Field({
@@ -65,8 +56,6 @@ export class RegForm extends Component {
       name: 'phone',
       label: 'Телефон',
       placeholder: 'Телефон',
-      onInputFocus: fieldHandler,
-      onInputBlur: fieldHandler,
     });
 
     const PasswordField = new Field({
@@ -76,8 +65,6 @@ export class RegForm extends Component {
       name: 'password',
       label: 'Пароль',
       placeholder: 'Пароль',
-      onInputFocus: fieldHandler,
-      onInputBlur: fieldHandler,
     });
 
     return this.compile(tpl, {

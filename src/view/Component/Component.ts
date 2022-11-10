@@ -105,7 +105,7 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
       this.#element.append(content);
     }
 
-    this.#addEvents();
+    this.addEvents();
   }
 
   // * #region For user implementation
@@ -128,7 +128,6 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     if (!nextProps) {
       return;
     }
-    console.log(nextProps);
 
     Object.assign(this.props, nextProps);
   };
@@ -169,7 +168,7 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     }
   }
 
-  #addEvents() {
+  addEvents() {
     const { events } = this.props;
 
     if (events) {
