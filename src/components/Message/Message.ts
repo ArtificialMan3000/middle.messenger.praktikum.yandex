@@ -12,6 +12,10 @@ export class Message extends Component {
       classType = css.out;
     }
 
-    return tpl({ css: { ...css, type: classType }, type, content });
+    return this.compile(tpl, {
+      css: { ...css, type: classType },
+      type,
+      content,
+    });
   }
 }

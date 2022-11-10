@@ -21,6 +21,6 @@ export class E500Page extends Component {
   }
 
   render() {
-    return tpl({ css });
+    return this.compile(tpl, { css });
   }
 };

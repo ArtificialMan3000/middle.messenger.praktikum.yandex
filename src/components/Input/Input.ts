@@ -15,7 +15,7 @@ export class Input extends Component<TProps> {
   }
 
   render() {
-    return tpl({
+    return this.compile(tpl, {
       ...this.props,
     });
   }

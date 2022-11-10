@@ -18,6 +18,6 @@ export class E404Page extends Component {
   }
 
   render() {
-    return tpl({ css });
+    return this.compile(tpl, { css });
   }
 };

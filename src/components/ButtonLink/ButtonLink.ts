@@ -14,10 +14,10 @@ export class ButtonLink extends Component {
     this.props.className += ` ${css.button}`;
   }
 
-  render = function () {
+  render = () => {
     const { text } = this.props;
 
-    return tpl({ text });
+    return this.compile(tpl, { text });
   };
 }
 
@@ -31,5 +31,5 @@ export class ButtonLink extends Component {
 //   type = 'button',
 //   text,
 // }: Properties) => {
-//   return tpl({ className, href, type, text, css });
+//   return this.compile(tpl,{ className, href, type, text, css });
 // };

@@ -1,4 +1,3 @@
-import { getComponentAsHTML } from '~/src/view/Component';
 import tpl from './ChatsPage.hbs';
 import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './ChatsPage.module.scss';
@@ -22,10 +21,10 @@ export class ChatsPage extends Component {
   }
 
   render() {
-    return tpl({
+    return this.compile(tpl, {
       css,
-      ChatList: getComponentAsHTML(new ChatList({ className: css.chats })),
-      MainChat: getComponentAsHTML(new ChatWindow({ className: css.mainChat })),
+      ChatList: new ChatList({ className: css.chats }),
+      MainChat: new ChatWindow({ className: css.mainChat }),
     });
   }
 }

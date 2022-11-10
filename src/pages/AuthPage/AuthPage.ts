@@ -5,7 +5,6 @@ import { Window } from '~/src/components/Window';
 import {
   Component,
   extendClassName,
-  getComponentAsHTML,
   TComponentProps,
 } from '~src/view/Component';
 
@@ -18,13 +17,11 @@ export class AuthPage extends Component {
   }
 
   render() {
-    return tpl({
-      Window: getComponentAsHTML(
-        new Window({
-          header: 'Авторизация',
-          content: getComponentAsHTML(new AuthForm()),
-        })
-      ),
+    return this.compile(tpl, {
+      Window: new Window({
+        header: 'Авторизация',
+        content: new AuthForm({}),
+      }),
       css: sharedCss,
     });
   }

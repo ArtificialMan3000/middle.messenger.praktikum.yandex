@@ -29,6 +29,6 @@ export class Button extends Component {
   render() {
     const { text } = this.props;
 
-    return tpl({ text });
+    return this.compile(tpl, { text });
   }
 }

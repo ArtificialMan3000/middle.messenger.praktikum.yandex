@@ -16,6 +16,6 @@ export class Backlink extends Component {
 
   render() {
     const { text } = this.props;
-    return tpl({ text, css });
+    return this.compile(tpl, { text, css });
   }
 }

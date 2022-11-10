@@ -7,15 +7,7 @@ import {
   Component,
   TComponentProps,
   extendClassName,
-  getComponentAsHTML,
 } from '~src/view/Component';
-
-// const window1 = new Window({
-//   header: 'Сменить пароль',
-//   children: ChangePasswordForm,
-//   errorText: 'Сообщение об ошибке',
-// });
-// window.window1 = window1;
 
 type TProps = TComponentProps;
 export class ChangePasswordPage extends Component {
@@ -25,22 +17,18 @@ export class ChangePasswordPage extends Component {
   }
 
   render() {
-    return tpl({
-      Window: getComponentAsHTML(
-        new Window({
-          header: 'Сменить пароль',
-          content: getComponentAsHTML(new ChangePasswordForm()),
-          errorText: 'Сообщение об ошибке',
-        })
-      ),
-      Backlink: getComponentAsHTML(
-        new Backlink({
-          text: 'К чатам',
-          attr: {
-            href: 'chats.html',
-          },
-        })
-      ),
+    return this.compile(tpl, {
+      Window: new Window({
+        header: 'Сменить пароль',
+        content: new ChangePasswordForm({}),
+        errorText: 'Сообщение об ошибке',
+      }),
+      Backlink: new Backlink({
+        text: 'К чатам',
+        attr: {
+          href: 'chats.html',
+        },
+      }),
       css: sharedCss,
     });
   }

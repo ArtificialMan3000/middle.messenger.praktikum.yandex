@@ -16,6 +16,6 @@ export class FullAvatar extends Component {
 
   render() {
     const { imageSrc, name, width = 300, height = 300 } = this.props;
-    return tpl({ imageSrc, name, width, height, css });
+    return this.compile(tpl, { imageSrc, name, width, height, css });
   }
 }

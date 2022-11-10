@@ -15,13 +15,7 @@ export class Window extends Component {
   render() {
     const { header, content, errorText } = this.props;
     const comp = this.compile(tpl, { header, content, errorText, css });
-    console.log('compiled', comp);
 
     return comp;
   }
 }
-
-
-// export const Window: Component = ({ header, children }) => {
-//   return tpl({ header, children, css });
-// };

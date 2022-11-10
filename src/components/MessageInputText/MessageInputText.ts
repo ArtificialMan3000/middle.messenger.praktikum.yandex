@@ -4,7 +4,7 @@ import * as css from './MessageInputText.module.scss';
 
 export class MessageInputText extends Component {
   render() {
-    return tpl({
+    return this.compile(tpl, {
       css,
     });
   }

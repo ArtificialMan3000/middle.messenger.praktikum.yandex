@@ -8,7 +8,6 @@ import { Window } from '~/src/components/Window';
 import {
   Component,
   extendClassName,
-  getComponentAsHTML,
   TComponentProps,
 } from '~src/view/Component';
 
@@ -23,17 +22,14 @@ export class ProfilePage extends Component {
   }
 
   render() {
-    return tpl({
+    return this.compile(tpl, {
       css,
-      Window: getComponentAsHTML(
-        new Window({ content: getComponentAsHTML(new ProfileForm()) })
-      ),
-      FullAvatar: getComponentAsHTML(
-        new FullAvatar({ imageSrc: 'img/avatar.jpg', name: 'Имя Фамилия' })
-      ),
-      Backlink: getComponentAsHTML(
-        new Backlink({ href: 'chats.html', text: 'К чатам' })
-      ),
+      Window: new Window({ content: new ProfileForm({}) }),
+      FullAvatar: new FullAvatar({
+        imageSrc: 'img/avatar.jpg',
+        name: 'Имя Фамилия',
+      }),
+      Backlink: new Backlink({ href: 'chats.html', text: 'К чатам' }),
     });
   }
 };

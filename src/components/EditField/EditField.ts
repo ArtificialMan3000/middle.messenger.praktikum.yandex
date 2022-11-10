@@ -11,6 +11,6 @@ export class EditField extends Component {
 
   render() {
     const { className, type, id, name, label, value } = this.props;
-    return tpl({ className, type, id, name, label, value, css });
+    return this.compile(tpl, { className, type, id, name, label, value, css });
   }
 };

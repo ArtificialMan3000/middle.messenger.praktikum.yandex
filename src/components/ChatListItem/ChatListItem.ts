@@ -1,18 +1,16 @@
-import { Component, getComponentAsHTML } from '~/src/view/Component';
+import { Component } from '~/src/view/Component';
 import { MiniAvatar } from '../MiniAvatar';
 import tpl from './ChatListItem.hbs';
 import * as css from './ChatListItem.module.scss';
 
 export class ChatListItem extends Component {
   render() {
-    return tpl({
+    return this.compile(tpl, {
       css,
-      Avatar: getComponentAsHTML(
-        new MiniAvatar({
-          className: css.avatar,
-          imageSrc: 'img/avatar.jpg',
-        })
-      ),
+      Avatar: new MiniAvatar({
+        className: css.avatar,
+        imageSrc: 'img/avatar.jpg',
+      }),
       newMessagesCounter: 1,
     });
   }

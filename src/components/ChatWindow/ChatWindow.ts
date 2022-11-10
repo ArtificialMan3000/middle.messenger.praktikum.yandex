@@ -1,4 +1,3 @@
-import { getComponentAsHTML } from '~/src/view/Component';
 import { Component } from '~src/view/Component';
 import { ChatHeader } from '../ChatHeader';
 import { ChatMain } from '../ChatMain';
@@ -7,10 +6,10 @@ import * as css from './ChatWindow.module.scss';
 
 export class ChatWindow extends Component {
   render() {
-    return tpl({
+    return this.compile(tpl, {
       css,
-      Header: getComponentAsHTML(new ChatHeader({ className: css.header })),
-      Main: getComponentAsHTML(new ChatMain({ className: css.main })),
+      Header: new ChatHeader({ className: css.header }),
+      Main: new ChatMain({ className: css.main }),
     });
   }
 }

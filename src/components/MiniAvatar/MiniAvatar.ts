@@ -5,6 +5,6 @@ import { Component } from '~src/view/Component';
 export class MiniAvatar extends Component {
   render() {
     const { imageSrc, width = 30, height = 30 } = this.props;
-    return tpl({ imageSrc, width, height, css });
+    return this.compile(tpl, { imageSrc, width, height, css });
   }
 }
