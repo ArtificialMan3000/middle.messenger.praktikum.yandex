@@ -61,8 +61,8 @@ export class RegForm extends Component {
     const PasswordField = new Field({
       className: css.field,
       type: 'password',
-      id: 'password',
-      name: 'password',
+      id: 'newPassword',
+      name: 'newPassword',
       label: 'Пароль',
       placeholder: 'Пароль',
     });

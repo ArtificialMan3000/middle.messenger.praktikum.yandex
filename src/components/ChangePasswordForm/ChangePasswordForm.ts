@@ -41,6 +41,7 @@ export class ChangePasswordForm extends Component {
       SaveButton: new Button({
         className: css.button,
         text: 'Сохранить',
+        attr: { type: 'submit' },
       }),
     });
   }

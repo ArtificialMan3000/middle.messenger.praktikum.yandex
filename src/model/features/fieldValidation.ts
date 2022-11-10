@@ -24,7 +24,7 @@ validationRules.email = {
   regexp: /^[A-Za-z0-9-.]+@[A-Za-z0-9-]+\.[A-Za-z0-9-]+$/,
 };
 
-validationRules.password = {
+validationRules.newPassword = {
   regexp: /^(?=.*\d)(?=.*[A-Z]).*$/,
   minLength: 8,
   maxLength: 40,
@@ -42,7 +42,7 @@ validationRules.message = {
 
 export const isFieldValid = (fieldName: string, fieldValue: string) => {
   if (!validationRules[fieldName]) {
-    throw new TypeError('Incorrect name for valudation');
+    return true;
   }
 
   let isValid = false;
