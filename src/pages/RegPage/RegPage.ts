@@ -49,6 +49,7 @@ export class RegPage extends Component {
                 }
               },
               (evt: Event) => {
+                evt.preventDefault();
                 const form = evt.target as HTMLFormElement;
                 const inputs = form.querySelectorAll('input');
                 inputs.forEach((input) => {

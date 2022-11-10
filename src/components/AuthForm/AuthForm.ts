@@ -33,6 +33,7 @@ export class AuthForm extends Component {
       EnterButton: new Button({
         className: css.button,
         text: 'Войти',
+        attr: { type: 'submit' },
       }),
       RegButton: new ButtonLink({
         className: css.button,
