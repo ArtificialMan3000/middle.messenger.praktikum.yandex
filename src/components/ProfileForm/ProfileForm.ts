@@ -3,6 +3,7 @@ import * as css from './ProfileForm.module.scss';
 import { EditField } from '../EditField';
 import { Button } from '../Button';
 import { Component, TComponentProps } from '~src/view/Component';
+import { ButtonLink } from '../ButtonLink';
 
 type TProps = TComponentProps;
 
@@ -65,10 +66,12 @@ export class ProfileForm extends Component {
         className: css.button,
         text: 'Выйти',
       }),
-      ChangePasswordButton: new Button({
+      ChangePasswordButton: new ButtonLink({
         className: css.button,
         text: 'Изменить пароль',
-        href: 'change-password.html',
+        attr: {
+          href: 'change-password.html',
+        },
       }),
     });
   }
