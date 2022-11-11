@@ -30,7 +30,7 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
 
   #uuid: string;
 
-  innerComponents: Record<string, Component>;
+  innerComponents: Record<string, Component | Component[]>;
 
   constructor(props: TProps, tagName = 'div') {
     this.eventBus = new EventBus();
@@ -79,8 +79,14 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     this.componentDidMount(this.props);
 
     if (this.innerComponents) {
-      Object.values(this.innerComponents).forEach((component) => {
-        component.eventBus.emit(Component.EVENTS.FLOW_CDM);
+      Object.values(this.innerComponents).forEach((value) => {
+        if (Array.isArray(value)) {
+          value.forEach((item) => {
+            item.eventBus.emit(Component.EVENTS.FLOW_CDM);
+          });
+        } else {
+          value.eventBus.emit(Component.EVENTS.FLOW_CDM);
+        }
       });
     }
   }
@@ -194,9 +200,17 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
       this.#extractComponentsFromProps(propsWithComponents);
 
     Object.entries(this.innerComponents).forEach(([key, value]) => {
-      // Не смог разрулить здесь тайпскрипт
-      propsAndStubs[key as keyof TProps] =
-        `<div data-${value.props.__id}></div>` as any;
+      if (Array.isArray(value)) {
+        const arStubs = value.map(
+          (item) => `<div data-${item.props.__id}></div>`
+        );
+        // Не смог разрулить здесь тайпскрипт
+        propsAndStubs[key as keyof TProps] = arStubs as any;
+      } else {
+        // Не смог разрулить здесь тайпскрипт
+        propsAndStubs[key as keyof TProps] =
+          `<div data-${value.props.__id}></div>` as any;
+      }
     });
 
     const fragment = document.createElement('template');
@@ -204,8 +218,20 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     fragment.innerHTML = template(propsAndStubs);
 
     Object.values(this.innerComponents).forEach((child) => {
-      const stub = fragment.content.querySelector(`[data-${child.props.__id}`);
-      stub?.replaceWith(child.getContent());
+      if (Array.isArray(child)) {
+        child.forEach((item) => {
+          // TODO Remove dublicated code from here
+          const stub = fragment.content.querySelector(
+            `[data-${item.props.__id}]`
+          );
+          stub?.replaceWith(item.getContent());
+        });
+      } else {
+        const stub = fragment.content.querySelector(
+          `[data-${child.props.__id}]`
+        );
+        stub?.replaceWith(child.getContent());
+      }
     });
 
     return fragment.content;
@@ -257,11 +283,22 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
   }
 
   #extractComponentsFromProps(propsWithComponents: TProps) {
-    const components: Record<string, Component> = {};
+    const components: Record<string, Component | Component[]> = {};
 
     Object.entries(propsWithComponents).forEach(([key, value]) => {
       if (value instanceof Component) {
         components[key] = value;
+      }
+      // Support of arrays of components
+      else if (Array.isArray(value)) {
+        const arComponents = value.filter((arValue) => {
+          return arValue instanceof Component;
+        });
+        if (arComponents.length === value.length) {
+          components[key] = arComponents;
+        } else {
+          throw new TypeError('Mixed arrays do not supported');
+        }
       }
     });
     return components;
