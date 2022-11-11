@@ -1,10 +1,26 @@
 import { Component } from '~/src/view/Component';
+import { setValidityStatus } from '~src/model/features/fieldValidation';
+import { outputForm } from '~src/model/features/outputForm';
 import { Message } from '../Message';
-import { MessageInput } from '../MessageInput';
+import { MessageForm } from '../MessageForm';
 import tpl from './ChatMain.hbs';
 import * as css from './ChatMain.module.scss';
 
 export class ChatMain extends Component {
+  addEvents() {
+    this.element.querySelectorAll('input').forEach((input) => {
+      input.addEventListener('focus', (evt) => {
+        setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+      });
+
+      input.addEventListener('blur', (evt) => {
+        setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+      });
+    });
+
+    super.addEvents();
+  }
+
   render() {
     return this.compile(tpl, {
       css,
@@ -26,7 +42,27 @@ export class ChatMain extends Component {
           'li'
         ),
       ],
-      Input: new MessageInput({ className: css.input }),
+      Input: new MessageForm({
+        className: css.input,
+        events: {
+          submit: [
+            (evt: Event) => {
+              evt.preventDefault();
+              if (evt.target) {
+                outputForm(evt.target as HTMLFormElement);
+              }
+            },
+            (evt: Event) => {
+              evt.preventDefault();
+              const form = evt.target as HTMLFormElement;
+              const inputs = form.querySelectorAll('input');
+              inputs.forEach((input) => {
+                setValidityStatus(input, css.notValid);
+              });
+            },
+          ],
+        },
+      }),
     });
   }
 }
