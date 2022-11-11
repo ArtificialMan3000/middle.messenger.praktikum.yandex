@@ -10,6 +10,8 @@ import {
   extendClassName,
   TComponentProps,
 } from '~src/view/Component';
+import { setValidityStatus } from '~src/model/features/fieldValidation';
+import { outputForm } from '~src/model/features/outputForm';
 
 Object.assign(css, sharedCss);
 
@@ -21,10 +23,45 @@ export class ProfilePage extends Component {
     super({ ...props, className }, 'div');
   }
 
+  addEvents() {
+    this.element.querySelectorAll('input').forEach((input) => {
+      input.addEventListener('focus', (evt) => {
+        setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+      });
+
+      input.addEventListener('blur', (evt) => {
+        setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+      });
+    });
+
+    super.addEvents();
+  }
+
   render() {
     return this.compile(tpl, {
       css,
-      Window: new Window({ content: new ProfileForm({}) }),
+      Window: new Window({
+        content: new ProfileForm({
+          events: {
+            submit: [
+              (evt: Event) => {
+                evt.preventDefault();
+                if (evt.target) {
+                  outputForm(evt.target as HTMLFormElement);
+                }
+              },
+              (evt: Event) => {
+                evt.preventDefault();
+                const form = evt.target as HTMLFormElement;
+                const inputs = form.querySelectorAll('input');
+                inputs.forEach((input) => {
+                  setValidityStatus(input, css.notValid);
+                });
+              },
+            ],
+          },
+        }),
+      }),
       FullAvatar: new FullAvatar({
         imageSrc: 'img/avatar.jpg',
         name: 'Имя Фамилия',

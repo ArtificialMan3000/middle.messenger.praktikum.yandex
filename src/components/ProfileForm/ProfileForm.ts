@@ -25,8 +25,8 @@ export class ProfileForm extends Component {
       SecondNameField: new EditField({
         className: css.field,
         type: 'text',
-        id: 'second_name',
-        name: 'second_name',
+        id: 'last_name',
+        name: 'last_name',
         label: 'Фамилия',
         value: 'Фамилия',
       }),
