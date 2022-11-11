@@ -7,8 +7,6 @@ import { ProfilePage } from '~/src/pages/ProfilePage';
 import { RegPage } from '~/src/pages/RegPage';
 import { AuthPage } from '~/src/pages/AuthPage';
 import { renderDOM } from './view/DOM';
-import { Window } from '~/src/components/Window';
-import { RegForm } from './components/RegForm';
 
 window.addEventListener('DOMContentLoaded', () => {
   const appElement = document.querySelector<HTMLElement>('#app');
