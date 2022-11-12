@@ -11,6 +11,9 @@ import {
 } from '~src/view/Component';
 import { setValidityStatus } from '~src/model/features/fieldValidation';
 import { outputForm } from '~src/model/features/outputForm';
+import { combineCssModules } from '~src/view/View';
+
+combineCssModules(css, sharedCss);
 
 type TProps = TComponentProps;
 export class ChangePasswordPage extends Component {
