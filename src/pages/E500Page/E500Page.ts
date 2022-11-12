@@ -17,7 +17,7 @@ export class E500Page extends Component {
       `${css.siteWrapper} ${css.dangerBg}`,
       props.className
     );
-    super({ ...props, className }, 'div');
+    super({ ...props, className }, 'main');
   }
 
   render() {

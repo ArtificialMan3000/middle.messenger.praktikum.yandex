@@ -19,7 +19,7 @@ type TProps = TComponentProps;
 export class ChangePasswordPage extends Component {
   constructor(props: TProps) {
     const className = extendClassName(sharedCss.siteWrapper, props.className);
-    super({ ...props, className }, 'div');
+    super({ ...props, className }, 'main');
   }
 
   addEvents() {

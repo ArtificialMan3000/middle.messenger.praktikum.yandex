@@ -10,10 +10,10 @@
 }
 
 .dangerBg {
-  background-color: rgb(240 25 25);
+  background-color: $attention-color;
 }
 
 .notValid {
-  border-color: red;
-  outline-color: red;
+  border-color: $attention-color;
+  outline-color: $attention-color;
 }

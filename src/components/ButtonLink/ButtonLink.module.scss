@@ -4,9 +4,9 @@
   display: block;
   padding: 5px;
   text-transform: uppercase;
-  border: 1px solid #040911;
+  border: 1px solid $brand-dark;
   text-align: center;
   background-color: $brand-color;
-  color: #000;
+  color: $black;
   cursor: pointer;
 }

@@ -1,3 +1,5 @@
+@import "~/src/scss/variables";
+
 .root {
   display: flex;
   flex-direction: column;
@@ -6,7 +8,7 @@
 
 .message {
   max-width: 60%;
-  background-color: #fff;
+  background-color: $white;
 
   &.in {
     margin-right: auto;

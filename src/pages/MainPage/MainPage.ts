@@ -5,7 +5,7 @@ type TProps = TComponentProps;
 
 export class MainPage extends Component {
   constructor(props: TProps) {
-    super(props, 'div');
+    super(props, 'main');
   }
 
   render() {
