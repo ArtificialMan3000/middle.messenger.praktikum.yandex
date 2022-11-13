@@ -16,4 +16,8 @@
 .notValid {
   border-color: $attention-color;
   outline-color: $attention-color;
+
+  & + .validityMessage {
+    display: block;
+  }
 }

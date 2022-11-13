@@ -23,20 +23,6 @@ export class ProfilePage extends Component {
     super({ ...props, className }, 'main');
   }
 
-  addEvents() {
-    this.element.querySelectorAll('input').forEach((input) => {
-      input.addEventListener('focus', (evt) => {
-        setValidityStatus(evt.target as HTMLInputElement, css.notValid);
-      });
-
-      input.addEventListener('blur', (evt) => {
-        setValidityStatus(evt.target as HTMLInputElement, css.notValid);
-      });
-    });
-
-    super.addEvents();
-  }
-
   render() {
     return this.compile(tpl, {
       css,
@@ -57,6 +43,16 @@ export class ProfilePage extends Component {
                 inputs.forEach((input) => {
                   setValidityStatus(input, css.notValid);
                 });
+              },
+            ],
+            inputFocus: [
+              (evt) => {
+                setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+              },
+            ],
+            inputBlur: [
+              (evt) => {
+                setValidityStatus(evt.target as HTMLInputElement, css.notValid);
               },
             ],
           },

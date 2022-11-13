@@ -12,6 +12,25 @@ export class RegForm extends Component {
     super(props, 'form');
   }
 
+  _addEvents() {
+    const { events = {} } = this.props;
+    const {
+      inputFocus: inputFocusListeners = [],
+      inputBlur: inputBlurListeners = [],
+    } = events;
+
+    this.element.querySelectorAll('input').forEach((input) => {
+      inputFocusListeners.forEach((inputFocusEvent) => {
+        input.addEventListener('focus', inputFocusEvent);
+      });
+      inputBlurListeners.forEach((inputBlurEvent) => {
+        input.addEventListener('blur', inputBlurEvent);
+      });
+    });
+
+    super._addEvents();
+  }
+
   render() {
     const FirstNameField = new Field({
       className: css.field,

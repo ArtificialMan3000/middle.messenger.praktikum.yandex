@@ -111,7 +111,7 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
       this.#element.append(content);
     }
 
-    this.addEvents();
+    this._addEvents();
   }
 
   // * #region For user implementation
@@ -174,19 +174,22 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     }
   }
 
-  addEvents() {
+  _removeEvents() {
+    Object.entries(this.#DOMEvents).forEach(([eventName, listeners]) => {
+      listeners.forEach((listener) => {
+        this.#element.removeEventListener(eventName, listener);
+      });
+    });
+    this.#DOMEvents = {};
+  }
+
+  _addEvents() {
     const { events } = this.props;
 
     if (events) {
       Object.entries(events).forEach(([eventName, listeners]) => {
-        const currEvents = this.#DOMEvents[eventName];
-
         listeners.forEach((listener) => {
-          if (currEvents && !currEvents.includes(listener)) {
-            this.#element.removeEventListener(eventName, listener);
-          } else {
-            this.#element.addEventListener(eventName, (evt) => listener(evt));
-          }
+          this.#element.addEventListener(eventName, listener);
         });
       });
       this.#DOMEvents = events;

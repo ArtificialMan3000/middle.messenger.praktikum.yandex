@@ -15,24 +15,10 @@ Object.assign(css, sharedCss);
 
 type TProps = TComponentProps;
 
-export class RegPage extends Component {
+export class RegPage extends Component<TProps> {
   constructor(props: TProps) {
     const className = extendClassName(sharedCss.siteWrapper, props.className);
     super({ ...props, className }, 'main');
-  }
-
-  addEvents() {
-    this.element.querySelectorAll('input').forEach((input) => {
-      input.addEventListener('focus', (evt) => {
-        setValidityStatus(evt.target as HTMLInputElement, css.notValid);
-      });
-
-      input.addEventListener('blur', (evt) => {
-        setValidityStatus(evt.target as HTMLInputElement, css.notValid);
-      });
-    });
-
-    super.addEvents();
   }
 
   render() {
@@ -55,6 +41,16 @@ export class RegPage extends Component {
                 inputs.forEach((input) => {
                   setValidityStatus(input, css.notValid);
                 });
+              },
+            ],
+            inputFocus: [
+              (evt) => {
+                setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+              },
+            ],
+            inputBlur: [
+              (evt) => {
+                setValidityStatus(evt.target as HTMLInputElement, css.notValid);
               },
             ],
           },
