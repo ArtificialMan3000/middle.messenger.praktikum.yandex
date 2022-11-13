@@ -4,6 +4,7 @@ import { Field } from '../Field';
 import { Button } from '../Button';
 import { Component, TComponentProps } from '~src/view/Component';
 import { ButtonLink } from '../ButtonLink';
+import { validationRules } from '~src/model/features/fieldValidation';
 
 type TProps = TComponentProps;
 
@@ -39,6 +40,7 @@ export class RegForm extends Component {
       name: 'first_name',
       label: 'Имя',
       placeholder: 'Имя',
+      validationText: validationRules.first_name.description,
     });
 
     const SecondNameField = new Field({
@@ -48,6 +50,7 @@ export class RegForm extends Component {
       name: 'second_name',
       label: 'Фамилия',
       placeholder: 'Фамилия',
+      validationText: validationRules.second_name.description,
     });
 
     const LoginField = new Field({
@@ -57,6 +60,7 @@ export class RegForm extends Component {
       name: 'login',
       label: 'Логин',
       placeholder: 'Логин',
+      validationText: validationRules.login.description,
     });
 
     const EmailField = new Field({
@@ -66,6 +70,7 @@ export class RegForm extends Component {
       name: 'email',
       label: 'Email',
       placeholder: 'Email',
+      validationText: validationRules.email.description,
     });
 
     const PhoneField = new Field({
@@ -75,6 +80,7 @@ export class RegForm extends Component {
       name: 'phone',
       label: 'Телефон',
       placeholder: 'Телефон',
+      validationText: validationRules.phone.description,
     });
 
     const PasswordField = new Field({
@@ -84,6 +90,7 @@ export class RegForm extends Component {
       name: 'newPassword',
       label: 'Пароль',
       placeholder: 'Пароль',
+      validationText: validationRules.newPassword.description,
     });
 
     return this.compile(tpl, {

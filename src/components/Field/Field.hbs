@@ -1,4 +1,9 @@
 <div class="{{css.field}} {{className}}">
   <label for="{{id}}" class="{{css.label}} sr-only">{{label}}</label>
   {{{Input}}}
+  {{#if validationText}}
+  <div class="{{css.validationText}}">
+    {{validationText}}
+  </div>
+  {{/if}}
 </div>

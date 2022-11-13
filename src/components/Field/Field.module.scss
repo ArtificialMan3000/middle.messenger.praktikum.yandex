@@ -1,5 +1,9 @@
 @import "~/src/scss/variables";
 
+.field {
+  position: relative;
+}
+
 .input {
   display: block;
   width: 100%;

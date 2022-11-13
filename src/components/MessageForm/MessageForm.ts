@@ -1,3 +1,4 @@
+import { validationRules } from '~src/model/features/fieldValidation';
 import { Component, TComponentProps } from '~src/view/Component';
 import { MessageInputFile } from '../MessageInputFile';
 import { MessageInputText } from '../MessageInputText';
@@ -35,7 +36,10 @@ export class MessageForm extends Component {
     return this.compile(tpl, {
       css,
       InputFile: new MessageInputFile({ className: css.inputFile }),
-      InputText: new MessageInputText({ className: css.inputText }),
+      InputText: new MessageInputText({
+        className: css.inputText,
+        validationText: validationRules.message.description,
+      }),
     });
   }
 }

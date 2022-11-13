@@ -3,41 +3,54 @@ type TValidationRule = {
   excludeRegexp?: RegExp;
   minLength?: number;
   maxLength?: number;
+  description: string;
 };
 
 export const validationRules: Record<string, TValidationRule> = {};
 
 validationRules.first_name = {
   regexp: /^[A-ZА-Я][A-ZА-Яa-zа-я-]*$/,
+  description:
+    'Имя должно состоять только из букв и начинаться с большой буквы',
 };
 
-validationRules.second_name = validationRules.first_name;
+validationRules.second_name = {
+  ...validationRules.first_name,
+  description:
+    'Фамилия должна состоять только из букв и начинаться с большой буквы',
+};
 
 validationRules.login = {
   regexp: /[A-Za-z\-_0-9]*/,
   excludeRegexp: /^[0-9]+$/,
   minLength: 3,
   maxLength: 20,
+  description: 'Неправильный формат логина',
 };
 
 validationRules.email = {
   regexp: /^[A-Za-z0-9-.]+@[A-Za-z0-9-]+\.[A-Za-z0-9-]+$/,
+  description: 'Неправильный формат email',
 };
 
 validationRules.newPassword = {
   regexp: /^(?=.*\d)(?=.*[A-Z]).*$/,
   minLength: 8,
   maxLength: 40,
+  description:
+    'В пароле должена быть хотя бы одна заглавная буква и цифра. Длина от 8 до 40 символов',
 };
 
 validationRules.phone = {
   regexp: /^\+?\d+$/,
   minLength: 10,
   maxLength: 15,
+  description: 'Неправильный формат телефона',
 };
 
 validationRules.message = {
   minLength: 1,
+  description: 'Сообщение не должно быть пустым',
 };
 
 export const isFieldValid = (fieldName: string, fieldValue: string) => {

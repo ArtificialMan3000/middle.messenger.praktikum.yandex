@@ -13,11 +13,19 @@
   background-color: $attention-color;
 }
 
+.validationText {
+  display: none;
+  position: absolute;
+  top: 100%;
+  font-size: 10px;
+  color: $attention-color;
+}
+
 .notValid {
   border-color: $attention-color;
   outline-color: $attention-color;
 
-  & + .validityMessage {
+  & + .validationText {
     display: block;
   }
 }

@@ -1,3 +1,4 @@
+import { validationRules } from '~src/model/features/fieldValidation';
 import tpl from './AuthForm.hbs';
 import * as css from './AuthForm.module.scss';
 import { Field } from '../Field';
@@ -40,6 +41,7 @@ export class AuthForm extends Component {
         name: 'login',
         label: 'Логин',
         placeholder: 'Логин',
+        validationText: validationRules.login.description,
       }),
       PasswordField: new Field({
         className: css.field,
@@ -61,4 +63,4 @@ export class AuthForm extends Component {
       }),
     });
   }
-};
+}

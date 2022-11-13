@@ -1,6 +1,6 @@
 import tpl from './EditField.hbs';
 import * as css from './EditField.module.scss';
-import { Component, TComponentProps } from '~src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
 
 type TProps = TComponentProps;
 

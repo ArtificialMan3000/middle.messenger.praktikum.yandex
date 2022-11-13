@@ -1,9 +1,11 @@
+import { validationRules } from '~src/model/features/fieldValidation';
 import tpl from './ProfileForm.hbs';
 import * as css from './ProfileForm.module.scss';
 import { EditField } from '../EditField';
 import { Button } from '../Button';
 import { Component, TComponentProps } from '~src/view/Component';
 import { ButtonLink } from '../ButtonLink';
+import { Field } from '../Field';
 
 type TProps = TComponentProps;
 
@@ -33,53 +35,65 @@ export class ProfileForm extends Component {
 
   render() {
     return this.compile(tpl, {
-      FirstNameField: new EditField({
+      FirstNameField: new Field({
         className: css.field,
         type: 'text',
         id: 'first_name',
         name: 'first_name',
         label: 'Имя',
         value: 'Имя',
+        validationText: validationRules.first_name.description,
       }),
-      SecondNameField: new EditField({
+      SecondNameField: new Field({
         className: css.field,
         type: 'text',
-        id: 'last_name',
-        name: 'last_name',
+        id: 'second_name',
+        name: 'second_name',
         label: 'Фамилия',
         value: 'Фамилия',
+        validationText: validationRules.second_name.description,
       }),
-      LoginField: new EditField({
+      LoginField: new Field({
         className: css.field,
         type: 'text',
         id: 'login',
         name: 'login',
         label: 'Логин',
         value: 'Логин',
+        validationText: validationRules.login.description,
       }),
-      EmailField: new EditField({
+      EmailField: new Field({
         className: css.field,
         type: 'email',
         id: 'email',
         name: 'email',
         label: 'Email',
         value: 'Email',
+        validationText: validationRules.email.description,
       }),
-      PhoneField: new EditField({
+      PhoneField: new Field({
         className: css.field,
         type: 'tel',
         id: 'phone',
         name: 'phone',
         label: 'Телефон',
         value: 'Телефон',
+        validationText: validationRules.phone.description,
       }),
-      DisplayNameField: new EditField({
+      DisplayNameField: new Field({
         className: css.field,
         type: 'text',
         id: 'display_name',
         name: 'display_name',
         label: 'Имя в чате',
         value: 'Имя в чате',
+      }),
+      SaveButton: new Button({
+        className: css.button,
+        text: 'Сохранить',
+        attr: {
+          type: 'submit',
+        },
       }),
       LeaveButton: new Button({
         className: css.button,
@@ -94,4 +108,4 @@ export class ProfileForm extends Component {
       }),
     });
   }
-};
+}

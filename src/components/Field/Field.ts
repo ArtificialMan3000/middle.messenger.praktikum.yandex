@@ -1,14 +1,20 @@
 import tpl from './Field.hbs';
+import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './Field.module.scss';
 import { TComponentProps, Component } from '~/src/view/Component';
 import { Input } from '../Input/Input';
+import { combineCssModules } from '~src/view/View';
+
+combineCssModules(css, sharedCss);
 
 type TProps = TComponentProps & {
   type?: string;
   id?: string;
   name?: string;
   label?: string;
+  value?: string;
   placeholder?: string;
+  validationText?: string;
 };
 
 export class Field extends Component<TProps> {
@@ -23,7 +29,9 @@ export class Field extends Component<TProps> {
       id = '',
       name = '',
       label,
+      value = '',
       placeholder = '',
+      validationText = '',
     } = this.props;
 
     const input: Component = new Input({
@@ -33,6 +41,7 @@ export class Field extends Component<TProps> {
         type,
         id,
         name,
+        value,
       },
     });
 
@@ -42,6 +51,7 @@ export class Field extends Component<TProps> {
       label,
       Input: input,
       css,
+      validationText,
     });
   }
 }

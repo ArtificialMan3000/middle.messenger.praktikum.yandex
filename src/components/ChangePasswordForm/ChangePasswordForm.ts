@@ -3,6 +3,7 @@ import * as css from './ChangePasswordForm.module.scss';
 import { Field } from '../Field';
 import { Button } from '../Button';
 import { Component, TComponentProps } from '~src/view/Component';
+import { validationRules } from '~/src/model/features/fieldValidation';
 
 type TProps = TComponentProps;
 
@@ -48,6 +49,7 @@ export class ChangePasswordForm extends Component {
         name: 'newPassword',
         label: 'Новый пароль',
         placeholder: 'Новый пароль',
+        validationText: validationRules.newPassword.description,
       }),
       RepeatPasswordField: new Field({
         className: css.field,
