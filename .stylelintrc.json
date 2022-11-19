@@ -1,0 +1,21 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "color-hex-case": "lower",
+    "declaration-block-no-redundant-longhand-properties": [
+      true,
+      { "ignoreShorthands": ["padding", "margin"] }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.module.*", "**/*.module.*"],
+      "rules": {
+        "selector-class-pattern": null
+      }
+    }
+  ],
+  "ignoreFiles": ["./dist/*", "**/node_modules/**"]
+}

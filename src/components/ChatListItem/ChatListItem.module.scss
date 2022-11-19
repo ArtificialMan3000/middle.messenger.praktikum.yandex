@@ -1,0 +1,47 @@
+@import "~/src/scss/variables";
+
+.root {
+  display: flex;
+  align-items: stretch;
+}
+
+.col1 {
+  display: flex;
+  align-items: stretch;
+  width: 40px;
+}
+
+.col2 {
+  // display: flex;
+  flex-grow: 1;
+}
+
+.col3 {
+  width: 40px;
+  text-align: center;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.name {
+  margin: 0;
+}
+
+.lastMessage {
+  margin: 0;
+  margin-top: auto;
+  font-size: 14px;
+}
+
+.time {
+  display: block;
+}
+
+.newMessagesCounter {
+  color: $attention-color;
+}

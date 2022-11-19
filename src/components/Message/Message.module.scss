@@ -1,0 +1,20 @@
+@import "~/src/scss/variables";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.message {
+  max-width: 60%;
+  background-color: $white;
+
+  &.in {
+    margin-right: auto;
+  }
+
+  &.out {
+    margin-left: auto;
+  }
+}

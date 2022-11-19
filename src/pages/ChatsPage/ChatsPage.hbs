@@ -1,6 +1,15 @@
-<div class="{{css.site-wrapper}}">
-  <div class="chats-plug">
-    <h1 class="ally-only">Чаты</h1>
-    <p>Здесь будет список чатов</p>
+<div class="{{css.page}}">
+  <h1 class="sr-only">Чаты</h1>
+  <div class="{{css.col1}}">
+    <div class="{{css.profile}}">
+      {{profile}}
+    </div>
+    <div class="{{css.search}}">
+      {{search}}
+    </div>
+    {{{ChatList}}}
+  </div>
+  <div class="{{css.col2}}">
+    {{{MainChat}}}
   </div>
 </div>

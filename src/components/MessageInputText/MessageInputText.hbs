@@ -1,0 +1,9 @@
+<div class="{{css.root}}">
+  <label class="{{css.label}} sr-only" for="message">Введите сообщение</label>
+  <input class="{{css.input}}" id="message" type="text" name="message" placeholder="Введите сообщение">
+  {{#if validationText}}
+  <div class="{{css.validationText}}">
+    {{validationText}}
+  </div>
+  {{/if}}
+</div>
