@@ -14,7 +14,7 @@ combineCssModules(css, sharedCss);
 
 type TProps = TComponentProps;
 
-export class ChatsPage extends Component {
+export class ChatsPage extends Component<TProps> {
   constructor(props: TProps) {
     const className = extendClassName(`${css.siteWrapper}`, props.className);
     super({ ...props, className }, 'main');

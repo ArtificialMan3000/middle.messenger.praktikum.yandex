@@ -3,7 +3,7 @@ import { ChatListItem } from '../ChatListItem';
 import tpl from './ChatList.hbs';
 import * as css from './ChatList.module.scss';
 
-export class ChatList extends Component {
+export class ChatList extends Component<TProps> {
   render() {
     return this.compile(tpl, {
       css,

@@ -8,7 +8,7 @@ import {
 
 type TProps = TComponentProps;
 
-export class FullAvatar extends Component {
+export class FullAvatar extends Component<TProps> {
   constructor(props: TProps) {
     const className = extendClassName(css.avatar, props.className);
     super({ ...props, className }, 'div');

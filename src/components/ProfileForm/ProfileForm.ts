@@ -9,7 +9,7 @@ import { Field } from '../Field';
 
 type TProps = TComponentProps;
 
-export class ProfileForm extends Component {
+export class ProfileForm extends Component<TProps> {
   constructor(props: TProps) {
     super(props, 'form');
   }

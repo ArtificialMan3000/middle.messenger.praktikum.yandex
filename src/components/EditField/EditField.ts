@@ -4,7 +4,7 @@ import { Component, TComponentProps } from '~/src/view/Component';
 
 type TProps = TComponentProps;
 
-export class EditField extends Component {
+export class EditField extends Component<TProps> {
   constructor(props: TProps) {
     super(props, 'div');
   }

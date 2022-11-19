@@ -8,7 +8,7 @@ type TProps =
       text?: string;
     };
 
-export class ButtonLink extends Component {
+export class ButtonLink extends Component<TProps> {
   constructor(props: TProps) {
     super(props, 'a');
     this.props.className += ` ${css.button}`;

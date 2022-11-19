@@ -8,7 +8,7 @@ import {
 
 type TProps = TComponentProps;
 
-export class Backlink extends Component {
+export class Backlink extends Component<TProps> {
   constructor(props?: TProps) {
     const className = extendClassName(css.link, props?.className);
     super({ ...props, className }, 'a');

@@ -32,7 +32,7 @@ function concatUrlWithParams(url: string, params: string) {
 }
 
 export class HTTPTransport {
-  get: THTTPTransportMethod = (url: string, options = {}) => {
+  get: THTTPTransportMethod = (url, options = {}) => {
     const requestOptions: THTTPTransportRequestOptions = { ...options };
     requestOptions.method = METHODS.GET;
     delete requestOptions.data;
@@ -46,7 +46,7 @@ export class HTTPTransport {
     return this.request(urlWithParams, requestOptions, options.timeout);
   };
 
-  put: THTTPTransportMethod = (url: string, options = {}) => {
+  put: THTTPTransportMethod = (url, options = {}) => {
     const requestOptions: THTTPTransportRequestOptions = { ...options };
     requestOptions.method = METHODS.PUT;
 
@@ -56,7 +56,7 @@ export class HTTPTransport {
     return this.request(url, requestOptions, options.timeout);
   };
 
-  post: THTTPTransportMethod = (url: string, options = {}) => {
+  post: THTTPTransportMethod = (url, options = {}) => {
     const requestOptions: THTTPTransportRequestOptions = { ...options };
     requestOptions.method = METHODS.POST;
 
@@ -66,7 +66,7 @@ export class HTTPTransport {
     return this.request(url, requestOptions, options.timeout);
   };
 
-  delete: THTTPTransportMethod = (url: string, options = {}) => {
+  delete: THTTPTransportMethod = (url, options = {}) => {
     const requestOptions: THTTPTransportRequestOptions = { ...options };
     requestOptions.method = METHODS.POST;
 

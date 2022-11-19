@@ -7,7 +7,7 @@ import * as css from './MessageForm.module.scss';
 
 type TProps = TComponentProps;
 
-export class MessageForm extends Component {
+export class MessageForm extends Component<TProps> {
   constructor(props: TProps) {
     super(props, 'form');
   }

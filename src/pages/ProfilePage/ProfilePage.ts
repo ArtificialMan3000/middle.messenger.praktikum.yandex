@@ -17,7 +17,7 @@ Object.assign(css, sharedCss);
 
 type TProps = TComponentProps;
 
-export class ProfilePage extends Component {
+export class ProfilePage extends Component<TProps> {
   constructor(props: TProps) {
     const className = extendClassName(sharedCss.siteWrapper, props.className);
     super({ ...props, className }, 'main');

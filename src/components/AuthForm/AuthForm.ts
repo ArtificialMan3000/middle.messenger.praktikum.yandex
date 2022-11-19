@@ -8,7 +8,7 @@ import { ButtonLink } from '../ButtonLink';
 
 type TProps = TComponentProps;
 
-export class AuthForm extends Component {
+export class AuthForm extends Component<TProps> {
   constructor(props: TProps) {
     super(props, 'form');
   }

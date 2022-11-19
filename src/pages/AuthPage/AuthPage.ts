@@ -16,7 +16,7 @@ combineCssModules(css, sharedCss);
 
 type TProps = TComponentProps;
 
-export class AuthPage extends Component {
+export class AuthPage extends Component<TProps> {
   constructor(props: TProps) {
     const className = extendClassName(sharedCss.siteWrapper, props.className);
     super({ ...props, className }, 'main');

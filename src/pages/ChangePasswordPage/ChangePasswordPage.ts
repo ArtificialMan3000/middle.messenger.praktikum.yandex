@@ -16,7 +16,7 @@ import { combineCssModules } from '~src/view/View';
 combineCssModules(css, sharedCss);
 
 type TProps = TComponentProps;
-export class ChangePasswordPage extends Component {
+export class ChangePasswordPage extends Component<TProps> {
   constructor(props: TProps) {
     const className = extendClassName(sharedCss.siteWrapper, props.className);
     super({ ...props, className }, 'main');

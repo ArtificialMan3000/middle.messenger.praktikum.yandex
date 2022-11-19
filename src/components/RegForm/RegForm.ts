@@ -8,7 +8,7 @@ import { validationRules } from '~src/model/features/fieldValidation';
 
 type TProps = TComponentProps;
 
-export class RegForm extends Component {
+export class RegForm extends Component<TProps> {
   constructor(props: TProps) {
     super(props, 'form');
   }

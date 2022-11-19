@@ -11,7 +11,7 @@ Object.assign(css, sharedCss);
 
 type TProps = TComponentProps;
 
-export class E500Page extends Component {
+export class E500Page extends Component<TProps> {
   constructor(props: TProps) {
     const className = extendClassName(
       `${css.siteWrapper} ${css.dangerBg}`,

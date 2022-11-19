@@ -3,7 +3,7 @@ import { Component, TComponentProps } from '~src/view/Component';
 
 type TProps = TComponentProps;
 
-export class MainPage extends Component {
+export class MainPage extends Component<TProps> {
   constructor(props: TProps) {
     super(props, 'main');
   }

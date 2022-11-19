@@ -13,7 +13,7 @@ type TProps = TComponentProps & {
   };
 };
 
-export class Button extends Component {
+export class Button extends Component<TProps> {
   type: string;
 
   constructor(props: TProps) {

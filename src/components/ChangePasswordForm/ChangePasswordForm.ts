@@ -7,7 +7,7 @@ import { validationRules } from '~/src/model/features/fieldValidation';
 
 type TProps = TComponentProps;
 
-export class ChangePasswordForm extends Component {
+export class ChangePasswordForm extends Component<TProps> {
   constructor(props: TProps) {
     super(props, 'form');
   }

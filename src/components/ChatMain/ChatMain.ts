@@ -10,7 +10,7 @@ import { combineCssModules } from '~src/view/View';
 
 combineCssModules(css, sharedCss);
 
-export class ChatMain extends Component {
+export class ChatMain extends Component<TProps> {
   render() {
     return this.compile(tpl, {
       css,

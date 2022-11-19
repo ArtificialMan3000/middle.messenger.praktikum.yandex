@@ -119,6 +119,7 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
   componentDidMount(oldProps?: TProps) {}
 
   componentDidUpdate(oldProps: TProps, newProps: TProps): boolean | void {
+    // TODO Доработать сравнение сложных пропсов
     return !this.#shallowCompare(oldProps, newProps);
   }
 
