@@ -1,5 +1,5 @@
 import { MiniAvatar } from '../MiniAvatar';
-import { Component } from '~src/view/Component';
+import { Component } from '~/src/view/Component';
 import tpl from './ChatHeader.hbs';
 import * as css from './ChatHeader.module.scss';
 

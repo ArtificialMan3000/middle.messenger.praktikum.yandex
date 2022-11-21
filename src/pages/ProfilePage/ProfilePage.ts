@@ -9,9 +9,9 @@ import {
   Component,
   extendClassName,
   TComponentProps,
-} from '~src/view/Component';
-import { setValidityStatus } from '~src/model/features/fieldValidation';
-import { outputForm } from '~src/model/features/outputForm';
+} from '~/src/view/Component';
+import { setValidityStatus } from '~/src/model/features/fieldValidation';
+import { outputForm } from '~/src/model/features/outputForm';
 
 Object.assign(css, sharedCss);
 
@@ -62,7 +62,7 @@ export class ProfilePage extends Component<TProps> {
         imageSrc: 'img/avatar.jpg',
         name: 'Имя Фамилия',
       }),
-      Backlink: new Backlink({ href: 'chats.html', text: 'К чатам' }),
+      Backlink: new Backlink({ href: '/chats', text: 'К чатам' }),
     });
   }
 };

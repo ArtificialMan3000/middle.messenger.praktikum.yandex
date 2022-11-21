@@ -2,9 +2,9 @@ import tpl from './RegForm.hbs';
 import * as css from './RegForm.module.scss';
 import { Field } from '../Field';
 import { Button } from '../Button';
-import { Component, TComponentProps } from '~src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
 import { ButtonLink } from '../ButtonLink';
-import { validationRules } from '~src/model/features/fieldValidation';
+import { validationRules } from '~/src/model/features/fieldValidation';
 
 type TProps = TComponentProps;
 
@@ -111,7 +111,7 @@ export class RegForm extends Component<TProps> {
         className: css.button,
         text: 'Войти',
         attr: {
-          href: 'auth.html',
+          href: '/auth',
         },
       }),
     });

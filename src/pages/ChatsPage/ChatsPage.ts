@@ -5,10 +5,10 @@ import {
   Component,
   extendClassName,
   TComponentProps,
-} from '~src/view/Component';
-import { combineCssModules } from '~src/view/View';
-import { ChatList } from '~src/components/ChatList';
-import { ChatWindow } from '~src/components/ChatWindow';
+} from '~/src/view/Component';
+import { combineCssModules } from '~/src/view/View';
+import { ChatList } from '~/src/components/ChatList';
+import { ChatWindow } from '~/src/components/ChatWindow';
 
 combineCssModules(css, sharedCss);
 

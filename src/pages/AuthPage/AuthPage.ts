@@ -7,10 +7,10 @@ import {
   Component,
   extendClassName,
   TComponentProps,
-} from '~src/view/Component';
-import { setValidityStatus } from '~src/model/features/fieldValidation';
-import { outputForm } from '~src/model/features/outputForm';
-import { combineCssModules } from '~src/view/View';
+} from '~/src/view/Component';
+import { setValidityStatus } from '~/src/model/features/fieldValidation';
+import { outputForm } from '~/src/model/features/outputForm';
+import { combineCssModules } from '~/src/view/View';
 
 combineCssModules(css, sharedCss);
 
@@ -47,12 +47,12 @@ export class AuthPage extends Component<TProps> {
               },
             ],
             inputFocus: [
-              (evt) => {
+              (evt: Event) => {
                 setValidityStatus(evt.target as HTMLInputElement, css.notValid);
               },
             ],
             inputBlur: [
-              (evt) => {
+              (evt: Event) => {
                 setValidityStatus(evt.target as HTMLInputElement, css.notValid);
               },
             ],

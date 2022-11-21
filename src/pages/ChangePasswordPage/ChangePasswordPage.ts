@@ -8,10 +8,10 @@ import {
   Component,
   TComponentProps,
   extendClassName,
-} from '~src/view/Component';
-import { setValidityStatus } from '~src/model/features/fieldValidation';
-import { outputForm } from '~src/model/features/outputForm';
-import { combineCssModules } from '~src/view/View';
+} from '~/src/view/Component';
+import { setValidityStatus } from '~/src/model/features/fieldValidation';
+import { outputForm } from '~/src/model/features/outputForm';
+import { combineCssModules } from '~/src/view/View';
 
 combineCssModules(css, sharedCss);
 
@@ -61,7 +61,7 @@ export class ChangePasswordPage extends Component<TProps> {
       Backlink: new Backlink({
         text: 'К чатам',
         attr: {
-          href: 'chats.html',
+          href: '/chats',
         },
       }),
       css: sharedCss,

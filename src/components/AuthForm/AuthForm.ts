@@ -1,9 +1,9 @@
-import { validationRules } from '~src/model/features/fieldValidation';
+import { validationRules } from '~/src/model/features/fieldValidation';
 import tpl from './AuthForm.hbs';
 import * as css from './AuthForm.module.scss';
 import { Field } from '../Field';
 import { Button } from '../Button';
-import { Component, TComponentProps } from '~src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
 import { ButtonLink } from '../ButtonLink';
 
 type TProps = TComponentProps;
@@ -59,7 +59,7 @@ export class AuthForm extends Component<TProps> {
       RegButton: new ButtonLink({
         className: css.button,
         text: 'Регистрация',
-        attr: { href: 'reg.html' },
+        attr: { href: '/reg' },
       }),
     });
   }

@@ -1,16 +1,16 @@
 import { Component } from '~/src/view/Component';
-import { setValidityStatus } from '~src/model/features/fieldValidation';
-import { outputForm } from '~src/model/features/outputForm';
+import { setValidityStatus } from '~/src/model/features/fieldValidation';
+import { outputForm } from '~/src/model/features/outputForm';
 import { Message } from '../Message';
 import { MessageForm } from '../MessageForm';
 import tpl from './ChatMain.hbs';
 import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './ChatMain.module.scss';
-import { combineCssModules } from '~src/view/View';
+import { combineCssModules } from '~/src/view/View';
 
 combineCssModules(css, sharedCss);
 
-export class ChatMain extends Component<TProps> {
+export class ChatMain extends Component {
   render() {
     return this.compile(tpl, {
       css,

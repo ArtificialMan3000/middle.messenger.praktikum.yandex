@@ -3,7 +3,7 @@ import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './Field.module.scss';
 import { TComponentProps, Component } from '~/src/view/Component';
 import { Input } from '../Input/Input';
-import { combineCssModules } from '~src/view/View';
+import { combineCssModules } from '~/src/view/View';
 
 combineCssModules(css, sharedCss);
 

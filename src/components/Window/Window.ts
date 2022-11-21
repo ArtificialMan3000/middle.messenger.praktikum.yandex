@@ -4,7 +4,7 @@ import {
   Component,
   extendClassName,
   TComponentProps,
-} from '~src/view/Component';
+} from '~/src/view/Component';
 
 export class Window extends Component {
   constructor(props: TComponentProps) {

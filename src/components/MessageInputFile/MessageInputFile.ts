@@ -1,4 +1,4 @@
-import { Component } from '~src/view/Component';
+import { Component } from '~/src/view/Component';
 import tpl from './MessageInputFile.hbs';
 import * as css from './MessageInputFile.module.scss';
 

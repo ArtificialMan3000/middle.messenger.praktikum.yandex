@@ -5,7 +5,7 @@ import {
   Component,
   extendClassName,
   TComponentProps,
-} from '~src/view/Component';
+} from '~/src/view/Component';
 
 Object.assign(css, sharedCss);
 

@@ -1,9 +1,9 @@
-import { validationRules } from '~src/model/features/fieldValidation';
+import { validationRules } from '~/src/model/features/fieldValidation';
 import tpl from './ProfileForm.hbs';
 import * as css from './ProfileForm.module.scss';
 import { EditField } from '../EditField';
 import { Button } from '../Button';
-import { Component, TComponentProps } from '~src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
 import { ButtonLink } from '../ButtonLink';
 import { Field } from '../Field';
 
@@ -103,7 +103,7 @@ export class ProfileForm extends Component<TProps> {
         className: css.button,
         text: 'Изменить пароль',
         attr: {
-          href: 'change-password.html',
+          href: 'change-password',
         },
       }),
     });

@@ -1,5 +1,5 @@
 import tpl from './MainPage.hbs';
-import { Component, TComponentProps } from '~src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
 
 type TProps = TComponentProps;
 
@@ -9,6 +9,6 @@ export class MainPage extends Component<TProps> {
   }
 
   render() {
-    return this.compile(tpl, {});
+    return this.compile(tpl, this.props);
   }
 };

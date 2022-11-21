@@ -1,10 +1,10 @@
-import { Component } from '~src/view/Component';
+import { Component } from '~/src/view/Component';
 import { ChatHeader } from '../ChatHeader';
 import { ChatMain } from '../ChatMain';
 import tpl from './ChatWindow.hbs';
 import * as css from './ChatWindow.module.scss';
 
-export class ChatWindow extends Component<TProps> {
+export class ChatWindow extends Component {
   render() {
     return this.compile(tpl, {
       css,

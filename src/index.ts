@@ -6,48 +6,20 @@ import { E500Page } from '~/src/pages/E500Page';
 import { ProfilePage } from '~/src/pages/ProfilePage';
 import { RegPage } from '~/src/pages/RegPage';
 import { AuthPage } from '~/src/pages/AuthPage';
-import { renderDOM } from './view/DOM';
+import { getRouter } from './utils/Router';
 
 window.addEventListener('DOMContentLoaded', () => {
-  const appElement = document.querySelector<HTMLElement>('#app');
-  if (appElement) {
-    const currentPageName = appElement.dataset.page;
-    let CurrentPage;
+  const router = getRouter('#app');
 
-    switch (currentPageName) {
-      case 'main': {
-        CurrentPage = MainPage;
-        break;
-      }
-      case 'auth': {
-        CurrentPage = AuthPage;
-        break;
-      }
-      case 'reg': {
-        CurrentPage = RegPage;
-        break;
-      }
-      case 'chats': {
-        CurrentPage = ChatsPage;
-        break;
-      }
-      case 'profile': {
-        CurrentPage = ProfilePage;
-        break;
-      }
-      case 'changePassword': {
-        CurrentPage = ChangePasswordPage;
-        break;
-      }
-      case '500': {
-        CurrentPage = E500Page;
-        break;
-      }
-      default: {
-        CurrentPage = E404Page;
-      }
-    }
-
-    renderDOM(appElement, new CurrentPage({}));
-  }
+  router
+    .use<MainPage>('/', MainPage, {})
+    .use<AuthPage>('/auth', AuthPage, {})
+    .use<RegPage>('/reg', RegPage, {})
+    .use<ProfilePage>('/profile', ProfilePage, {})
+    .use<ChangePasswordPage>('/change-password', ChangePasswordPage, {})
+    .use<ChatsPage>('/chats', ChatsPage, {})
+    .use<E500Page>('/500', E500Page, {})
+    .use<E404Page>('/404', E404Page, {})
+    .default<E404Page>(E404Page, {})
+    .start();
 });

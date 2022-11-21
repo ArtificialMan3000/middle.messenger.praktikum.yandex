@@ -7,9 +7,9 @@ import {
   Component,
   extendClassName,
   TComponentProps,
-} from '~src/view/Component';
-import { setValidityStatus } from '~src/model/features/fieldValidation';
-import { outputForm } from '~src/model/features/outputForm';
+} from '~/src/view/Component';
+import { setValidityStatus } from '~/src/model/features/fieldValidation';
+import { outputForm } from '~/src/model/features/outputForm';
 
 Object.assign(css, sharedCss);
 

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~*": ["./*"]
+      "~/*": ["./*"]
     },
     "target": "es2016",
     "module": "CommonJS",
@@ -10,7 +10,8 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "allowJs": true
   },
   "exclude": ["**/node_modules", "**/.*/"]
 }
