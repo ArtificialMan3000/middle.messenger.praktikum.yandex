@@ -1,7 +1,7 @@
 import tpl from './ChangePasswordForm.hbs';
 import * as css from './ChangePasswordForm.module.scss';
-import { Field } from '../Field';
-import { Button } from '../Button';
+import { Field } from '../../Field';
+import { Button } from '../../Button';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { validationRules } from '~/src/model/features/fieldValidation';
 
@@ -66,4 +66,4 @@ export class ChangePasswordForm extends Component<TProps> {
       }),
     });
   }
-};
+}

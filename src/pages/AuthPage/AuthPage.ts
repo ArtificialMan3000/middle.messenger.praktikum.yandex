@@ -1,7 +1,7 @@
 import tpl from './AuthPage.hbs';
 import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './AuthPage.module.scss';
-import { AuthForm } from '~/src/components/AuthForm';
+import { AuthForm } from '~/src/components/forms/AuthForm';
 import { Window } from '~/src/components/Window';
 import {
   Component,

@@ -1,11 +1,11 @@
 import { validationRules } from '~/src/model/features/fieldValidation';
 import tpl from './ProfileForm.hbs';
 import * as css from './ProfileForm.module.scss';
-import { EditField } from '../EditField';
-import { Button } from '../Button';
+import { EditField } from '../../EditField';
+import { Button } from '../../Button';
 import { Component, TComponentProps } from '~/src/view/Component';
-import { ButtonLink } from '../ButtonLink';
-import { Field } from '../Field';
+import { Field } from '../../Field';
+import { ButtonLink } from '~/src/view/ui/ButtonLink';
 
 type TProps = TComponentProps;
 
@@ -99,7 +99,7 @@ export class ProfileForm extends Component<TProps> {
         className: css.button,
         text: 'Выйти',
       }),
-      ChangePasswordButton: new ButtonLink({
+      ChangePasswordButton: ButtonLink({
         className: css.button,
         text: 'Изменить пароль',
         attr: {

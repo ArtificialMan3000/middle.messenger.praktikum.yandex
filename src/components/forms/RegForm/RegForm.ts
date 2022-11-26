@@ -1,10 +1,10 @@
 import tpl from './RegForm.hbs';
 import * as css from './RegForm.module.scss';
-import { Field } from '../Field';
-import { Button } from '../Button';
+import { Field } from '../../Field';
+import { Button } from '../../Button';
 import { Component, TComponentProps } from '~/src/view/Component';
-import { ButtonLink } from '../ButtonLink';
 import { validationRules } from '~/src/model/features/fieldValidation';
+import { ButtonLink } from '~/src/view/ui/ButtonLink';
 
 type TProps = TComponentProps;
 
@@ -107,7 +107,7 @@ export class RegForm extends Component<TProps> {
           type: 'submit',
         },
       }),
-      EnterButton: new ButtonLink({
+      EnterButton: ButtonLink({
         className: css.button,
         text: 'Войти',
         attr: {

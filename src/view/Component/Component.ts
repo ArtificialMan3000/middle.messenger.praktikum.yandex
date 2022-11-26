@@ -101,6 +101,8 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
   #render() {
     this.#element.innerHTML = '';
 
+    this._removeEvents();
+
     this.#setClassName();
 
     this.#setAttributes();
@@ -172,6 +174,16 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
       Object.keys(attributes).forEach((attr) => {
         this.#element.setAttribute(attr, attributes[attr]);
       });
+    }
+  }
+
+  _registerEvent(eventName: string, listener: EventListener) {
+    this.element.addEventListener(eventName, listener);
+
+    if (!Array.isArray(this.#DOMEvents[eventName])) {
+      this.#DOMEvents[eventName] = [listener];
+    } else {
+      this.#DOMEvents[eventName].push(listener);
     }
   }
 

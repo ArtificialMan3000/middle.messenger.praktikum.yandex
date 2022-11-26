@@ -6,6 +6,7 @@ import {
   extendClassName,
   TComponentProps,
 } from '~/src/view/Component';
+import { Link } from '~/src/components/Link';
 
 Object.assign(css, sharedCss);
 
@@ -21,6 +22,13 @@ export class E500Page extends Component<TProps> {
   }
 
   render() {
-    return this.compile(tpl, { css });
+    return this.compile(tpl, {
+      css,
+      ToChatLink: new Link({
+        href: '/chats',
+        text: 'Убежать',
+        className: css.backlink,
+      }),
+    });
   }
 };

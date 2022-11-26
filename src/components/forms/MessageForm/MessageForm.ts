@@ -1,7 +1,7 @@
 import { validationRules } from '~/src/model/features/fieldValidation';
 import { Component, TComponentProps } from '~/src/view/Component';
-import { MessageInputFile } from '../MessageInputFile';
-import { MessageInputText } from '../MessageInputText';
+import { MessageInputFile } from '../../MessageInputFile';
+import { MessageInputText } from '../../MessageInputText';
 import tpl from './MessageForm.hbs';
 import * as css from './MessageForm.module.scss';
 

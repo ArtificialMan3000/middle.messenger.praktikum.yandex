@@ -99,8 +99,11 @@ class Router {
 
 let router: Router;
 
-export const getRouter = (rootQuery: string) => {
+export const getRouter = (rootQuery?: string) => {
   if (!router) {
+    if (!rootQuery) {
+      return null;
+    }
     router = new Router(rootQuery);
   }
   return router;

@@ -2,7 +2,7 @@ import { Component } from '~/src/view/Component';
 import { setValidityStatus } from '~/src/model/features/fieldValidation';
 import { outputForm } from '~/src/model/features/outputForm';
 import { Message } from '../Message';
-import { MessageForm } from '../MessageForm';
+import { MessageForm } from '../forms/MessageForm';
 import tpl from './ChatMain.hbs';
 import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './ChatMain.module.scss';

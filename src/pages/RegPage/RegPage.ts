@@ -1,7 +1,7 @@
 import tpl from './RegPage.hbs';
 import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './RegPage.module.scss';
-import { RegForm } from '~/src/components/RegForm';
+import { RegForm } from '~/src/components/forms/RegForm';
 import { Window } from '~/src/components/Window';
 import {
   Component,

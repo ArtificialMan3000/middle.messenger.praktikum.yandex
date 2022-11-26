@@ -2,7 +2,7 @@ import tpl from './ChangePasswordPage.hbs';
 import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './ChangePassword.module.scss';
 import { Backlink } from '~/src/components/Backlink';
-import { ChangePasswordForm } from '~/src/components/ChangePasswordForm';
+import { ChangePasswordForm } from '~/src/components/forms/ChangePasswordForm';
 import { Window } from '~/src/components/Window';
 import {
   Component,

@@ -11,15 +11,17 @@ import { getRouter } from './utils/Router';
 window.addEventListener('DOMContentLoaded', () => {
   const router = getRouter('#app');
 
-  router
-    .use<MainPage>('/', MainPage, {})
-    .use<AuthPage>('/auth', AuthPage, {})
-    .use<RegPage>('/reg', RegPage, {})
-    .use<ProfilePage>('/profile', ProfilePage, {})
-    .use<ChangePasswordPage>('/change-password', ChangePasswordPage, {})
-    .use<ChatsPage>('/chats', ChatsPage, {})
-    .use<E500Page>('/500', E500Page, {})
-    .use<E404Page>('/404', E404Page, {})
-    .default<E404Page>(E404Page, {})
-    .start();
+  if (router) {
+    router
+      .use<MainPage>('/', MainPage, {})
+      .use<AuthPage>('/auth', AuthPage, {})
+      .use<RegPage>('/reg', RegPage, {})
+      .use<ProfilePage>('/profile', ProfilePage, {})
+      .use<ChangePasswordPage>('/change-password', ChangePasswordPage, {})
+      .use<ChatsPage>('/chats', ChatsPage, {})
+      .use<E500Page>('/500', E500Page, {})
+      .use<E404Page>('/404', E404Page, {})
+      .default<E404Page>(E404Page, {})
+      .start();
+  }
 });

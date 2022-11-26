@@ -1,14 +1,51 @@
 import tpl from './MainPage.hbs';
 import { Component, TComponentProps } from '~/src/view/Component';
+import { Link } from '~/src/components/Link';
+
+const PAGES_INFO = [
+  {
+    name: 'Авторизация',
+    link: '/auth',
+  },
+  {
+    name: 'Регистрация',
+    link: '/reg',
+  },
+  {
+    name: 'Чаты',
+    link: '/chats',
+  },
+  {
+    name: 'Профиль',
+    link: '/profile',
+  },
+  {
+    name: 'Смена пароля',
+    link: '/change-password',
+  },
+  {
+    name: 'Страница 404',
+    link: '/404',
+  },
+  {
+    name: 'Страница 500',
+    link: '/500',
+  },
+];
 
 type TProps = TComponentProps;
 
 export class MainPage extends Component<TProps> {
+  pageLinks: Component[];
+
   constructor(props: TProps) {
     super(props, 'main');
   }
 
   render() {
-    return this.compile(tpl, this.props);
+    this.pageLinks = PAGES_INFO.map(({ name, link }) => {
+      return new Link({ text: name, location: link });
+    });
+    return this.compile(tpl, { ...this.props, pageLinks: this.pageLinks });
   }
 };

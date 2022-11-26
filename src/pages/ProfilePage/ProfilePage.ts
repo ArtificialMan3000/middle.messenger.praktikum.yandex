@@ -3,7 +3,7 @@ import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './ProfilePage.module.scss';
 import { Backlink } from '~/src/components/Backlink';
 import { FullAvatar } from '~/src/components/FullAvatar';
-import { ProfileForm } from '~/src/components/ProfileForm';
+import { ProfileForm } from '~/src/components/forms/ProfileForm';
 import { Window } from '~/src/components/Window';
 import {
   Component,
