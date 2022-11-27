@@ -16,6 +16,7 @@ type TProps = TComponentProps;
 
 export class ChatsPage extends Component<TProps> {
   constructor(props: TProps) {
+    debugger;
     const className = extendClassName(`${css.siteWrapper}`, props.className);
     super({ ...props, className }, 'main');
   }
@@ -24,7 +25,10 @@ export class ChatsPage extends Component<TProps> {
     return this.compile(tpl, {
       css,
       ChatList: new ChatList({ className: css.chats }),
-      MainChat: new ChatWindow({ className: css.mainChat }),
+      MainChat: new ChatWindow({
+        className: css.mainChat,
+        chatNumber: this.props.id,
+      }),
     });
   }
 }

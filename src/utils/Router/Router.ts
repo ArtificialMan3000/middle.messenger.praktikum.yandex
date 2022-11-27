@@ -47,7 +47,13 @@ class Router {
     component: TConstructor<TComponent>,
     props: TComponentPropsType<TComponent>
   ) {
-    const route = new Route<TComponent>('', this.#rootQuery, component, props);
+    const route = new Route<TComponent>(
+      '/*',
+      this.#rootQuery,
+      component,
+      props,
+      true
+    );
     this.defaultRoute = route;
     return this;
   }
@@ -76,7 +82,8 @@ class Router {
     }
 
     this.#currentRoute = route;
-    route.render();
+    // route.render();
+    route.navigate(pathname);
   }
 
   go(pathname: string) {

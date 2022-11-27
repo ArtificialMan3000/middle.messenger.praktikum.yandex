@@ -7,6 +7,7 @@ export class ChatHeader extends Component<TProps> {
   render() {
     return this.compile(tpl, {
       css,
+      number: this.props.number,
       Avatar: new MiniAvatar({
         className: css.avatar,
         imageSrc: 'img/avatar.jpg',

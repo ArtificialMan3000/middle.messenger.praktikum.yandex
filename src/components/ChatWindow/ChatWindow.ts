@@ -8,7 +8,10 @@ export class ChatWindow extends Component {
   render() {
     return this.compile(tpl, {
       css,
-      Header: new ChatHeader({ className: css.header }),
+      Header: new ChatHeader({
+        className: css.header,
+        number: this.props.chatNumber,
+      }),
       Main: new ChatMain({ className: css.main }),
     });
   }
