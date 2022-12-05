@@ -53,7 +53,14 @@ validationRules.message = {
   description: 'Сообщение не должно быть пустым',
 };
 
-export const isFieldValid = (fieldName: string, fieldValue: string) => {
+export const isFieldValid = (
+  fieldName: string,
+  fieldValue: unknown
+): fieldValue is string => {
+  if (typeof fieldValue !== 'string') {
+    return false;
+  }
+
   if (!validationRules[fieldName]) {
     return true;
   }

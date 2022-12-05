@@ -33,12 +33,12 @@ const PAGES_INFO = [
   },
 ];
 
-type TProps = TComponentProps;
+export type TProps = Record<string, never>;
 
-export class MainPage extends Component<TProps> {
+export class MainPage extends Component {
   pageLinks: Component[];
 
-  constructor(props: TProps) {
+  constructor(props: TComponentProps) {
     super(props, 'main');
   }
 

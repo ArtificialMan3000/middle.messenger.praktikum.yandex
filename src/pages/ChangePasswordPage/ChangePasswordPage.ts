@@ -9,7 +9,7 @@ import {
   TComponentProps,
   extendClassName,
 } from '~/src/view/Component';
-import { setValidityStatus } from '~/src/model/features/fieldValidation';
+import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { outputForm } from '~/src/model/features/outputForm';
 import { combineCssModules } from '~/src/view/View';
 

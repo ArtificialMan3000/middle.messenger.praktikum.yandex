@@ -1,5 +1,9 @@
 import { Component } from '../view/Component';
 
-export type TConstructor<T> = new (...args: any) => T;
+export type TConstructor<TInstance> = new (...args: any) => TInstance;
 
 export type TComponentPropsType<T extends Component> = T['props'];
+
+export interface TClass<TInstance> {
+  new (...args: any): TInstance;
+}

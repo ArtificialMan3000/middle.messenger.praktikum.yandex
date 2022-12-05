@@ -81,7 +81,7 @@ export class HTTPTransport {
   // options:
   // headers — obj
   // data — obj
-  request: THTTPTransportRequest = (url, options = {}, timeout = 5000) => {
+  request: THTTPTransportRequest = (url, options = {}, timeout = 0) => {
     return new Promise((resolve, reject) => {
       const { method = METHODS.GET, headers, data } = options;
       const xhr = new XMLHttpRequest();

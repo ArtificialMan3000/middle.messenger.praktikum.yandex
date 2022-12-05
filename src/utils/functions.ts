@@ -83,3 +83,7 @@ export function isEqual(lhs: TPlainObject, rhs: TPlainObject) {
 
   return true;
 }
+
+export function randomInt(max: number) {
+  return Math.floor(Math.random() * max);
+}

@@ -8,7 +8,12 @@ import {
 } from './types';
 import { EventBus } from '../../controller/EventBus/EventBus';
 
-export class Component<TProps extends TComponentProps = TComponentProps> {
+// TODO Создать интерфейс для класса
+
+
+export class Component<
+  TInheritorProps extends Record<string, unknown> = Record<string, unknown>
+> {
   static EVENTS: Record<string, string> = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -18,11 +23,11 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
 
   #element: HTMLElement;
 
-  #meta: TComponentMeta;
+  #meta: TComponentMeta<TInheritorProps>;
 
   #DOMEvents: TEventsMap;
 
-  props: TProps;
+  props: TComponentProps<TInheritorProps>;
 
   children: TComponentChildren;
 
@@ -32,7 +37,7 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
 
   innerComponents: Record<string, Component | Component[]>;
 
-  constructor(props: TProps, tagName = 'div') {
+  constructor(props: TComponentProps<TInheritorProps>, tagName = 'div') {
     this.eventBus = new EventBus();
 
     this.#meta = {
@@ -91,7 +96,10 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     }
   }
 
-  #componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  #componentDidUpdate(
+    oldProps: TComponentProps<TInheritorProps>,
+    newProps: TComponentProps<TInheritorProps>
+  ) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response !== false) {
       this.eventBus.emit(Component.EVENTS.FLOW_RENDER);
@@ -118,9 +126,12 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
 
   // * #region For user implementation
 
-  componentDidMount(oldProps?: TProps) {}
+  componentDidMount(oldProps?: TComponentProps<TInheritorProps>) {}
 
-  componentDidUpdate(oldProps: TProps, newProps: TProps): boolean | void {
+  componentDidUpdate(
+    oldProps: TComponentProps<TInheritorProps>,
+    newProps: TComponentProps<TInheritorProps>
+  ): boolean | void {
     // TODO Доработать сравнение сложных пропсов
     return !this.#shallowCompare(oldProps, newProps);
   }
@@ -133,7 +144,7 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     this.eventBus.emit(Component.EVENTS.FLOW_CDM);
   }
 
-  setProps = (nextProps: TProps) => {
+  setProps = (nextProps: Partial<TComponentProps<TInheritorProps>>) => {
     if (!nextProps) {
       return;
     }
@@ -141,13 +152,13 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     Object.assign(this.props, nextProps);
   };
 
-  #makePropsProxy(props: TProps) {
+  #makePropsProxy(props: TComponentProps<TInheritorProps>) {
     return new Proxy(props, {
       set: (target, key, value) => {
         if (typeof key === 'string') {
           const oldProps = { ...target };
           const newProps = target;
-          newProps[key as keyof TProps] = value;
+          newProps[key as keyof TComponentProps<TInheritorProps>] = value;
 
           this.eventBus.emit(Component.EVENTS.FLOW_CDU, oldProps, newProps);
           return true;
@@ -209,7 +220,10 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     }
   }
 
-  compile(template: TemplateDelegate, propsWithComponents: TProps) {
+  compile(
+    template: TemplateDelegate,
+    propsWithComponents: Partial<TComponentProps<TInheritorProps>>
+  ) {
     const propsAndStubs = { ...propsWithComponents };
 
     this.innerComponents =
@@ -221,10 +235,11 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
           (item) => `<div data-${item.props.__id}></div>`
         );
         // Не смог разрулить здесь тайпскрипт
-        propsAndStubs[key as keyof TProps] = arStubs as any;
+        propsAndStubs[key as keyof TComponentProps<TInheritorProps>] =
+          arStubs as any;
       } else {
         // Не смог разрулить здесь тайпскрипт
-        propsAndStubs[key as keyof TProps] =
+        propsAndStubs[key as keyof TComponentProps<TInheritorProps>] =
           `<div data-${value.props.__id}></div>` as any;
       }
     });
@@ -283,7 +298,10 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
 
   // * #region Helpers
 
-  #shallowCompare(oldProps: TProps, newProps: TProps) {
+  #shallowCompare(
+    oldProps: TComponentProps<TInheritorProps>,
+    newProps: TComponentProps<TInheritorProps>
+  ) {
     const oldKeys = Object.keys(oldProps);
     const newKeys = Object.keys(newProps);
     if (oldKeys.length !== newKeys.length) {
@@ -298,7 +316,9 @@ export class Component<TProps extends TComponentProps = TComponentProps> {
     return !isNotEqual;
   }
 
-  #extractComponentsFromProps(propsWithComponents: TProps) {
+  #extractComponentsFromProps(
+    propsWithComponents: Partial<TComponentProps<TInheritorProps>>
+  ) {
     const components: Record<string, Component | Component[]> = {};
 
     Object.entries(propsWithComponents).forEach(([key, value]) => {

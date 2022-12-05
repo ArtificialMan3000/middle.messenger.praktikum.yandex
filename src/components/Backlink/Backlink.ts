@@ -5,17 +5,21 @@ import {
   extendClassName,
   TComponentProps,
 } from '~/src/view/Component';
+import { Link } from '../Link';
 
-type TProps = TComponentProps;
+type TBacklinkProps = {
+  location: string;
+  text: string;
+};
 
-export class Backlink extends Component<TProps> {
-  constructor(props?: TProps) {
-    const className = extendClassName(css.link, props?.className);
-    super({ ...props, className }, 'a');
+export class Backlink extends Component<TBacklinkProps> {
+  constructor(props: TComponentProps<TBacklinkProps>) {
+    const className = extendClassName(css.link, props.className);
+    super({ ...props, className });
   }
 
   render() {
-    const { text } = this.props;
-    return this.compile(tpl, { text, css });
+    const { text, location } = this.props;
+    return this.compile(tpl, { Link: new Link({ location, text }), css });
   }
 }

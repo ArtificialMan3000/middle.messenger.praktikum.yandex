@@ -1,4 +1,4 @@
-export type TMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+export type TMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
 export type TMethodsDictionary = Record<string, TMethod>;
 

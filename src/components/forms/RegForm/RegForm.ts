@@ -3,13 +3,15 @@ import * as css from './RegForm.module.scss';
 import { Field } from '../../Field';
 import { Button } from '../../Button';
 import { Component, TComponentProps } from '~/src/view/Component';
-import { validationRules } from '~/src/model/features/fieldValidation';
+import { validationRules } from '~/src/controller/fieldValidation';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
 
-type TProps = TComponentProps;
+export type TRegFormProps = {
+  loader?: boolean;
+} & TComponentProps;
 
-export class RegForm extends Component<TProps> {
-  constructor(props: TProps) {
+export class RegForm extends Component<TRegFormProps> {
+  constructor(props: TComponentProps<TRegFormProps>) {
     super(props, 'form');
   }
 
@@ -33,7 +35,10 @@ export class RegForm extends Component<TProps> {
   }
 
   render() {
+    const { loader } = this.props;
+
     const FirstNameField = new Field({
+      loader,
       className: css.field,
       type: 'text',
       id: 'first_name',
@@ -94,6 +99,7 @@ export class RegForm extends Component<TProps> {
     });
 
     return this.compile(tpl, {
+      loader,
       FirstNameField,
       SecondNameField,
       LoginField,

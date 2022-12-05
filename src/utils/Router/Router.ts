@@ -1,15 +1,17 @@
-import { TComponentPropsType, TConstructor } from '~/src/typings/utils';
-import { Component } from '~/src/view/Component';
+import { TClass, TComponentPropsType, TConstructor } from '~/src/typings/utils';
+import { Component, TComponentProps } from '~/src/view/Component';
 import { Route } from './Route';
 
-class Router {
-  routes: Route<Component>[];
+// type TClass<TInstance> = typeof TInstance;
 
-  defaultRoute: Route<Component> | null;
+class Router {
+  routes: Route<TComponentProps>[];
+
+  defaultRoute: Route<TComponentProps> | null;
 
   history: History;
 
-  #currentRoute: Route<Component> | null;
+  #currentRoute: Route<TComponentProps> | null;
 
   #rootQuery: string;
 
@@ -27,15 +29,15 @@ class Router {
     // Router.__instance = this;
   }
 
-  use<TComponent extends Component>(
+  use<TProps extends TComponentProps>(
     pathname: string,
-    component: TConstructor<TComponent>,
-    props: TComponentPropsType<TComponent>
+    componentClass: TClass<Component<TProps>>,
+    props: TProps
   ) {
-    const route = new Route<TComponent>(
+    const route = new Route<TProps>(
       pathname,
       this.#rootQuery,
-      component,
+      componentClass,
       props
     );
     this.routes.push(route);
@@ -43,14 +45,14 @@ class Router {
     return this;
   }
 
-  default<TComponent extends Component>(
-    component: TConstructor<TComponent>,
-    props: TComponentPropsType<TComponent>
+  default<TProps extends TComponentProps>(
+    componentClass: TClass<Component<TProps>>,
+    props: TProps
   ) {
-    const route = new Route<TComponent>(
+    const route = new Route<TProps>(
       '/*',
       this.#rootQuery,
-      component,
+      componentClass,
       props,
       true
     );

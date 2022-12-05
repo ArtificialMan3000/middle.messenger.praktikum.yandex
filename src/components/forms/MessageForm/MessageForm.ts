@@ -1,4 +1,4 @@
-import { validationRules } from '~/src/model/features/fieldValidation';
+import { validationRules } from '~/src/controller/fieldValidation';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { MessageInputFile } from '../../MessageInputFile';
 import { MessageInputText } from '../../MessageInputText';

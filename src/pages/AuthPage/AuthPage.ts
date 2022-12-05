@@ -8,13 +8,16 @@ import {
   extendClassName,
   TComponentProps,
 } from '~/src/view/Component';
-import { setValidityStatus } from '~/src/model/features/fieldValidation';
+import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { outputForm } from '~/src/model/features/outputForm';
 import { combineCssModules } from '~/src/view/View';
+import { UserAuthController } from '~/src/controller/auth/userAuthController';
+
+type TProps = TComponentProps;
 
 combineCssModules(css, sharedCss);
 
-type TProps = TComponentProps;
+const userController = new UserAuthController();
 
 export class AuthPage extends Component<TProps> {
   constructor(props: TProps) {
@@ -44,6 +47,8 @@ export class AuthPage extends Component<TProps> {
                 inputs.forEach((input) => {
                   setValidityStatus(input, css.notValid);
                 });
+
+                userController.signUp(new FormData(form));
               },
             ],
             inputFocus: [

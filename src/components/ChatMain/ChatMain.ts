@@ -1,5 +1,5 @@
 import { Component } from '~/src/view/Component';
-import { setValidityStatus } from '~/src/model/features/fieldValidation';
+import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { outputForm } from '~/src/model/features/outputForm';
 import { Message } from '../Message';
 import { MessageForm } from '../forms/MessageForm';

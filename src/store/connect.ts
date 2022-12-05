@@ -1,20 +1,26 @@
 import { TState } from './types';
-import { TComponentPropsType, TConstructor } from '~/src/typings/utils';
-import type { Component as BaseComponent } from '~/src/view/Component';
+import { TClass, TComponentPropsType, TConstructor } from '~/src/typings/utils';
+import type {
+  Component,
+  IComponentConstructor,
+  TComponentProps,
+} from '~/src/view/Component';
 import { store, StoreEvents } from './Store';
 import { isEqual } from '../utils/functions';
 
-export function connect(
-  mapStateToProps: (state: TState) => Record<string, unknown>
+export function connect<TProps extends Record<string, unknown>>(
+  mapStateToProps: (state: TState) => Partial<TProps>
 ) {
-  return function connectComponent(Component: TConstructor<BaseComponent>) {
-    return class extends Component {
+  return function connectComponent(
+    ComponentClass: IComponentConstructor<TProps>
+  ): IComponentConstructor<TProps> {
+    return class ConnectedComponent extends ComponentClass {
       constructor(
-        props: TComponentPropsType<BaseComponent>,
-        ...args: ConstructorParameters<typeof Component>
+        ...args: ConstructorParameters<IComponentConstructor<TProps>>
       ) {
+        const [props, ...restArgs] = args;
         let propsFromState = mapStateToProps(store.getState());
-        super({ ...props, ...propsFromState }, ...args);
+        super({ ...props, ...propsFromState }, ...restArgs);
 
         store.on(StoreEvents.Updated, () => {
           const newPropsFromState = mapStateToProps(store.getState());

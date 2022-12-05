@@ -10,22 +10,25 @@ import {
   extendClassName,
   TComponentProps,
 } from '~/src/view/Component';
-import { setValidityStatus } from '~/src/model/features/fieldValidation';
+import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { outputForm } from '~/src/model/features/outputForm';
-import { UserController } from '~/src/controller/UserController';
+import { UserController } from '~/src/controller/userProfileController';
 
 Object.assign(css, sharedCss);
 
-type TProps = {
-  isLoaderDisplayed: boolean;
-} & TComponentProps;
+export type TProfilePageProps = {
+  isLoaderDisplayed?: boolean;
+};
 
 const userController = new UserController();
 
-export class ProfilePage extends Component<TProps> {
-  constructor(props: TProps) {
+export class ProfilePage extends Component<TProfilePageProps> {
+  constructor({
+    isLoaderDisplayed = true,
+    ...props
+  }: TComponentProps<TProfilePageProps>) {
     const className = extendClassName(sharedCss.siteWrapper, props.className);
-    super({ ...props, isLoaderDisplayed: true, className }, 'main');
+    super({ ...props, isLoaderDisplayed, className }, 'main');
 
     userController.getUserProfile();
   }
@@ -70,7 +73,7 @@ export class ProfilePage extends Component<TProps> {
         imageSrc: 'img/avatar.jpg',
         name: 'Имя Фамилия',
       }),
-      Backlink: new Backlink({ href: '/chats', text: 'К чатам' }),
+      Backlink: new Backlink({ location: '/chats', text: 'К чатам' }),
     });
   }
 };

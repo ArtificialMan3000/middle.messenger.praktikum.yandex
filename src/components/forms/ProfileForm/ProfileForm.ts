@@ -1,4 +1,4 @@
-import { validationRules } from '~/src/model/features/fieldValidation';
+import { validationRules } from '~/src/controller/fieldValidation';
 import tpl from './ProfileForm.hbs';
 import * as css from './ProfileForm.module.scss';
 import { EditField } from '../../EditField';

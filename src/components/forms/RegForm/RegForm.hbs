@@ -1,4 +1,7 @@
 <div class="auth-form">
+  {{#if loader}}
+    <p>Отправка данных...</p>
+  {{/if}}
   <div class="fields">
     {{{FirstNameField}}}
     {{{SecondNameField}}}

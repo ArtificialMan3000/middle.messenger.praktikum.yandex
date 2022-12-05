@@ -1,12 +1,15 @@
-import { validationRules } from '~/src/model/features/fieldValidation';
+import { validationRules } from '~/src/controller/fieldValidation';
 import tpl from './AuthForm.hbs';
 import * as css from './AuthForm.module.scss';
 import { Field } from '../../Field';
 import { Button } from '../../Button';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
+import { UserAuthController } from '~/src/controller/auth/userAuthController';
 
-type TProps = TComponentProps;
+type TProps = {
+  loader?: boolean;
+} & TComponentProps;
 
 export class AuthForm extends Component<TProps> {
   constructor(props: TProps) {
@@ -33,7 +36,9 @@ export class AuthForm extends Component<TProps> {
   }
 
   render() {
+    const { loader } = this.props;
     return this.compile(tpl, {
+      loader,
       LoginField: new Field({
         className: css.field,
         type: 'text',

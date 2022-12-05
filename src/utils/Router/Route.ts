@@ -1,6 +1,6 @@
 // import { isEqual } from '../../utils/isEqual';
-import { TComponentPropsType, TConstructor } from '~/src/typings/utils';
-import type { Component } from '~/src/view/Component';
+import { TClass, TComponentPropsType, TConstructor } from '~/src/typings/utils';
+import type { Component, TComponentProps } from '~/src/view/Component';
 import { renderDOM } from '~/src/view/DOM';
 import { THydratedParams, TParsedTemplate, TParts } from './types';
 
@@ -9,7 +9,7 @@ type TPathTemplate = string;
 // Хранит маршрут и компонент для отображения.
 // Может навигировать по заданному пути, покидать "локацию",
 // определять, подходит ли он для определённого пути и отрисовывать компонент.
-export class Route<TComponent extends Component> {
+export class Route<TProps extends TComponentProps> {
   static TEMPLATE_REGEXP = /^(?:\/:?[*-.\w]+)*\/?$/;
 
   static PATHNAME_REGEXP = /^(?:\/[*-.\w]+)*\/?$/;
@@ -20,19 +20,19 @@ export class Route<TComponent extends Component> {
 
   isMatchAll: boolean;
 
-  #componentClass: TConstructor<TComponent>;
+  #componentClass: TClass<Component<TProps>>;
 
   #component: Component | null;
 
-  #props: TComponentPropsType<TComponent>;
+  #props: TProps;
 
   #rootElement: HTMLElement;
 
   constructor(
     pathTemplate: string,
     rootQuery: string,
-    view: TConstructor<TComponent>,
-    props: TComponentPropsType<TComponent>,
+    componentClass: TClass<Component<TProps>>,
+    props: TProps,
     isMatchAll = false
   ) {
     if (!this.#validateTemplate(pathTemplate)) {
@@ -41,7 +41,7 @@ export class Route<TComponent extends Component> {
     this.#pathTemplate = pathTemplate;
     this.#parsedTemplate = this.#parseTemplate(this.#pathTemplate);
     this.isMatchAll = isMatchAll;
-    this.#componentClass = view;
+    this.#componentClass = componentClass;
     this.#component = null;
     this.#props = props;
     const rootElement = document.querySelector<HTMLElement>(rootQuery);
@@ -72,18 +72,21 @@ export class Route<TComponent extends Component> {
     }
     if (this.#validatePathname(pathname)) {
       const parts = this.#extractParts(pathname);
-      return parts.length >= this.#parsedTemplate.length && parts.every((part, index) => {
-        if (typeof this.#parsedTemplate[index] === 'object') {
-          return true;
-        }
-        if (typeof this.#parsedTemplate[index] === 'string') {
-          return (
-            part === this.#parsedTemplate[index] ||
-            this.#parsedTemplate[index] === '*'
-          );
-        }
-        return false;
-      });
+      return (
+        parts.length >= this.#parsedTemplate.length &&
+        parts.every((part, index) => {
+          if (typeof this.#parsedTemplate[index] === 'object') {
+            return true;
+          }
+          if (typeof this.#parsedTemplate[index] === 'string') {
+            return (
+              part === this.#parsedTemplate[index] ||
+              this.#parsedTemplate[index] === '*'
+            );
+          }
+          return false;
+        })
+      );
     }
     return false;
   }
