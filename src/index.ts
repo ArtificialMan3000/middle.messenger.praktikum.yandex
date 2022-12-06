@@ -6,13 +6,13 @@ import { E500Page } from '~/src/pages/E500Page';
 import { ProfilePage, TProfilePageProps } from '~/src/pages/ProfilePage';
 import { RegPage } from '~/src/pages/RegPage';
 import { AuthPage } from '~/src/pages/AuthPage';
-import { getRouter } from './utils/Router';
+import { constructRouter } from '~/src/controller';
 import './testRegForm';
 import { TComponentPropsType } from './typings/utils';
 import { TComponentProps } from './view/Component';
 
 window.addEventListener('DOMContentLoaded', () => {
-  const router = getRouter('#app');
+  const router = constructRouter();
 
   if (router) {
     router

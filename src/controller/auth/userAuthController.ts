@@ -1,14 +1,18 @@
+import { constructRouter, Router } from '~/src/controller';
 import { TSignUpModel, UserAuthAPI } from '~/src/api/userAuthApi';
 import { store } from '~/src/store';
 import { connect } from '../../store/connect';
 import { Component, TComponentProps } from '../../view/Component';
-import { isFieldValid } from '../fieldValidation';
+import { validateForm } from '../fieldValidation';
+import { markInvalid, markValid } from '~/src/view/View';
 
 // TODO Сделать коннектор здесь (в контролере)
 export class UserAuthController {
   UserAuthAPI: UserAuthAPI;
 
   SIGN_UP_FIELDS: string[];
+
+  router: Router;
 
   constructor() {
     this.UserAuthAPI = new UserAuthAPI();
@@ -20,23 +24,10 @@ export class UserAuthController {
       'newPassword',
       'phone',
     ];
-  }
-
-  validateSignUpData(formData: FormData) {
-    return this.SIGN_UP_FIELDS.every((field) => {
-      const fieldValue = formData.get(field);
-      if (isFieldValid(field, fieldValue)) {
-        return true;
-      }
-      return false;
-    });
+    this.router = constructRouter();
   }
 
   prepareSignUpData(formData: FormData) {
-    if (!this.validateSignUpData(formData)) {
-      throw new Error('Data for sign up is not valid');
-    }
-
     const data: TSignUpModel = {
       first_name: formData.get('first_name') as string,
       second_name: formData.get('second_name') as string,
@@ -50,15 +41,53 @@ export class UserAuthController {
   }
 
   signUp(formData: FormData) {
-    const data = this.prepareSignUpData(formData);
+    const requestData = this.prepareSignUpData(formData);
     store.setState('user.signUp.query.status', 'loading');
 
-    this.UserAuthAPI.signUp(data).then((result) => {
+    this.UserAuthAPI.signUp(requestData).then((result) => {
       if (result.status === 200) {
+        const responseData = JSON.parse(result.response);
         store.setState('user.signUp.query.status', 'success');
+        this.router.go(`/chats/${responseData.id}`);
       } else {
         store.setState('user.signUp.query.status', 'failure');
       }
     });
   }
+
+  onSignUpFormSubmit = (evt: Event) => {
+    evt.preventDefault();
+
+    const form = evt.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const { invalids, valids } = validateForm(formData, this.SIGN_UP_FIELDS);
+
+    if (invalids.length > 0) {
+      invalids.forEach((invalidField) => {
+        const invalidInput = form.querySelector<HTMLInputElement>(
+          `[name=${invalidField}]`
+        );
+        if (invalidInput) {
+          markInvalid(invalidInput);
+        }
+      });
+    }
+
+    if (valids.length > 0) {
+      valids.forEach((invalidField) => {
+        const validInput = form.querySelector<HTMLInputElement>(
+          `[name=${invalidField}]`
+        );
+        if (validInput) {
+          markValid(validInput);
+        }
+      });
+    }
+
+    if (invalids.length === 0) {
+      this.signUp(formData);
+    }
+
+  };
 }

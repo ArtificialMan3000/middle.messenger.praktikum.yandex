@@ -1,3 +1,5 @@
+import { markInvalid, markValid } from '~/src/view/View';
+
 type TValidationRule = {
   regexp?: RegExp;
   excludeRegexp?: RegExp;
@@ -114,15 +116,26 @@ export const isFieldValid = (
   return isValid;
 };
 
-export const setValidityStatus = (
-  input: HTMLInputElement,
-  className: string
-) => {
+export const validateForm = (formData: FormData, fieldsList: string[]) => {
+  const invalids: string[] = [];
+  const valids: string[] = [];
+
+  fieldsList.forEach((field) => {
+    const value = formData.get(field);
+    const isValid = isFieldValid(field, value);
+    if (!isValid) {
+      invalids.push(field);
+    }
+  });
+  return { invalids, valids };
+};
+
+export const setValidityStatus = (input: HTMLInputElement) => {
   const { name, value } = input;
   const isValid = isFieldValid(name, value);
   if (isValid) {
-    input.classList.remove(className);
+    markValid(input);
   } else {
-    input.classList.add(className);
+    markInvalid(input);
   }
 };

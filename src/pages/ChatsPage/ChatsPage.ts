@@ -16,7 +16,6 @@ type TProps = TComponentProps;
 
 export class ChatsPage extends Component<TProps> {
   constructor(props: TProps) {
-    debugger;
     const className = extendClassName(`${css.siteWrapper}`, props.className);
     super({ ...props, className }, 'main');
   }

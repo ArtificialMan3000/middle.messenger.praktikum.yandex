@@ -19,11 +19,14 @@ function mapStateToProps(state: TState) {
   return result;
 }
 
-export const withLoader = connect((state) => {
-  const queryStatus = state.user?.signUp?.query?.status || 'idle';
-
-  if (queryStatus === 'loading') {
-    return { loader: true };
-  }
-  return { loader: false };
-});
+export const withLoader = function <TProps extends Record<string, unknown>>(
+  ComponentClass: IComponentConstructor<TProps>
+) {
+  return connect<TProps>((state) => {
+    const queryStatus = state.user?.signUp?.query?.status || 'idle';
+    if (queryStatus === 'loading') {
+      return { loader: true };
+    }
+    return { loader: false };
+  })(ComponentClass);
+};

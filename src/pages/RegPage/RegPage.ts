@@ -8,16 +8,15 @@ import {
   extendClassName,
   TComponentProps,
 } from '~/src/view/Component';
-import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { outputForm } from '~/src/model/features/outputForm';
 import { UserAuthController } from '~/src/controller/auth/userAuthController';
+import { setValidityStatus } from '~/src/controller/fieldValidation';
 
 Object.assign(css, sharedCss);
 
 type TProps = TComponentProps;
 
 const userController = new UserAuthController();
-
 export class RegPage extends Component<TProps> {
   constructor(props: TProps) {
     const className = extendClassName(sharedCss.siteWrapper, props.className);
@@ -38,25 +37,16 @@ export class RegPage extends Component<TProps> {
                   outputForm(evt.target as HTMLFormElement);
                 }
               },
-              (evt: Event) => {
-                evt.preventDefault();
-                const form = evt.target as HTMLFormElement;
-                const inputs = form.querySelectorAll('input');
-                inputs.forEach((input) => {
-                  setValidityStatus(input, css.notValid);
-                });
-
-                userController.signUp(new FormData(form));
-              },
+              userController.onSignUpFormSubmit,
             ],
             inputFocus: [
               (evt: Event) => {
-                setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+                setValidityStatus(evt.target as HTMLInputElement);
               },
             ],
             inputBlur: [
               (evt: Event) => {
-                setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+                setValidityStatus(evt.target as HTMLInputElement);
               },
             ],
           },

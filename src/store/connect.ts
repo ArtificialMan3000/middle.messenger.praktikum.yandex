@@ -9,7 +9,7 @@ import { store, StoreEvents } from './Store';
 import { isEqual } from '../utils/functions';
 
 export function connect<TProps extends Record<string, unknown>>(
-  mapStateToProps: (state: TState) => Partial<TProps>
+  mapStateToProps: (state: TState) => Record<string, unknown>
 ) {
   return function connectComponent(
     ComponentClass: IComponentConstructor<TProps>

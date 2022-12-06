@@ -4,7 +4,7 @@ import { Route } from './Route';
 
 // type TClass<TInstance> = typeof TInstance;
 
-class Router {
+export class Router {
   routes: Route<TComponentProps>[];
 
   defaultRoute: Route<TComponentProps> | null;
@@ -105,15 +105,3 @@ class Router {
     return this.routes.find((route) => route.match(pathname));
   }
 }
-
-let router: Router;
-
-export const getRouter = (rootQuery?: string) => {
-  if (!router) {
-    if (!rootQuery) {
-      return null;
-    }
-    router = new Router(rootQuery);
-  }
-  return router;
-};
