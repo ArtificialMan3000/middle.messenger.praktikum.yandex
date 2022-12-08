@@ -7,7 +7,7 @@ import { ProfilePage, TProfilePageProps } from '~/src/pages/ProfilePage';
 import { RegPage } from '~/src/pages/RegPage';
 import { AuthPage } from '~/src/pages/AuthPage';
 import { constructRouter } from '~/src/controller';
-import './testRegForm';
+import './tests';
 import { TComponentPropsType } from './typings/utils';
 import { TComponentProps } from './view/Component';
 

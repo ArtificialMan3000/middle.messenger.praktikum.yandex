@@ -1,12 +1,6 @@
-import { connect } from '~/src/store/connect';
+import { withSignInError, withSignInLoader } from '~/src/controller';
 import { AuthForm } from './AuthForm';
 
-const ConnectedAuthForm = connect((state) => {
-  const queryStatus = state.user?.query?.status || 'idle';
-  if (queryStatus === 'success') {
-    return { loader: false };
-  }
-  return { loader: true };
-})(AuthForm);
+const ConnectedAuthForm = withSignInLoader(withSignInError(AuthForm));
 
 export { ConnectedAuthForm as AuthForm };

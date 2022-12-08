@@ -9,14 +9,14 @@ import {
   TComponentProps,
 } from '~/src/view/Component';
 import { outputForm } from '~/src/model/features/outputForm';
-import { UserAuthController } from '~/src/controller/auth/userAuthController';
+import { SignUpController } from '~/src/controller/auth/signUpController';
 import { setValidityStatus } from '~/src/controller/fieldValidation';
 
 Object.assign(css, sharedCss);
 
 type TProps = TComponentProps;
 
-const userController = new UserAuthController();
+const signUpController = new SignUpController();
 export class RegPage extends Component<TProps> {
   constructor(props: TProps) {
     const className = extendClassName(sharedCss.siteWrapper, props.className);
@@ -37,7 +37,7 @@ export class RegPage extends Component<TProps> {
                   outputForm(evt.target as HTMLFormElement);
                 }
               },
-              userController.onSignUpFormSubmit,
+              signUpController.onSignUpFormSubmit,
             ],
             inputFocus: [
               (evt: Event) => {

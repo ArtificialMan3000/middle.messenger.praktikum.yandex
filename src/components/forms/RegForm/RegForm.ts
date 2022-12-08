@@ -8,7 +8,8 @@ import { ButtonLink } from '~/src/view/ui/ButtonLink';
 
 export type TRegFormProps = {
   loader?: boolean;
-} & TComponentProps;
+  errorText?: string;
+};
 
 export class RegForm extends Component<TRegFormProps> {
   constructor(props: TComponentProps<TRegFormProps>) {
@@ -35,10 +36,7 @@ export class RegForm extends Component<TRegFormProps> {
   }
 
   render() {
-    const { loader } = this.props;
-
     const FirstNameField = new Field({
-      loader,
       className: css.field,
       type: 'text',
       id: 'first_name',
@@ -99,7 +97,8 @@ export class RegForm extends Component<TRegFormProps> {
     });
 
     return this.compile(tpl, {
-      loader,
+      ...this.props,
+      css,
       FirstNameField,
       SecondNameField,
       LoginField,

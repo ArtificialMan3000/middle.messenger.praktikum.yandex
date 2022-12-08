@@ -1,3 +1,9 @@
+{{#if errorText}}
+  <p class="{{css.error}}">Произошла ошибка: {{errorText}}</p>
+{{/if}}
+{{#if loader}}
+  <p>Отправка данных...</p>
+{{/if}}
 <div class="fields">
   {{{FirstNameField}}}
   {{{SecondNameField}}}

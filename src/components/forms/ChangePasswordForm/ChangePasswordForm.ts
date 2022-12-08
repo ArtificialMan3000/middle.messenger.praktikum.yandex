@@ -33,6 +33,7 @@ export class ChangePasswordForm extends Component<TProps> {
 
   render() {
     return this.compile(tpl, {
+      ...this.props,
       css,
       OldPasswordField: new Field({
         className: css.field,

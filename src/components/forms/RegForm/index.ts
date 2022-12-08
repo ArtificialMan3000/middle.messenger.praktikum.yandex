@@ -1,6 +1,6 @@
-import { withLoader } from '~/src/controller/auth/hocs/withLoader';
+import { withSignUpError, withSignUpLoader } from '~/src/controller';
 import { RegForm } from './RegForm';
 
-const ConnectedRegForm = withLoader(RegForm);
+const ConnectedRegForm = withSignUpLoader(withSignUpError(RegForm));
 
 export { ConnectedRegForm as RegForm };

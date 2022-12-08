@@ -5,11 +5,10 @@ import { Field } from '../../Field';
 import { Button } from '../../Button';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
-import { UserAuthController } from '~/src/controller/auth/userAuthController';
 
 type TProps = {
   loader?: boolean;
-} & TComponentProps;
+};
 
 export class AuthForm extends Component<TProps> {
   constructor(props: TProps) {
@@ -36,9 +35,9 @@ export class AuthForm extends Component<TProps> {
   }
 
   render() {
-    const { loader } = this.props;
     return this.compile(tpl, {
-      loader,
+      ...this.props,
+      css,
       LoginField: new Field({
         className: css.field,
         type: 'text',

@@ -8,9 +8,6 @@ import {
 } from './types';
 import { EventBus } from '../../controller/EventBus/EventBus';
 
-// TODO Создать интерфейс для класса
-
-
 export class Component<
   TInheritorProps extends Record<string, unknown> = Record<string, unknown>
 > {

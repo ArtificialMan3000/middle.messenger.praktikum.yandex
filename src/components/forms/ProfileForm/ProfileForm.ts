@@ -35,6 +35,8 @@ export class ProfileForm extends Component<TProps> {
 
   render() {
     return this.compile(tpl, {
+      ...this.props,
+      css,
       FirstNameField: new Field({
         className: css.field,
         type: 'text',

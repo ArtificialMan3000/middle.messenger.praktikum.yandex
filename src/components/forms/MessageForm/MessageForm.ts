@@ -34,6 +34,7 @@ export class MessageForm extends Component<TProps> {
   render() {
     // Not button here. Send form by pressing 'enter'
     return this.compile(tpl, {
+      ...this.props,
       css,
       InputFile: new MessageInputFile({ className: css.inputFile }),
       InputText: new MessageInputText({

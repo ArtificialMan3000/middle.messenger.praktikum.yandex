@@ -1,5 +1,3 @@
-import { randomInt } from './utils/functions';
-
 const mock = {
   first_name: 'Alexander',
   second_name: 'Alexandroff',
@@ -9,8 +7,7 @@ const mock = {
   phone: '1234567890',
 };
 
-window.testRegForm = function () {
-  const salt = randomInt(1000);
+window.testRegFormWithError = function () {
   const form = document.querySelector('form.reg-form');
 
   if (form) {
@@ -41,8 +38,8 @@ window.testRegForm = function () {
 
     firstNameField.value = mock.first_name;
     secondNameField.value = mock.second_name;
-    loginField.value = `${mock.login}${salt}`;
-    emailField.value = `${mock.email}${salt}`;
+    loginField.value = `${mock.login}`;
+    emailField.value = `${mock.email}`;
     newPasswordField.value = mock.newPassword;
     phoneField.value = mock.phone;
 

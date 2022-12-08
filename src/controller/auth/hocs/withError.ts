@@ -1,13 +1,12 @@
-import { TQueryType } from '../types';
 import { connect } from '~/src/store/connect';
-import { TState } from '~/src/store/types';
 import { IComponentConstructor } from '~/src/view/Component';
+import { TQueryType } from '../types';
 
-export const withLoader = function withLoader<
+export const withError = function withError<
   TProps extends Record<string, unknown>
 >(ComponentClass: IComponentConstructor<TProps>, queryType: TQueryType) {
   return connect<TProps>((state) => {
-    const isLoading = state.user?.[queryType]?.query?.isLoading || false;
-    return { loader: isLoading };
+    const error = state.user?.[queryType]?.query?.error || null;
+    return { errorText: error };
   })(ComponentClass);
 };

@@ -11,13 +11,13 @@ import {
 import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { outputForm } from '~/src/model/features/outputForm';
 import { combineCssModules } from '~/src/view/View';
-import { UserAuthController } from '~/src/controller/auth/userAuthController';
+import { SignInController } from '~/src/controller/auth/signInController';
 
 type TProps = TComponentProps;
 
 combineCssModules(css, sharedCss);
 
-const userController = new UserAuthController();
+const signInController = new SignInController();
 
 export class AuthPage extends Component<TProps> {
   constructor(props: TProps) {
@@ -38,27 +38,16 @@ export class AuthPage extends Component<TProps> {
                   outputForm(evt.target as HTMLFormElement);
                 }
               },
-              (evt: Event) => {
-                evt.preventDefault();
-                console.log('validation');
-
-                const form = evt.target as HTMLFormElement;
-                const inputs = form.querySelectorAll('input');
-                inputs.forEach((input) => {
-                  setValidityStatus(input, css.notValid);
-                });
-
-                userController.signUp(new FormData(form));
-              },
+              signInController.onSignInFormSubmit,
             ],
             inputFocus: [
               (evt: Event) => {
-                setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+                setValidityStatus(evt.target as HTMLInputElement);
               },
             ],
             inputBlur: [
               (evt: Event) => {
-                setValidityStatus(evt.target as HTMLInputElement, css.notValid);
+                setValidityStatus(evt.target as HTMLInputElement);
               },
             ],
           },

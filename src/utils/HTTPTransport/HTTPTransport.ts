@@ -98,9 +98,9 @@ export class HTTPTransport {
 
       xhr.onload = () => resolve(xhr);
 
-      xhr.onerror = reject;
-      xhr.onabort = reject;
-      xhr.ontimeout = reject;
+      xhr.onerror = (evt) => reject(evt);
+      xhr.onabort = (evt) => reject(evt);
+      xhr.ontimeout = (evt) => reject(evt);
 
       if (data && method !== METHODS.GET) {
         xhr.send(data);

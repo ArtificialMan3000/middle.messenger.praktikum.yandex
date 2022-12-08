@@ -1,21 +1,18 @@
 import { constructRouter, Router } from '~/src/controller';
-import { TSignUpModel, UserAuthAPI } from '~/src/api/userAuthApi';
+import { TSignUpRequest, AuthAPI } from '~/src/api/authApi';
 import { store } from '~/src/store';
-import { connect } from '../../store/connect';
-import { Component, TComponentProps } from '../../view/Component';
-import { validateForm } from '../fieldValidation';
+import { validateForm } from '../../fieldValidation';
 import { markInvalid, markValid } from '~/src/view/View';
 
-// TODO Сделать коннектор здесь (в контролере)
-export class UserAuthController {
-  UserAuthAPI: UserAuthAPI;
+export class SignUpController {
+  AuthAPI: AuthAPI;
 
   SIGN_UP_FIELDS: string[];
 
   router: Router;
 
   constructor() {
-    this.UserAuthAPI = new UserAuthAPI();
+    this.AuthAPI = new AuthAPI();
     this.SIGN_UP_FIELDS = [
       'first_name',
       'second_name',
@@ -28,7 +25,7 @@ export class UserAuthController {
   }
 
   prepareSignUpData(formData: FormData) {
-    const data: TSignUpModel = {
+    const data: TSignUpRequest = {
       first_name: formData.get('first_name') as string,
       second_name: formData.get('second_name') as string,
       login: formData.get('login') as string,
@@ -42,17 +39,22 @@ export class UserAuthController {
 
   signUp(formData: FormData) {
     const requestData = this.prepareSignUpData(formData);
-    store.setState('user.signUp.query.status', 'loading');
+    store.setState('user.signUp.query.isLoading', true);
 
-    this.UserAuthAPI.signUp(requestData).then((result) => {
-      if (result.status === 200) {
+    this.AuthAPI.signUp(requestData)
+      .then((result) => {
+        store.setState('user.signUp.query.isLoading', false);
         const responseData = JSON.parse(result.response);
-        store.setState('user.signUp.query.status', 'success');
-        this.router.go(`/chats/${responseData.id}`);
-      } else {
-        store.setState('user.signUp.query.status', 'failure');
-      }
-    });
+        if (result.status === 200) {
+          store.setState('user.signUp.query.error', null);
+          this.router.go(`/chats/${responseData.id}`);
+        } else {
+          store.setState('user.signUp.query.error', responseData.reason);
+        }
+      })
+      .catch(() => {
+        store.setState('user.signUp.query.error', 'Запрос прерван');
+      });
   }
 
   onSignUpFormSubmit = (evt: Event) => {
@@ -88,6 +90,5 @@ export class UserAuthController {
     if (invalids.length === 0) {
       this.signUp(formData);
     }
-
   };
 }

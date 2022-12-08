@@ -3,6 +3,12 @@
     {{{InputFile}}}
   </div>
   <div class="{{css.col2}}">
+    {{#if errorText}}
+      <p class="{{css.error}}">Произошла ошибка: {{errorText}}</p>
+    {{/if}}
+    {{#if loader}}
+      <p>Отправка данных...</p>
+    {{/if}}
     {{{InputText}}}
   </div>
 </div>
