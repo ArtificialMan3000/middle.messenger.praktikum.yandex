@@ -270,6 +270,7 @@ export class Component<
   #createResources() {
     const { tagName } = this.#meta;
     this.#element = this.#createDocumentElement(tagName);
+    this.#element.setAttribute('data-component', this.constructor.name);
   }
 
   #createDocumentElement(tagName: string) {
