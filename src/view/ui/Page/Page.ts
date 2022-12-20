@@ -11,12 +11,13 @@ export class Page extends Component<TProps> {
   }
 
   render() {
-    const { isLoaderDisplayed = false } = this.props;
+    const { isLoaderDisplayed = false, children = '' } = this.props;
 
     return this.compile(tpl, {
       css,
       isLoaderDisplayed,
       LoaderPlug: new LoaderPlug({ className: css.loaderScreen }),
+      children,
     });
   }
 }

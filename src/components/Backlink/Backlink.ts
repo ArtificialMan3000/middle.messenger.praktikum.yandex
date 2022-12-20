@@ -1,11 +1,8 @@
 import tpl from './Backlink.hbs';
 import * as css from './Backlink.module.scss';
-import {
-  Component,
-  extendClassName,
-  TComponentProps,
-} from '~/src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
 import { Link } from '../Link';
+import { extendClassName } from '~/src/view/View';
 
 type TBacklinkProps = {
   location: string;

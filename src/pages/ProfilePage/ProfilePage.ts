@@ -1,6 +1,5 @@
 import tpl from './ProfilePage.hbs';
 import contentTpl from './ProfilePageContent.hbs';
-import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './ProfilePage.module.scss';
 import { Backlink } from '~/src/components/Backlink';
 import { FullAvatar } from '~/src/components/FullAvatar';
@@ -13,8 +12,6 @@ import { UserController } from '~/src/controller/userProfileController';
 import { ProfileController } from '~/src/controller/profile';
 import { Page } from '~/src/view/ui/Page';
 import { wrapper } from '~/src/view/View';
-
-// Object.assign(css, sharedCss);
 
 const profileController = new ProfileController();
 
@@ -29,7 +26,6 @@ export class ProfilePage extends Component<TProfilePageProps> {
     isLoaderDisplayed = true,
     ...props
   }: TComponentProps<TProfilePageProps>) {
-    // const className = extendClassName(sharedCss.siteWrapper, props.className);
     super({ ...props, isLoaderDisplayed }, 'main');
 
     // userController.getUserProfile();
@@ -41,40 +37,49 @@ export class ProfilePage extends Component<TProfilePageProps> {
     return this.compile(tpl, {
       ...this.props,
       css,
-      Page: new Page({ isLoaderDisplayed }, 'div'),
-      children: wrapper(contentTpl, {
-        className: css.container,
-        css,
-        Window: new Window({
-          content: new ProfileForm({
-            events: {
-              submit: [
-                (evt: Event) => {
-                  evt.preventDefault();
-                  if (evt.target) {
-                    outputForm(evt.target as HTMLFormElement);
-                  }
+      Page: new Page(
+        {
+          isLoaderDisplayed,
+          children: wrapper(contentTpl, {
+            className: css.container,
+            css,
+            Backlink: new Backlink({
+              text: 'К чатам',
+              location: '/chats',
+            }),
+            Window: new Window({
+              content: new ProfileForm({
+                events: {
+                  submit: [
+                    (evt: Event) => {
+                      evt.preventDefault();
+                      if (evt.target) {
+                        outputForm(evt.target as HTMLFormElement);
+                      }
+                    },
+                    profileController.onChangeProfileFormSubmit,
+                  ],
+                  inputFocus: [
+                    (evt) => {
+                      setValidityStatus(evt.target as HTMLInputElement);
+                    },
+                  ],
+                  inputBlur: [
+                    (evt) => {
+                      setValidityStatus(evt.target as HTMLInputElement);
+                    },
+                  ],
                 },
-                profileController.onChangeProfileFormSubmit,
-              ],
-              inputFocus: [
-                (evt) => {
-                  setValidityStatus(evt.target as HTMLInputElement);
-                },
-              ],
-              inputBlur: [
-                (evt) => {
-                  setValidityStatus(evt.target as HTMLInputElement);
-                },
-              ],
-            },
+              }),
+            }),
+            FullAvatar: new FullAvatar({
+              imageSrc: 'img/avatar.jpg',
+              name: 'Имя Фамилия',
+            }),
           }),
-        }),
-        FullAvatar: new FullAvatar({
-          imageSrc: 'img/avatar.jpg',
-          name: 'Имя Фамилия',
-        }),
-      }),
+        },
+        'div'
+      ),
     });
   }
 };
