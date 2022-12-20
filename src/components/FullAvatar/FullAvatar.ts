@@ -1,13 +1,13 @@
 import tpl from './FullAvatar.hbs';
 import * as css from './FullAvatar.module.scss';
 import { Component, TComponentProps } from '~/src/view/Component';
-import { extendClassName } from '~/src/view/View';
+import { makeClassNames } from '~/src/view/View';
 
 type TProps = TComponentProps;
 
 export class FullAvatar extends Component<TProps> {
   constructor(props: TProps) {
-    const className = extendClassName(css.avatar, props.className);
+    const className = makeClassNames(css.avatar, props.className);
     super({ ...props, className }, 'div');
   }
 

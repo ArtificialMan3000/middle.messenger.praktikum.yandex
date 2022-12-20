@@ -33,8 +33,6 @@ const PAGES_INFO = [
   },
 ];
 
-export type TProps = Record<string, never>;
-
 export class MainPage extends Component {
   pageLinks: Component[];
 

@@ -7,3 +7,5 @@ export type TComponentPropsType<T extends Component> = T['props'];
 export interface TClass<TInstance> {
   new (...args: any): TInstance;
 }
+
+export type Nullable<T> = T | undefined | null;

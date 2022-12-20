@@ -1,33 +1,25 @@
 import tpl from './E500Page.hbs';
-import * as sharedCss from '~/src/scss/shared.module.scss';
+import contentTpl from './E500PageContent.hbs';
 import * as css from './E500.module.scss';
-import {
-  Component,
-  extendClassName,
-  TComponentProps,
-} from '~/src/view/Component';
+import * as sharedCss from '~/src/scss/shared.module.scss';
+import { Component } from '~/src/view/Component';
 import { Link } from '~/src/components/Link';
+import { Page } from '~/src/view/ui/Page';
+import { makeClassNames, wrapper } from '~/src/view/View';
 
-Object.assign(css, sharedCss);
-
-type TProps = TComponentProps;
-
-export class E500Page extends Component<TProps> {
-  constructor(props: TProps) {
-    const className = extendClassName(
-      `${css.siteWrapper} ${css.dangerBg}`,
-      props.className
-    );
-    super({ ...props, className }, 'main');
-  }
-
+export class E500Page extends Component {
   render() {
     return this.compile(tpl, {
-      css,
-      ToChatLink: new Link({
-        href: '/chats',
-        text: 'Убежать',
-        className: css.backlink,
+      Page: new Page({
+        children: wrapper(contentTpl, {
+          css,
+          className: makeClassNames(css.container, sharedCss.dangerBg),
+          ToChatLink: new Link({
+            href: '/chats',
+            text: 'Убежать',
+            className: css.backlink,
+          }),
+        }),
       }),
     });
   }

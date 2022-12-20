@@ -1,31 +1,25 @@
 import tpl from './E404Page.hbs';
-import * as sharedCss from '~/src/scss/shared.module.scss';
+import contentTpl from './E404PageContent.hbs';
 import * as css from './E404.module.scss';
-import {
-  Component,
-  extendClassName,
-  TComponentProps,
-} from '~/src/view/Component';
+import { Component } from '~/src/view/Component';
 import { Link } from '~/src/components/Link';
+import { Page } from '~/src/view/ui/Page';
+import { wrapper } from '~/src/view/View';
 
-Object.assign(css, sharedCss);
-
-type TProps = TComponentProps;
-
-export class E404Page extends Component<TProps> {
-  constructor(props: TProps) {
-    const className = extendClassName(`${css.siteWrapper}`, props.className);
-    super({ ...props, className }, 'main');
-  }
-
+export class E404Page extends Component {
   render() {
     return this.compile(tpl, {
-      css,
-      ToChatLink: new Link({
-        location: '/chats',
-        text: 'Вернуться к чатам',
-        className: css.backlink,
+      Page: new Page({
+        children: wrapper(contentTpl, {
+          css,
+          className: css.container,
+          ToChatLink: new Link({
+            location: '/chats',
+            text: 'Вернуться к чатам',
+            className: css.backlink,
+          }),
+        }),
       }),
     });
   }
-};
+}

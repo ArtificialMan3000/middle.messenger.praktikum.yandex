@@ -1,4 +1,5 @@
 import { notValid } from '~/src/scss/shared.module.scss';
+import { Nullable } from '~/src/typings/utils';
 import { TCssModule } from './types';
 import { wrapper } from './wrapper';
 
@@ -7,9 +8,8 @@ const INVALID_CLASS: string = notValid;
 export class View {
   static wrapper = wrapper;
 
-  static extendClassName(additionalClass = '', className = '') {
-    const whitespace = className.length > 0 ? ' ' : '';
-    return `${className}${whitespace}${additionalClass}`;
+  static makeClassNames(...classes: Nullable<string>[]) {
+    return classes.filter((className) => className).join(' ');
   }
 
   static combineCssModules(css: TCssModule, ...cssModules: TCssModule[]) {
@@ -25,6 +25,6 @@ export class View {
   };
 }
 
-export const { extendClassName, combineCssModules, markInvalid, markValid } =
+export const { makeClassNames, combineCssModules, markInvalid, markValid } =
   View;
 export { wrapper };

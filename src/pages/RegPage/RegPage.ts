@@ -1,58 +1,47 @@
 import tpl from './RegPage.hbs';
-import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './RegPage.module.scss';
 import { RegForm } from '~/src/components/forms/RegForm';
 import { Window } from '~/src/components/Window';
-import {
-  Component,
-  extendClassName,
-  TComponentProps,
-} from '~/src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
 import { outputForm } from '~/src/model/features/outputForm';
 import { SignUpController } from '~/src/controller/';
 import { setValidityStatus } from '~/src/controller/fieldValidation';
-
-Object.assign(css, sharedCss);
-
-type TProps = TComponentProps;
+import { Page } from '~/src/view/ui/Page';
 
 const signUpController = new SignUpController();
-export class RegPage extends Component<TProps> {
-  constructor(props: TProps) {
-    const className = extendClassName(sharedCss.siteWrapper, props.className);
-    super({ ...props, className }, 'main');
-  }
-
+export class RegPage extends Component {
   render() {
     return this.compile(tpl, {
-      Window: new Window({
-        header: 'Регистрация',
-        content: new RegForm({
-          className: 'reg-form',
-          events: {
-            submit: [
-              (evt: Event) => {
-                evt.preventDefault();
-                if (evt.target) {
-                  outputForm(evt.target as HTMLFormElement);
-                }
-              },
-              signUpController.onSignUpFormSubmit,
-            ],
-            inputFocus: [
-              (evt: Event) => {
-                setValidityStatus(evt.target as HTMLInputElement);
-              },
-            ],
-            inputBlur: [
-              (evt: Event) => {
-                setValidityStatus(evt.target as HTMLInputElement);
-              },
-            ],
-          },
+      Page: new Page({
+        css,
+        children: new Window({
+          header: 'Регистрация',
+          content: new RegForm({
+            className: 'reg-form',
+            events: {
+              submit: [
+                (evt: Event) => {
+                  evt.preventDefault();
+                  if (evt.target) {
+                    outputForm(evt.target as HTMLFormElement);
+                  }
+                },
+                signUpController.onSignUpFormSubmit,
+              ],
+              inputFocus: [
+                (evt: Event) => {
+                  setValidityStatus(evt.target as HTMLInputElement);
+                },
+              ],
+              inputBlur: [
+                (evt: Event) => {
+                  setValidityStatus(evt.target as HTMLInputElement);
+                },
+              ],
+            },
+          }),
         }),
       }),
-      css,
     });
   }
-};
+}

@@ -2,7 +2,7 @@ import tpl from './Backlink.hbs';
 import * as css from './Backlink.module.scss';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { Link } from '../Link';
-import { extendClassName } from '~/src/view/View';
+import { makeClassNames } from '~/src/view/View';
 
 type TBacklinkProps = {
   location: string;
@@ -11,7 +11,7 @@ type TBacklinkProps = {
 
 export class Backlink extends Component<TBacklinkProps> {
   constructor(props: TComponentProps<TBacklinkProps>) {
-    const className = extendClassName(css.link, props.className);
+    const className = makeClassNames(css.link, props.className);
     super({ ...props, className });
   }
 
