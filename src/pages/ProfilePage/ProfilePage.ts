@@ -1,22 +1,18 @@
 import tpl from './ProfilePage.hbs';
-import contentTpl from './content.hbs';
+import contentTpl from './ProfilePageContent.hbs';
 import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './ProfilePage.module.scss';
 import { Backlink } from '~/src/components/Backlink';
 import { FullAvatar } from '~/src/components/FullAvatar';
 import { ProfileForm } from '~/src/components/forms/ProfileForm';
 import { Window } from '~/src/components/Window';
-import {
-  Component,
-  extendClassName,
-  TComponentProps,
-} from '~/src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
 import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { outputForm } from '~/src/model/features/outputForm';
 import { UserController } from '~/src/controller/userProfileController';
 import { ProfileController } from '~/src/controller/profile';
 import { Page } from '~/src/view/ui/Page';
-import { ProfilePageContent } from './ProfilePageContent';
+import { wrapper } from '~/src/view/View';
 
 // Object.assign(css, sharedCss);
 
@@ -46,7 +42,8 @@ export class ProfilePage extends Component<TProfilePageProps> {
       ...this.props,
       css,
       Page: new Page({ isLoaderDisplayed }, 'div'),
-      children: new ProfilePageContent({
+      children: wrapper(contentTpl, {
+        className: css.container,
         css,
         Window: new Window({
           content: new ProfileForm({

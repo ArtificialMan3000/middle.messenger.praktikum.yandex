@@ -1,10 +1,7 @@
 import tpl from './Window.hbs';
 import * as css from './Window.module.scss';
-import {
-  Component,
-  extendClassName,
-  TComponentProps,
-} from '~/src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
+import { extendClassName } from '~/src/view/View';
 
 export class Window extends Component {
   constructor(props: TComponentProps) {

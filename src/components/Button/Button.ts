@@ -1,10 +1,7 @@
 import tpl from './Button.hbs';
 import * as css from './Button.module.scss';
-import {
-  Component,
-  extendClassName,
-  TComponentProps,
-} from '../../view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
+import { extendClassName } from '~/src/view/View';
 
 type TProps = TComponentProps & {
   text?: string;

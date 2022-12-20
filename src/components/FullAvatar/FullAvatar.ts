@@ -1,10 +1,7 @@
 import tpl from './FullAvatar.hbs';
 import * as css from './FullAvatar.module.scss';
-import {
-  Component,
-  extendClassName,
-  TComponentProps,
-} from '~/src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
+import { extendClassName } from '~/src/view/View';
 
 type TProps = TComponentProps;
 
