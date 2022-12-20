@@ -10,9 +10,8 @@ import { outputForm } from '~/src/model/features/outputForm';
 import { Page } from '~/src/view/ui/Page';
 import { wrapper } from '~/src/view/View';
 
-type TProps = TComponentProps;
-export class ChangePasswordPage extends Component<TProps> {
-  constructor(props: TProps) {
+export class ChangePasswordPage extends Component {
+  constructor(props: TComponentProps) {
     super(props, 'main');
   }
 
