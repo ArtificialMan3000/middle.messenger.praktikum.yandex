@@ -1,6 +1,5 @@
 import { TQueryType } from '../types';
 import { connect } from '~/src/store/connect';
-import { TState } from '~/src/store/types';
 import { IComponentConstructor } from '~/src/view/Component';
 
 export const withLoader = function withLoader<

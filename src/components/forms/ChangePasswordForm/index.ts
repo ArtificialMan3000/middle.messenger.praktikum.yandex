@@ -1,7 +1,11 @@
-import { withError } from '~/src/controller/auth/hocs/withError';
-import { withLoader } from '~/src/controller/auth/hocs/withLoader';
+import {
+  withChangePasswordError,
+  withChangePasswordLoader,
+} from '~/src/controller/changePassword';
 import { ChangePasswordForm } from './ChangePasswordForm';
 
-const ConnectedChangePasswordForm = withLoader(withError(ChangePasswordForm));
+const ConnectedChangePasswordForm = withChangePasswordLoader(
+  withChangePasswordError(ChangePasswordForm)
+);
 
 export { ConnectedChangePasswordForm as ChangePasswordForm };

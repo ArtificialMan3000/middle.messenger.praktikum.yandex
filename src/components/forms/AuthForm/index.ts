@@ -1,6 +1,11 @@
-import { withSignInError, withSignInLoader } from '~/src/controller';
+import {
+  withChangePasswordError,
+  withChangePasswordLoader,
+} from '~/src/controller';
 import { AuthForm } from './AuthForm';
 
-const ConnectedAuthForm = withSignInLoader(withSignInError(AuthForm));
+const ConnectedAuthForm = withChangePasswordLoader(
+  withChangePasswordError(AuthForm)
+);
 
 export { ConnectedAuthForm as AuthForm };

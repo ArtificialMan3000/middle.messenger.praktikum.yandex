@@ -9,7 +9,7 @@ import {
   TComponentProps,
 } from '~/src/view/Component';
 import { outputForm } from '~/src/model/features/outputForm';
-import { SignUpController } from '~/src/controller/auth/signUpController';
+import { SignUpController } from '~/src/controller/';
 import { setValidityStatus } from '~/src/controller/fieldValidation';
 
 Object.assign(css, sharedCss);

@@ -1,69 +1,58 @@
 import { constructRouter, Router } from '~/src/controller';
-import { TSignUpRequest, AuthAPI } from '~/src/api/authApi';
+import { TSignInRequest, AuthAPI } from '~/src/api/authApi';
 import { store } from '~/src/store';
-import { validateForm } from '../../fieldValidation';
+import { validateForm } from '../fieldValidation';
 import { markInvalid, markValid } from '~/src/view/View';
 
-export class SignUpController {
+export class SignInController {
   AuthAPI: AuthAPI;
 
-  SIGN_UP_FIELDS: string[];
+  SIGN_IN_FIELDS: string[];
 
   router: Router;
 
   constructor() {
     this.AuthAPI = new AuthAPI();
-    this.SIGN_UP_FIELDS = [
-      'first_name',
-      'second_name',
-      'login',
-      'email',
-      'newPassword',
-      'phone',
-    ];
+    this.SIGN_IN_FIELDS = ['login', 'password'];
     this.router = constructRouter();
   }
 
-  prepareSignUpData(formData: FormData) {
-    const data: TSignUpRequest = {
-      first_name: formData.get('first_name') as string,
-      second_name: formData.get('second_name') as string,
+  prepareSignInData(formData: FormData) {
+    const data: TSignInRequest = {
       login: formData.get('login') as string,
-      email: formData.get('email') as string,
-      password: formData.get('newPassword') as string,
-      phone: formData.get('phone') as string,
+      password: formData.get('password') as string,
     };
 
     return data;
   }
 
-  signUp(formData: FormData) {
-    const requestData = this.prepareSignUpData(formData);
-    store.setState('user.signUp.query.isLoading', true);
+  signIn(formData: FormData) {
+    const requestData = this.prepareSignInData(formData);
+    store.setState('user.signIn.query.isLoading', true);
 
-    this.AuthAPI.signUp(requestData)
+    this.AuthAPI.signIn(requestData)
       .then((result) => {
-        store.setState('user.signUp.query.isLoading', false);
+        store.setState('user.signIn.query.isLoading', false);
         const responseData = JSON.parse(result.response);
         if (result.status === 200) {
-          store.setState('user.signUp.query.error', null);
+          store.setState('user.signIn.query.error', null);
           this.router.go(`/chats/${responseData.id}`);
         } else {
-          store.setState('user.signUp.query.error', responseData.reason);
+          store.setState('user.signIn.query.error', responseData.reason);
         }
       })
       .catch(() => {
-        store.setState('user.signUp.query.error', 'Запрос прерван');
+        store.setState('user.signIn.query.error', 'Запрос прерван');
       });
   }
 
-  onSignUpFormSubmit = (evt: Event) => {
+  onSignInFormSubmit = (evt: Event) => {
     evt.preventDefault();
 
     const form = evt.target as HTMLFormElement;
     const formData = new FormData(form);
 
-    const { invalids, valids } = validateForm(formData, this.SIGN_UP_FIELDS);
+    const { invalids, valids } = validateForm(formData, this.SIGN_IN_FIELDS);
 
     if (invalids.length > 0) {
       invalids.forEach((invalidField) => {
@@ -88,7 +77,7 @@ export class SignUpController {
     }
 
     if (invalids.length === 0) {
-      this.signUp(formData);
+      this.signIn(formData);
     }
   };
 }

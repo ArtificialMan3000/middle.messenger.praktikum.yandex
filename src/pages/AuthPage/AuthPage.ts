@@ -11,7 +11,7 @@ import {
 import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { outputForm } from '~/src/model/features/outputForm';
 import { combineCssModules } from '~/src/view/View';
-import { SignInController } from '~/src/controller/auth/signInController';
+import { SignInController } from '~/src/controller';
 
 type TProps = TComponentProps;
 
