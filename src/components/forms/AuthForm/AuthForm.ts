@@ -31,7 +31,7 @@ const signInController = new SignInController();
 
 export class AuthForm extends Component {
   render() {
-    const fields = makeFields(FIELDS_DATA);
+    const fields = makeFields(FIELDS_DATA, { className: css.field });
 
     return this.compile(tpl, {
       ...this.props,

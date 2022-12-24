@@ -14,7 +14,10 @@ type TFieldData = {
   placeholder?: string;
 };
 
-export const makeFields = (fieldsData: TFieldData[]) => {
+export const makeFields = (
+  fieldsData: TFieldData[],
+  additionalProps?: Record<string, unknown>
+) => {
   return fieldsData.map((fieldData) => {
     const fieldProps: TComponentPropsType<Field> = {
       type: fieldData.type,
@@ -23,6 +26,7 @@ export const makeFields = (fieldsData: TFieldData[]) => {
       label: fieldData.label,
       value: fieldData.value,
       placeholder: fieldData.placeholder,
+      ...additionalProps,
     };
     if (validationRules[fieldData.name]) {
       fieldProps.onFocus = (evt: Event) => {

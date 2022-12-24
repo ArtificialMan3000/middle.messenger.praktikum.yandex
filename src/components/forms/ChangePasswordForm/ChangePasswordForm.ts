@@ -1,69 +1,70 @@
 import tpl from './ChangePasswordForm.hbs';
 import * as css from './ChangePasswordForm.module.scss';
-import { Field } from '../../Field';
 import { Button } from '../../Button';
-import { Component, TComponentProps } from '~/src/view/Component';
-import { validationRules } from '~/src/controller/fieldValidation';
+import { Component } from '~/src/view/Component';
+import { setValidityStatus } from '~/src/controller/fieldValidation';
+import { Form } from '~/src/view/ui/Form';
+import { makeFields } from '../makeFields';
+import { outputForm } from '~/src/model/features/outputForm';
 
-type TProps = TComponentProps;
+const FIELDS_DATA = [
+  {
+    type: 'password',
+    id: 'oldPassword',
+    name: 'oldPassword',
+    label: 'Старый пароль',
+    placeholder: 'Старый пароль',
+  },
+  {
+    type: 'password',
+    id: 'newPassword',
+    name: 'newPassword',
+    label: 'Новый пароль',
+    placeholder: 'Новый пароль',
+  },
+  {
+    type: 'password',
+    id: 'repeatPassword',
+    name: 'repeatPassword',
+    label: 'Повторите пароль',
+    placeholder: 'Повторите пароль',
+  },
+];
 
-export class ChangePasswordForm extends Component<TProps> {
-  constructor(props: TProps) {
-    super(props, 'form');
-  }
-
-  _addEvents() {
-    const { events = {} } = this.props;
-    const {
-      inputFocus: inputFocusListeners = [],
-      inputBlur: inputBlurListeners = [],
-    } = events;
-
-    this.element.querySelectorAll('input').forEach((input) => {
-      inputFocusListeners.forEach((inputFocusEvent) => {
-        input.addEventListener('focus', inputFocusEvent);
-      });
-      inputBlurListeners.forEach((inputBlurEvent) => {
-        input.addEventListener('blur', inputBlurEvent);
-      });
-    });
-
-    super._addEvents();
-  }
-
+export class ChangePasswordForm extends Component {
   render() {
+    const fields = makeFields(FIELDS_DATA, { className: css.field });
+
     return this.compile(tpl, {
       ...this.props,
       css,
-      OldPasswordField: new Field({
-        className: css.field,
-        type: 'password',
-        id: 'oldPassword',
-        name: 'oldPassword',
-        label: 'Старый пароль',
-        placeholder: 'Старый пароль',
-      }),
-      NewPasswordField: new Field({
-        className: css.field,
-        type: 'password',
-        id: 'newPassword',
-        name: 'newPassword',
-        label: 'Новый пароль',
-        placeholder: 'Новый пароль',
-        validationText: validationRules.newPassword.description,
-      }),
-      RepeatPasswordField: new Field({
-        className: css.field,
-        type: 'password',
-        id: 'repeatPassword',
-        name: 'repeatPassword',
-        label: 'Повторите пароль',
-        placeholder: 'Повторите пароль',
-      }),
-      SaveButton: new Button({
-        className: css.button,
-        text: 'Сохранить',
-        attr: { type: 'submit' },
+      Form: new Form({
+        fields,
+        buttons: [
+          new Button({
+            className: css.button,
+            text: 'Сохранить',
+            attr: { type: 'submit' },
+          }),
+        ],
+        events: {
+          submit: [
+            (evt: Event) => {
+              evt.preventDefault();
+              if (evt.target) {
+                outputForm(evt.target as HTMLFormElement);
+              }
+            },
+            (evt: Event) => {
+              evt.preventDefault();
+              const form = evt.target as HTMLFormElement;
+              const inputs = form.querySelectorAll('input');
+              inputs.forEach((input) => {
+                setValidityStatus(input);
+              });
+            },
+          ],
+        },
       }),
     });
   }
