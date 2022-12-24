@@ -1,122 +1,96 @@
 import tpl from './RegForm.hbs';
 import * as css from './RegForm.module.scss';
-import { Field } from '../../Field';
 import { Button } from '../../Button';
 import { Component, TComponentProps } from '~/src/view/Component';
-import { validationRules } from '~/src/controller/fieldValidation';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
+import { makeFields } from '../makeFields';
+import { SignUpController } from '~/src/controller';
+import { outputForm } from '~/src/model/features/outputForm';
+import { Form } from '~/src/view/ui/Form';
 
-export type TRegFormProps = {
-  loader?: boolean;
-  errorText?: string;
-};
+const FIELDS_DATA = [
+  {
+    type: 'text',
+    id: 'first_name',
+    name: 'first_name',
+    label: 'Имя',
+    placeholder: 'Имя',
+  },
+  {
+    type: 'text',
+    id: 'second_name',
+    name: 'second_name',
+    label: 'Фамилия',
+    placeholder: 'Фамилия',
+  },
+  {
+    type: 'text',
+    id: 'login',
+    name: 'login',
+    label: 'Логин',
+    placeholder: 'Логин',
+  },
+  {
+    type: 'email',
+    id: 'email',
+    name: 'email',
+    label: 'Email',
+    placeholder: 'Email',
+  },
+  {
+    type: 'tel',
+    id: 'phone',
+    name: 'phone',
+    label: 'Телефон',
+    placeholder: 'Телефон',
+  },
+  {
+    type: 'password',
+    id: 'newPassword',
+    name: 'newPassword',
+    label: 'Пароль',
+    placeholder: 'Пароль',
+  },
+];
 
-export class RegForm extends Component<TRegFormProps> {
-  constructor(props: TComponentProps<TRegFormProps>) {
-    super(props, 'form');
-  }
+const signUpController = new SignUpController();
 
-  _addEvents() {
-    const { events = {} } = this.props;
-    const {
-      inputFocus: inputFocusListeners = [],
-      inputBlur: inputBlurListeners = [],
-    } = events;
-
-    this.element.querySelectorAll('input').forEach((input) => {
-      inputFocusListeners.forEach((inputFocusEvent) => {
-        input.addEventListener('focus', inputFocusEvent);
-      });
-      inputBlurListeners.forEach((inputBlurEvent) => {
-        input.addEventListener('blur', inputBlurEvent);
-      });
-    });
-
-    super._addEvents();
-  }
-
+export class RegForm extends Component {
   render() {
-    const FirstNameField = new Field({
-      className: css.field,
-      type: 'text',
-      id: 'first_name',
-      name: 'first_name',
-      label: 'Имя',
-      placeholder: 'Имя',
-      validationText: validationRules.first_name.description,
-    });
-
-    const SecondNameField = new Field({
-      className: css.field,
-      type: 'text',
-      id: 'second_name',
-      name: 'second_name',
-      label: 'Фамилия',
-      placeholder: 'Фамилия',
-      validationText: validationRules.second_name.description,
-    });
-
-    const LoginField = new Field({
-      className: css.field,
-      type: 'text',
-      id: 'login',
-      name: 'login',
-      label: 'Логин',
-      placeholder: 'Логин',
-      validationText: validationRules.login.description,
-    });
-
-    const EmailField = new Field({
-      className: css.field,
-      type: 'email',
-      id: 'email',
-      name: 'email',
-      label: 'Email',
-      placeholder: 'Email',
-      validationText: validationRules.email.description,
-    });
-
-    const PhoneField = new Field({
-      className: css.field,
-      type: 'tel',
-      id: 'phone',
-      name: 'phone',
-      label: 'Телефон',
-      placeholder: 'Телефон',
-      validationText: validationRules.phone.description,
-    });
-
-    const PasswordField = new Field({
-      className: css.field,
-      type: 'password',
-      id: 'newPassword',
-      name: 'newPassword',
-      label: 'Пароль',
-      placeholder: 'Пароль',
-      validationText: validationRules.newPassword.description,
-    });
+    const fields = makeFields(FIELDS_DATA, { className: css.field });
 
     return this.compile(tpl, {
       ...this.props,
       css,
-      FirstNameField,
-      SecondNameField,
-      LoginField,
-      EmailField,
-      PhoneField,
-      PasswordField,
-      RegButton: new Button({
-        className: css.button,
-        text: 'Зарегистрироваться',
-        attr: {
-          type: 'submit',
-        },
-      }),
-      EnterButton: ButtonLink({
-        className: css.button,
-        text: 'Войти',
-        attr: {
-          href: '/auth',
+      Form: new Form({
+        className: 'reg-form',
+        fields,
+        buttons: [
+          new Button({
+            className: css.button,
+            text: 'Зарегистрироваться',
+            attr: {
+              type: 'submit',
+            },
+          }),
+          ButtonLink({
+            className: css.button,
+            text: 'Войти',
+            attr: {
+              href: '/auth',
+            },
+          }),
+        ],
+        events: {
+          submit: [
+            (evt: Event) => {
+              evt.preventDefault();
+              if (evt.target) {
+                outputForm(evt.target as HTMLFormElement);
+              }
+            },
+            signUpController.onSignUpFormSubmit,
+          ],
         },
       }),
     });
