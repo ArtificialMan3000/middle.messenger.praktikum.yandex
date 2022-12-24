@@ -57,7 +57,7 @@ export class ProfileController {
       });
   }
 
-  onChangeProfileFormSubmit = (evt: Event) => {
+  onProfileFormSubmit = (evt: Event) => {
     evt.preventDefault();
 
     const form = evt.target as HTMLFormElement;

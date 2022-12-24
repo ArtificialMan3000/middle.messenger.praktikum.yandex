@@ -10,6 +10,10 @@ import { Field } from '../../Field';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
 import { Form } from '~/src/view/ui/Form';
 import { TComponentPropsType } from '~/src/typings/utils';
+import { ProfileController } from '~/src/controller/profile';
+import { outputForm } from '~/src/model/features/outputForm';
+
+const profileController = new ProfileController();
 
 const FIELDS_DATA = [
   {
@@ -57,25 +61,6 @@ const FIELDS_DATA = [
 ];
 
 export class ProfileForm extends Component {
-  // _addEvents() {
-  //   const { events = {} } = this.props;
-  //   const {
-  //     inputFocus: inputFocusListeners = [],
-  //     inputBlur: inputBlurListeners = [],
-  //   } = events;
-
-  //   this.element.querySelectorAll('input').forEach((input) => {
-  //     inputFocusListeners.forEach((inputFocusEvent) => {
-  //       input.addEventListener('focus', inputFocusEvent);
-  //     });
-  //     inputBlurListeners.forEach((inputBlurEvent) => {
-  //       input.addEventListener('blur', inputBlurEvent);
-  //     });
-  //   });
-
-  //   super._addEvents();
-  // }
-
   render() {
     const fields = FIELDS_DATA.map((fieldData) => {
       const fieldProps: TComponentPropsType<Field> = {
@@ -123,6 +108,17 @@ export class ProfileForm extends Component {
             },
           }),
         ],
+        events: {
+          submit: [
+            (evt: Event) => {
+              evt.preventDefault();
+              if (evt.target) {
+                outputForm(evt.target as HTMLFormElement);
+              }
+            },
+            profileController.onProfileFormSubmit,
+          ],
+        },
       }),
     });
   }
