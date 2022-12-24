@@ -5,7 +5,8 @@ import { ProfilePage, TProfilePageProps } from './ProfilePage';
 function mapUserToProps(state: TState) {
   const loadingStatus = state.user?.profile?.query?.status;
   const props = {
-    isLoaderDisplayed: true,
+    // isLoaderDisplayed: true,
+    isLoaderDisplayed: false,
   };
   if (loadingStatus === 'loaded') {
     props.isLoaderDisplayed = false;

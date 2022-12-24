@@ -1,6 +1,7 @@
+import { Nullable } from '~/src/typings/utils';
 import type { Component } from './Component';
 
-export type TEventsMap = Record<string, EventListener[]>;
+export type TEventsMap = Record<string, Nullable<EventListener>[]>;
 
 export type TBaseProps = {
   className?: string;

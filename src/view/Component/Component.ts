@@ -198,7 +198,9 @@ export class Component<
   _removeEvents() {
     Object.entries(this.#DOMEvents).forEach(([eventName, listeners]) => {
       listeners.forEach((listener) => {
-        this.#element.removeEventListener(eventName, listener);
+        if (listener) {
+          this.#element.removeEventListener(eventName, listener);
+        }
       });
     });
     this.#DOMEvents = {};
@@ -210,7 +212,9 @@ export class Component<
     if (events) {
       Object.entries(events).forEach(([eventName, listeners]) => {
         listeners.forEach((listener) => {
-          this.#element.addEventListener(eventName, listener);
+          if (listener) {
+            this.#element.addEventListener(eventName, listener);
+          }
         });
       });
       this.#DOMEvents = events;

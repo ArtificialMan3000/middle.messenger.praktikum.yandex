@@ -1,112 +1,128 @@
-import { validationRules } from '~/src/controller/fieldValidation';
+import {
+  setValidityStatus,
+  validationRules,
+} from '~/src/controller/fieldValidation';
 import tpl from './ProfileForm.hbs';
 import * as css from './ProfileForm.module.scss';
-import { EditField } from '../../EditField';
 import { Button } from '../../Button';
-import { Component, TComponentProps } from '~/src/view/Component';
+import { Component } from '~/src/view/Component';
 import { Field } from '../../Field';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
+import { Form } from '~/src/view/ui/Form';
+import { TComponentPropsType } from '~/src/typings/utils';
 
-type TProps = TComponentProps;
+const FIELDS_DATA = [
+  {
+    type: 'text',
+    id: 'first_name',
+    name: 'first_name',
+    label: 'Имя',
+    value: 'Имя',
+  },
+  {
+    type: 'text',
+    id: 'second_name',
+    name: 'second_name',
+    label: 'Фамилия',
+    value: 'Фамилия',
+  },
+  {
+    type: 'text',
+    id: 'login',
+    name: 'login',
+    label: 'Логин',
+    value: 'Логин',
+  },
+  {
+    type: 'email',
+    id: 'email',
+    name: 'email',
+    label: 'Email',
+    value: 'Email',
+  },
+  {
+    type: 'tel',
+    id: 'phone',
+    name: 'phone',
+    label: 'Телефон',
+    value: 'Телефон',
+  },
+  {
+    type: 'text',
+    id: 'display_name',
+    name: 'display_name',
+    label: 'Имя в чате',
+    value: 'Имя в чате',
+  },
+];
 
-export class ProfileForm extends Component<TProps> {
-  constructor(props: TProps) {
-    super(props, 'form');
-  }
+export class ProfileForm extends Component {
+  // _addEvents() {
+  //   const { events = {} } = this.props;
+  //   const {
+  //     inputFocus: inputFocusListeners = [],
+  //     inputBlur: inputBlurListeners = [],
+  //   } = events;
 
-  _addEvents() {
-    const { events = {} } = this.props;
-    const {
-      inputFocus: inputFocusListeners = [],
-      inputBlur: inputBlurListeners = [],
-    } = events;
+  //   this.element.querySelectorAll('input').forEach((input) => {
+  //     inputFocusListeners.forEach((inputFocusEvent) => {
+  //       input.addEventListener('focus', inputFocusEvent);
+  //     });
+  //     inputBlurListeners.forEach((inputBlurEvent) => {
+  //       input.addEventListener('blur', inputBlurEvent);
+  //     });
+  //   });
 
-    this.element.querySelectorAll('input').forEach((input) => {
-      inputFocusListeners.forEach((inputFocusEvent) => {
-        input.addEventListener('focus', inputFocusEvent);
-      });
-      inputBlurListeners.forEach((inputBlurEvent) => {
-        input.addEventListener('blur', inputBlurEvent);
-      });
-    });
-
-    super._addEvents();
-  }
+  //   super._addEvents();
+  // }
 
   render() {
+    const fields = FIELDS_DATA.map((fieldData) => {
+      const fieldProps: TComponentPropsType<Field> = {
+        className: css.field,
+        type: fieldData.type,
+        id: fieldData.id,
+        name: fieldData.name,
+        label: fieldData.label,
+        value: fieldData.value,
+      };
+      if (validationRules[fieldData.name]) {
+        fieldProps.onFocus = (evt: Event) => {
+          setValidityStatus(evt.target as HTMLInputElement);
+        };
+        fieldProps.onBlur = (evt: Event) => {
+          setValidityStatus(evt.target as HTMLInputElement);
+        };
+        fieldProps.validationText = validationRules[fieldData.name].description;
+      }
+      return new Field(fieldProps);
+    });
+
     return this.compile(tpl, {
       ...this.props,
       css,
-      FirstNameField: new Field({
-        className: css.field,
-        type: 'text',
-        id: 'first_name',
-        name: 'first_name',
-        label: 'Имя',
-        value: 'Имя',
-        validationText: validationRules.first_name.description,
-      }),
-      SecondNameField: new Field({
-        className: css.field,
-        type: 'text',
-        id: 'second_name',
-        name: 'second_name',
-        label: 'Фамилия',
-        value: 'Фамилия',
-        validationText: validationRules.second_name.description,
-      }),
-      LoginField: new Field({
-        className: css.field,
-        type: 'text',
-        id: 'login',
-        name: 'login',
-        label: 'Логин',
-        value: 'Логин',
-        validationText: validationRules.login.description,
-      }),
-      EmailField: new Field({
-        className: css.field,
-        type: 'email',
-        id: 'email',
-        name: 'email',
-        label: 'Email',
-        value: 'Email',
-        validationText: validationRules.email.description,
-      }),
-      PhoneField: new Field({
-        className: css.field,
-        type: 'tel',
-        id: 'phone',
-        name: 'phone',
-        label: 'Телефон',
-        value: 'Телефон',
-        validationText: validationRules.phone.description,
-      }),
-      DisplayNameField: new Field({
-        className: css.field,
-        type: 'text',
-        id: 'display_name',
-        name: 'display_name',
-        label: 'Имя в чате',
-        value: 'Имя в чате',
-      }),
-      SaveButton: new Button({
-        className: css.button,
-        text: 'Сохранить',
-        attr: {
-          type: 'submit',
-        },
-      }),
-      LeaveButton: new Button({
-        className: css.button,
-        text: 'Выйти',
-      }),
-      ChangePasswordButton: ButtonLink({
-        className: css.button,
-        text: 'Изменить пароль',
-        attr: {
-          href: 'change-password',
-        },
+      Form: new Form({
+        fields,
+        buttons: [
+          new Button({
+            className: css.button,
+            text: 'Сохранить',
+            attr: {
+              type: 'submit',
+            },
+          }),
+          new Button({
+            className: css.button,
+            text: 'Выйти',
+          }),
+          ButtonLink({
+            className: css.button,
+            text: 'Изменить пароль',
+            attr: {
+              href: 'change-password',
+            },
+          }),
+        ],
       }),
     });
   }
