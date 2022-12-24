@@ -1,16 +1,3 @@
 <div class="auth-form">
-  {{#if errorText}}
-    <p class="{{css.error}}">Произошла ошибка: {{errorText}}</p>
-  {{/if}}
-  {{#if loader}}
-    <p>Отправка данных...</p>
-  {{/if}}
-  <div class="fields">
-    {{{LoginField}}}
-    {{{PasswordField}}}
-  </div>
-  <div class="{{css.buttons}}">
-    {{{EnterButton}}}
-    {{{RegButton}}}
-  </div>
+  {{{Form}}}
 </div>

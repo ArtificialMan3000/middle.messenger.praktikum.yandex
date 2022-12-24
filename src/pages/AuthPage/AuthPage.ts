@@ -22,29 +22,7 @@ export class AuthPage extends Component {
         {
           children: new Window({
             header: 'Авторизация',
-            content: new AuthForm({
-              events: {
-                submit: [
-                  (evt: Event) => {
-                    evt.preventDefault();
-                    if (evt.target) {
-                      outputForm(evt.target as HTMLFormElement);
-                    }
-                  },
-                  signInController.onSignInFormSubmit,
-                ],
-                inputFocus: [
-                  (evt: Event) => {
-                    setValidityStatus(evt.target as HTMLInputElement);
-                  },
-                ],
-                inputBlur: [
-                  (evt: Event) => {
-                    setValidityStatus(evt.target as HTMLInputElement);
-                  },
-                ],
-              },
-            }),
+            content: new AuthForm({}),
           }),
         },
         'div'

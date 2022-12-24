@@ -5,65 +5,62 @@ import { Field } from '../../Field';
 import { Button } from '../../Button';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
+import { makeFields } from '../makeFields';
+import { Form } from '~/src/view/ui/Form';
+import { outputForm } from '~/src/model/features/outputForm';
+import { SignInController } from '~/src/controller';
 
-type TProps = {
-  loader?: boolean;
-};
+const FIELDS_DATA = [
+  {
+    type: 'text',
+    id: 'login',
+    name: 'login',
+    label: 'Логин',
+    placeholder: 'Логин',
+  },
+  {
+    type: 'password',
+    id: 'password',
+    name: 'password',
+    label: 'Пароль',
+    placeholder: 'Пароль',
+  },
+];
 
-export class AuthForm extends Component<TProps> {
-  constructor(props: TProps) {
-    super(props, 'form');
-  }
+const signInController = new SignInController();
 
-  _addEvents() {
-    const { events = {} } = this.props;
-    const {
-      inputFocus: inputFocusListeners = [],
-      inputBlur: inputBlurListeners = [],
-    } = events;
-
-    this.element.querySelectorAll('input').forEach((input) => {
-      inputFocusListeners.forEach((inputFocusEvent) => {
-        input.addEventListener('focus', inputFocusEvent);
-      });
-      inputBlurListeners.forEach((inputBlurEvent) => {
-        input.addEventListener('blur', inputBlurEvent);
-      });
-    });
-
-    super._addEvents();
-  }
-
+export class AuthForm extends Component {
   render() {
+    const fields = makeFields(FIELDS_DATA);
+
     return this.compile(tpl, {
       ...this.props,
       css,
-      LoginField: new Field({
-        className: css.field,
-        type: 'text',
-        id: 'login',
-        name: 'login',
-        label: 'Логин',
-        placeholder: 'Логин',
-        validationText: validationRules.login.description,
-      }),
-      PasswordField: new Field({
-        className: css.field,
-        type: 'password',
-        id: 'password',
-        name: 'password',
-        label: 'Пароль',
-        placeholder: 'Пароль',
-      }),
-      EnterButton: new Button({
-        className: css.button,
-        text: 'Войти',
-        attr: { type: 'submit' },
-      }),
-      RegButton: ButtonLink({
-        className: css.button,
-        text: 'Регистрация',
-        location: '/reg',
+      Form: new Form({
+        fields,
+        buttons: [
+          new Button({
+            className: css.button,
+            text: 'Войти',
+            attr: { type: 'submit' },
+          }),
+          ButtonLink({
+            className: css.button,
+            text: 'Регистрация',
+            location: '/reg',
+          }),
+        ],
+        events: {
+          submit: [
+            (evt: Event) => {
+              evt.preventDefault();
+              if (evt.target) {
+                outputForm(evt.target as HTMLFormElement);
+              }
+            },
+            signInController.onSignInFormSubmit,
+          ],
+        },
       }),
     });
   }

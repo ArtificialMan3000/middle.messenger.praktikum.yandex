@@ -6,6 +6,7 @@ type TProps = {
   message?: string;
   errorText?: string;
   fields?: Component[];
+  buttons?: Component[];
 };
 
 export class Form extends Component<TProps> {

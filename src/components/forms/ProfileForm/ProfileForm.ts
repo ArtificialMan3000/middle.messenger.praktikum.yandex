@@ -1,17 +1,12 @@
-import {
-  setValidityStatus,
-  validationRules,
-} from '~/src/controller/fieldValidation';
 import tpl from './ProfileForm.hbs';
 import * as css from './ProfileForm.module.scss';
 import { Button } from '../../Button';
 import { Component } from '~/src/view/Component';
-import { Field } from '../../Field';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
 import { Form } from '~/src/view/ui/Form';
-import { TComponentPropsType } from '~/src/typings/utils';
 import { ProfileController } from '~/src/controller/profile';
 import { outputForm } from '~/src/model/features/outputForm';
+import { makeFields } from '../makeFields';
 
 const profileController = new ProfileController();
 
@@ -62,26 +57,7 @@ const FIELDS_DATA = [
 
 export class ProfileForm extends Component {
   render() {
-    const fields = FIELDS_DATA.map((fieldData) => {
-      const fieldProps: TComponentPropsType<Field> = {
-        className: css.field,
-        type: fieldData.type,
-        id: fieldData.id,
-        name: fieldData.name,
-        label: fieldData.label,
-        value: fieldData.value,
-      };
-      if (validationRules[fieldData.name]) {
-        fieldProps.onFocus = (evt: Event) => {
-          setValidityStatus(evt.target as HTMLInputElement);
-        };
-        fieldProps.onBlur = (evt: Event) => {
-          setValidityStatus(evt.target as HTMLInputElement);
-        };
-        fieldProps.validationText = validationRules[fieldData.name].description;
-      }
-      return new Field(fieldProps);
-    });
+    const fields = makeFields(FIELDS_DATA);
 
     return this.compile(tpl, {
       ...this.props,
