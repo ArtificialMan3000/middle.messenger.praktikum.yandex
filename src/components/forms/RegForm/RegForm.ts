@@ -1,7 +1,7 @@
 import tpl from './RegForm.hbs';
 import * as css from './RegForm.module.scss';
 import { Button } from '../../Button';
-import { Component, TComponentProps } from '~/src/view/Component';
+import { Component } from '~/src/view/Component';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
 import { makeFields } from '../makeFields';
 import { SignUpController } from '~/src/controller';
