@@ -1,6 +1,6 @@
 import type { TState } from './types';
 import { set } from '~/src/utils/functions';
-import { EventBus } from '../controller/EventBus';
+import { EventBus } from '../utils/EventBus';
 
 export enum StoreEvents {
   Updated = 'updated',

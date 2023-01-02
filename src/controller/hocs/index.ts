@@ -1,2 +1,2 @@
 export * from './withError';
-export * from './withLoader';
+export * from './withAppLoader';

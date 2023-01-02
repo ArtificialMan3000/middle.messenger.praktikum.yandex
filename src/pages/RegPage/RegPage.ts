@@ -3,7 +3,7 @@ import * as css from './RegPage.module.scss';
 import { RegForm } from '~/src/components/forms/RegForm';
 import { Window } from '~/src/components/Window';
 import { Component } from '~/src/view/Component';
-import { Page } from '~/src/view/ui/Page';
+import { Page } from '../Page';
 
 export class RegPage extends Component {
   render() {

@@ -3,13 +3,12 @@ import { E404Page } from '~/src/pages/E404Page';
 import { ChangePasswordPage } from '~/src/pages/ChangePasswordPage';
 import { ChatsPage } from '~/src/pages/ChatsPage';
 import { E500Page } from '~/src/pages/E500Page';
-import { ProfilePage, TProfilePageProps } from '~/src/pages/ProfilePage';
+import { ProfilePage } from '~/src/pages/ProfilePage';
 import { RegPage } from '~/src/pages/RegPage';
 import { AuthPage } from '~/src/pages/AuthPage';
-import { constructRouter } from '~/src/controller';
+import { constructRouter, UserController } from '~/src/controller';
 import './tests';
 import { TComponentPropsType } from './typings/utils';
-import { TComponentProps } from './view/Component';
 
 window.addEventListener('DOMContentLoaded', () => {
   const router = constructRouter();
@@ -19,7 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
       .use<TComponentPropsType<MainPage>>('/', MainPage, {})
       .use<TComponentPropsType<AuthPage>>('/auth', AuthPage, {})
       .use<TComponentPropsType<RegPage>>('/reg', RegPage, {})
-      .use<TComponentProps<TProfilePageProps>>('/profile', ProfilePage, {})
+      .use<TComponentPropsType<ProfilePage>>('/profile', ProfilePage, {})
       .use<TComponentPropsType<ChangePasswordPage>>(
         '/change-password',
         ChangePasswordPage,
@@ -31,4 +30,8 @@ window.addEventListener('DOMContentLoaded', () => {
       .default<TComponentPropsType<E404Page>>(E404Page, {})
       .start();
   }
+
+  const userController = new UserController();
+
+  userController.checkUser();
 });

@@ -12,6 +12,8 @@ export class Page extends Component<TProps> {
 
   render() {
     const { isLoaderDisplayed = false, children = '' } = this.props;
+    console.log(isLoaderDisplayed);
+    
 
     return this.compile(tpl, {
       css,

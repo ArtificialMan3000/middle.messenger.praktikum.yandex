@@ -1,7 +1,7 @@
 import { withError } from '~/src/controller/hocs/withError';
-import { withLoader } from '~/src/controller/hocs/withLoader';
+import { withAppLoader } from '~/src/controller/hocs/withAppLoader';
 import { MessageForm } from './MessageForm';
 
-const ConnectedMessageForm = withLoader(withError(MessageForm));
+const ConnectedMessageForm = withAppLoader(withError(MessageForm));
 
 export { ConnectedMessageForm as MessageForm };

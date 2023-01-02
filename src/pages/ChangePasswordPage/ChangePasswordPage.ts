@@ -5,7 +5,7 @@ import { Backlink } from '~/src/components/Backlink';
 import { ChangePasswordForm } from '~/src/components/forms/ChangePasswordForm';
 import { Window } from '~/src/components/Window';
 import { Component, TComponentProps } from '~/src/view/Component';
-import { Page } from '~/src/view/ui/Page';
+import { Page } from '../Page';
 import { wrapper } from '~/src/view/View';
 
 export class ChangePasswordPage extends Component {

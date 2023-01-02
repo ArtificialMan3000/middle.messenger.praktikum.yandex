@@ -88,6 +88,8 @@ export class HTTPTransport {
 
       xhr.open(method, url);
 
+      xhr.withCredentials = true;
+      
       if (headers) {
         Object.keys(headers).forEach((header) => {
           xhr.setRequestHeader(header, headers[header]);

@@ -5,7 +5,7 @@ import * as css from './ChatsPage.module.scss';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { ChatList } from '~/src/components/ChatList';
 import { ChatWindow } from '~/src/components/ChatWindow';
-import { Page } from '~/src/view/ui/Page';
+import { Page } from '../Page';
 
 export class ChatsPage extends Component {
   constructor(props: TComponentProps) {

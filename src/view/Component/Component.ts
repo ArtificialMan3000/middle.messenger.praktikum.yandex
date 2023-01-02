@@ -6,7 +6,7 @@ import {
   TComponentMeta,
   TComponentChildren,
 } from './types';
-import { EventBus } from '../../controller/EventBus/EventBus';
+import { EventBus } from '~/src/utils/EventBus';
 
 export class Component<
   TInheritorProps extends Record<string, unknown> = Record<string, unknown>

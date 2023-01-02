@@ -26,6 +26,8 @@ export class UserController {
   }
 
   checkUser() {
+    store.setState('app.isLoading', true);
+
     store.setState('user.isSignedIn', false);
     store.setState('user.data', null);
     this.AuthAPI.getUser()
@@ -34,12 +36,10 @@ export class UserController {
           const responseData: TUserData = JSON.parse(result.response);
           store.setState('user.isSignedIn', true);
           store.setState('user.data', responseData);
-        } else {
-          this.router.go('/auth');
         }
       })
-      .catch(() => {
-        this.router.go('/auth');
+      .finally(() => {
+        store.setState('app.isLoading', false);
       });
   }
 }

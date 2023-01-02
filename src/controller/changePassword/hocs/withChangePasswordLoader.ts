@@ -1,8 +1,8 @@
 import { IComponentConstructor } from '~/src/view/Component';
-import { withLoader } from '../../hocs/withLoader';
+import { withAppLoader } from '../../hocs/withAppLoader';
 
 export const withChangePasswordLoader = function withSignInLoader<
   TProps extends Record<string, unknown>
 >(ComponentClass: IComponentConstructor<TProps>) {
-  return withLoader<TProps>(ComponentClass, 'changePassword');
+  return withAppLoader<TProps>(ComponentClass, 'changePassword');
 };

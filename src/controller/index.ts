@@ -1,6 +1,6 @@
 export * from './constructRouter';
 export * from './fieldValidation';
-export * from './EventBus';
+export * from '../utils/EventBus';
 export * from './signIn';
 export * from './signUp';
 export * from './user';
