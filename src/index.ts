@@ -6,32 +6,84 @@ import { E500Page } from '~/src/pages/E500Page';
 import { ProfilePage } from '~/src/pages/ProfilePage';
 import { RegPage } from '~/src/pages/RegPage';
 import { AuthPage } from '~/src/pages/AuthPage';
-import { constructRouter, UserController } from '~/src/controller';
+import { UserController } from '~/src/controller';
+import RouterManagement, {
+  RouteTypes,
+} from '~/src/controller/RouterManagement';
 import './tests';
 import { TComponentPropsType } from './typings/utils';
 
-window.addEventListener('DOMContentLoaded', () => {
-  const router = constructRouter();
+const ROUTES = {
+  MAIN: {
+    path: '/',
+    type: RouteTypes.COMMON,
+  },
+  AUTH: {
+    path: '/auth',
+    type: RouteTypes.GUEST,
+  },
+  REG: { path: '/reg', type: RouteTypes.GUEST },
+  PROFILE: { path: '/profile', type: RouteTypes.PRIVATE },
+  CHANGE_PASSWORD: { path: '/change-password', type: RouteTypes.PRIVATE },
+  CHAT: { path: '/chats/:id', type: RouteTypes.PRIVATE },
+  CHATS: { path: '/chats', type: RouteTypes.PRIVATE },
+  E500: { path: '/500', type: RouteTypes.COMMON },
+  E404: { path: '/404', type: RouteTypes.COMMON },
+};
 
-  if (router) {
-    router
-      .use<TComponentPropsType<MainPage>>('/', MainPage, {})
-      .use<TComponentPropsType<AuthPage>>('/auth', AuthPage, {})
-      .use<TComponentPropsType<RegPage>>('/reg', RegPage, {})
-      .use<TComponentPropsType<ProfilePage>>('/profile', ProfilePage, {})
-      .use<TComponentPropsType<ChangePasswordPage>>(
-        '/change-password',
-        ChangePasswordPage,
-        {}
-      )
-      .use<TComponentPropsType<ChatsPage>>('/chats/:id', ChatsPage, {})
-      .use<TComponentPropsType<E500Page>>('/500', E500Page, {})
-      .use<TComponentPropsType<E404Page>>('/404', E404Page, {})
-      .default<TComponentPropsType<E404Page>>(E404Page, {})
-      .start();
-  }
+window.addEventListener('DOMContentLoaded', () => {
+  RouterManagement.use<TComponentPropsType<MainPage>>(
+    ROUTES.MAIN.path,
+    MainPage,
+    {}
+  )
+    .use<TComponentPropsType<AuthPage>>(
+      ROUTES.AUTH.path,
+      AuthPage,
+      {},
+      ROUTES.AUTH.type,
+      true
+    )
+    .use<TComponentPropsType<RegPage>>(
+      ROUTES.REG.path,
+      RegPage,
+      {},
+      ROUTES.REG.type
+    )
+    .use<TComponentPropsType<ProfilePage>>(
+      ROUTES.PROFILE.path,
+      ProfilePage,
+      {},
+      ROUTES.PROFILE.type,
+      true
+    )
+    .use<TComponentPropsType<ChangePasswordPage>>(
+      ROUTES.CHANGE_PASSWORD.path,
+      ChangePasswordPage,
+      {},
+      ROUTES.CHANGE_PASSWORD.type
+    )
+    .use<TComponentPropsType<ChatsPage>>(
+      ROUTES.CHAT.path,
+      ChatsPage,
+      {},
+      ROUTES.CHAT.type
+    )
+    .use<TComponentPropsType<ChatsPage>>(
+      ROUTES.CHATS.path,
+      ChatsPage,
+      {},
+      ROUTES.CHATS.type
+    )
+    .use<TComponentPropsType<E500Page>>(ROUTES.E500.path, E500Page, {})
+    .use<TComponentPropsType<E404Page>>(ROUTES.E404.path, E404Page, {})
+    .default<TComponentPropsType<E404Page>>(E404Page, {})
+    .start();
 
   const userController = new UserController();
 
   userController.checkUser();
 });
+
+
+

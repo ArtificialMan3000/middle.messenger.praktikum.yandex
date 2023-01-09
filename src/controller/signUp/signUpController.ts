@@ -1,4 +1,3 @@
-import { constructRouter, Router } from '~/src/controller';
 import { TSignUpRequest, AuthAPI } from '~/src/api/authApi';
 import { store } from '~/src/store';
 import { validateForm } from '../fieldValidation';
@@ -8,8 +7,6 @@ export class SignUpController {
   AuthAPI: AuthAPI;
 
   SIGN_UP_FIELDS: string[];
-
-  router: Router;
 
   constructor() {
     this.AuthAPI = new AuthAPI();
@@ -21,7 +18,6 @@ export class SignUpController {
       'newPassword',
       'phone',
     ];
-    this.router = constructRouter();
   }
 
   prepareSignUpData(formData: FormData) {
@@ -47,7 +43,7 @@ export class SignUpController {
         const responseData = JSON.parse(result.response);
         if (result.status === 200) {
           store.setState('user.signUp.query.error', null);
-          this.router.go(`/chats/${responseData.id}`);
+          // this.router.go(`/chats/${responseData.id}`);
         } else {
           store.setState('user.signUp.query.error', responseData.reason);
         }

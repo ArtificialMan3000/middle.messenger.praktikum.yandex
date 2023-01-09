@@ -24,3 +24,6 @@ class Store extends EventBus {
 }
 
 export const store = new Store();
+
+// @ts-ignore
+window.state = store.getState();

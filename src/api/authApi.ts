@@ -40,6 +40,8 @@ export class AuthAPI extends BaseAPI {
   }
 
   getUser() {
+    console.log(2);
+    
     return myFetch(`${AuthAPI.URL}/user`);
   }
 }

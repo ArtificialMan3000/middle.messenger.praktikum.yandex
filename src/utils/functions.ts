@@ -87,3 +87,7 @@ export function isEqual(lhs: TPlainObject, rhs: TPlainObject) {
 export function randomInt(max: number) {
   return Math.floor(Math.random() * max);
 }
+
+export function isDefined(variable: unknown) {
+  return typeof variable !== 'undefined' && variable !== null;
+}

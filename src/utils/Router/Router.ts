@@ -1,4 +1,4 @@
-import { TClass, TComponentPropsType, TConstructor } from '~/src/typings/utils';
+import { TClass } from '~/src/typings/utils';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { Route } from './Route';
 
@@ -11,22 +11,16 @@ export class Router {
 
   history: History;
 
-  #currentRoute: Route<TComponentProps> | null;
+  protected _currentRoute: Route<TComponentProps> | null;
 
-  #rootQuery: string;
+  protected _rootQuery: string;
 
   constructor(rootQuery: string) {
-    // if (Router.__instance) {
-    //   return Router.__instance;
-    // }
-
     this.routes = [];
     this.defaultRoute = null;
     this.history = window.history;
-    this.#currentRoute = null;
-    this.#rootQuery = rootQuery;
-
-    // Router.__instance = this;
+    this._currentRoute = null;
+    this._rootQuery = rootQuery;
   }
 
   use<TProps extends TComponentProps>(
@@ -36,7 +30,7 @@ export class Router {
   ) {
     const route = new Route<TProps>(
       pathname,
-      this.#rootQuery,
+      this._rootQuery,
       componentClass,
       props
     );
@@ -51,7 +45,7 @@ export class Router {
   ) {
     const route = new Route<TProps>(
       '/*',
-      this.#rootQuery,
+      this._rootQuery,
       componentClass,
       props,
       true
@@ -63,13 +57,13 @@ export class Router {
   start() {
     // Реагируем на изменения в адресной строке и вызываем перерисовку
     window.onpopstate = () => {
-      this.#onRoute(window.location.pathname);
+      this._onRoute(window.location.pathname);
     };
 
-    this.#onRoute(window.location.pathname);
+    this._onRoute(window.location.pathname);
   }
 
-  #onRoute(pathname: string) {
+  protected _onRoute(pathname: string) {
     let route = this.getRoute(pathname);
     if (!route) {
       if (this.defaultRoute) {
@@ -79,18 +73,23 @@ export class Router {
       }
     }
 
-    if (this.#currentRoute) {
-      this.#currentRoute.leave();
+    if (this._currentRoute) {
+      this._currentRoute.leave();
     }
 
-    this.#currentRoute = route;
-    // route.render();
+    this._currentRoute = route;
+
     route.navigate(pathname);
   }
 
   go(pathname: string) {
     this.history.pushState({}, '', pathname);
-    this.#onRoute(pathname);
+    this._onRoute(pathname);
+  }
+
+  replace(pathname: string) {
+    this.history.replaceState({}, '', pathname);
+    this._onRoute(pathname);
   }
 
   back() {

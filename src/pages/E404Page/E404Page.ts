@@ -14,7 +14,7 @@ export class E404Page extends Component {
           css,
           className: css.container,
           ToChatLink: new Link({
-            location: '/chats',
+            location: '/chats/3',
             text: 'Вернуться к чатам',
             className: css.backlink,
           }),

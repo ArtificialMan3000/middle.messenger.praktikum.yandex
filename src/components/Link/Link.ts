@@ -1,7 +1,7 @@
 import tpl from './Link.hbs';
-import { getRouter } from '~/src/utils/Router';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { set } from '~/src/utils/functions';
+import RouterManagement from '~/src/controller/RouterManagement';
 
 type TLinkProps = TComponentProps & {
   location?: string;
@@ -20,11 +20,8 @@ export class Link extends Component<TLinkProps> {
   _addEvents() {
     const clickHandler = (evt: MouseEvent) => {
       if (this.props.location) {
-        const router = getRouter();
-        if (router) {
-          evt.preventDefault();
-          router.go(this.props.location);
-        }
+        evt.preventDefault();
+        RouterManagement.go(this.props.location);
       }
     };
 

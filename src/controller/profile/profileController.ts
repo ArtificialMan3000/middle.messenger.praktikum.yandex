@@ -1,4 +1,3 @@
-import { constructRouter, Router } from '~/src/controller';
 import { store } from '~/src/store';
 import { validateForm } from '../fieldValidation';
 import { markInvalid, markValid } from '~/src/view/View';
@@ -8,8 +7,6 @@ export class ProfileController {
   UserAPI: UserAPI;
 
   FORM_FIELDS: string[];
-
-  router: Router;
 
   constructor() {
     this.UserAPI = new UserAPI();
@@ -21,7 +18,6 @@ export class ProfileController {
       'email',
       'phone',
     ];
-    this.router = constructRouter();
   }
 
   prepareData(formData: FormData) {
@@ -47,7 +43,7 @@ export class ProfileController {
         const responseData = JSON.parse(result.response);
         if (result.status === 200) {
           store.setState('user.profile.query.error', null);
-          this.router.go(`/profile`);
+          // this.router.go(`/profile`);
         } else {
           store.setState('user.profile.query.error', responseData.reason);
         }

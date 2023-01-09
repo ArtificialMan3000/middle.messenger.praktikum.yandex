@@ -1,4 +1,3 @@
-import { constructRouter, Router } from '~/src/controller';
 import { TSignInRequest, AuthAPI } from '~/src/api/authApi';
 import { store } from '~/src/store';
 import { validateForm } from '../fieldValidation';
@@ -9,12 +8,9 @@ export class SignInController {
 
   SIGN_IN_FIELDS: string[];
 
-  router: Router;
-
   constructor() {
     this.AuthAPI = new AuthAPI();
     this.SIGN_IN_FIELDS = ['login', 'password'];
-    this.router = constructRouter();
   }
 
   prepareSignInData(formData: FormData) {
@@ -36,7 +32,6 @@ export class SignInController {
         const responseData = JSON.parse(result.response);
         if (result.status === 200) {
           store.setState('user.signIn.query.error', null);
-          this.router.go(`/chats/${responseData.id}`);
         } else {
           store.setState('user.signIn.query.error', responseData.reason);
         }

@@ -8,30 +8,29 @@ import { Window } from '~/src/components/Window';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { Page } from '~/src/view/ui/Page';
 import { wrapper } from '~/src/view/View';
+import { UserController } from '~/src/controller';
 
-export type TProfilePageProps = {
-  isLoaderDisplayed?: boolean;
-};
+const userController = new UserController();
 
-export class ProfilePage extends Component<TProfilePageProps> {
-  constructor({
-    isLoaderDisplayed = true,
-    ...props
-  }: TComponentProps<TProfilePageProps>) {
-    super({ ...props, isLoaderDisplayed }, 'main');
+export class ProfilePage extends Component {
+  constructor(props: TComponentProps) {
+    super(props, 'main');
 
     // userController.getUserProfile();
   }
 
-  render() {
-    const { isLoaderDisplayed } = this.props;
+  // init() {
+  //   userController.checkUser();
 
+  //   super.init();
+  // }
+
+  render() {
     return this.compile(tpl, {
       ...this.props,
       css,
       Page: new Page(
         {
-          isLoaderDisplayed,
           children: wrapper(contentTpl, {
             className: css.container,
             css,

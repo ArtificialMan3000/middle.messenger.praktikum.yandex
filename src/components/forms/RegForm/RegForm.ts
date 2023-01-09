@@ -76,6 +76,7 @@ export class RegForm extends Component {
           ButtonLink({
             className: css.button,
             text: 'Войти',
+            location: '/auth',
             attr: {
               href: '/auth',
             },
