@@ -1,5 +1,6 @@
 import { AuthAPI } from '~/src/api/authApi';
 import { store } from '~/src/store';
+import RouterManagement from '../RouterManagement';
 
 export type TUserData = {
   id: number;
@@ -34,7 +35,6 @@ export class UserController {
           store.setState('user.isSignedIn', true);
           store.setState('user.data', responseData);
         } else {
-          console.log('getUser');
           store.setState('app.isPrivate', false);
           store.setState('app.isLoading', false);
 
@@ -48,5 +48,30 @@ export class UserController {
       .finally(() => {
         store.setState('app.isLoading', false);
       });
+  }
+
+  logout() {
+    store.setState('user.logout.query.error', null);
+
+    this.AuthAPI.logout()
+      .then((result) => {
+        if (result.status === 200) {
+          store.setState('app.isPrivate', false);
+          store.setState('user.isSignedIn', false);
+          store.setState('user.data', null);
+          RouterManagement.go('/auth');
+        } else {
+          store.setState('user.logout.query.error', 'Неизвестная ошибка');
+        }
+      })
+      .catch(() => {
+        store.setState('user.logout.query.error', 'Запрос прерван');
+      });
+  }
+
+  onLogoutButtonClick(evt: Event) {
+    evt.preventDefault();
+
+    this.logout();
   }
 }

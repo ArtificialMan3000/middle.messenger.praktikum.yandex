@@ -3,9 +3,13 @@ import * as css from './ChangePasswordForm.module.scss';
 import { Button } from '../../Button';
 import { Component } from '~/src/view/Component';
 import { setValidityStatus } from '~/src/controller/fieldValidation';
-import { Form } from '~/src/view/ui/Form';
+import { Form as FormBase } from '~/src/view/ui/Form';
 import { makeFields } from '../makeFields';
 import { outputForm } from '~/src/model/features/outputForm';
+import { withError, withMessage } from '~/src/hocs';
+import { ChangePasswordController } from '~/src/controller';
+
+const changePasswordController = new ChangePasswordController();
 
 const FIELDS_DATA = [
   {
@@ -35,6 +39,11 @@ export class ChangePasswordForm extends Component {
   render() {
     const fields = makeFields(FIELDS_DATA, { className: css.field });
 
+    const Form = withMessage(
+      withError(FormBase, 'changePassword'),
+      'changePassword'
+    );
+
     return this.compile(tpl, {
       ...this.props,
       css,
@@ -55,14 +64,7 @@ export class ChangePasswordForm extends Component {
                 outputForm(evt.target as HTMLFormElement);
               }
             },
-            (evt: Event) => {
-              evt.preventDefault();
-              const form = evt.target as HTMLFormElement;
-              const inputs = form.querySelectorAll('input');
-              inputs.forEach((input) => {
-                setValidityStatus(input);
-              });
-            },
+            changePasswordController.onChangePasswordFormSubmit,
           ],
         },
       }),

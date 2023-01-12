@@ -36,20 +36,31 @@ export class ProfileController {
   changeProfile(formData: FormData) {
     const requestData = this.prepareData(formData);
     store.setState('user.profile.query.isLoading', true);
+    store.setState('user.profile.query.error', null);
 
     this.UserAPI.changeProfile(requestData)
       .then((result) => {
         store.setState('user.profile.query.isLoading', false);
-        const responseData = JSON.parse(result.response);
+
         if (result.status === 200) {
+          const responseData = JSON.parse(result.response);
+
           store.setState('user.profile.query.error', null);
-          // this.router.go(`/profile`);
+          store.setState('user.data', responseData);
         } else {
-          store.setState('user.profile.query.error', responseData.reason);
+          const errorData = JSON.parse(result.response);
+          store.setState(
+            'user.profile.query.error',
+            `${result.status} ${errorData.reason}`
+          );
         }
       })
-      .catch(() => {
-        store.setState('user.profile.query.error', 'Запрос прерван');
+      .catch((err) => {
+        if (err.message) {
+          store.setState('user.profile.query.error', err.message);
+        } else {
+          store.setState('user.profile.query.error', 'Запрос прерван');
+        }
       });
   }
 

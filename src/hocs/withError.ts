@@ -1,6 +1,6 @@
 import { connect } from '~/src/store/connect';
 import { IComponentConstructor } from '~/src/view/Component';
-import { TQueryType } from '../types';
+import { TQueryType } from './types';
 
 export const withError = function withError<
   TProps extends Record<string, unknown>

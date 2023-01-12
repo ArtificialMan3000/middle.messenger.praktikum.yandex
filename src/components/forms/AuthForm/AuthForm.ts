@@ -6,9 +6,10 @@ import { Button } from '../../Button';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
 import { makeFields } from '../makeFields';
-import { Form } from '~/src/view/ui/Form';
+import { Form as FormBase } from '~/src/view/ui/Form';
 import { outputForm } from '~/src/model/features/outputForm';
 import { SignInController } from '~/src/controller';
+import { withError, withMessage } from '~/src/hocs';
 
 const FIELDS_DATA = [
   {
@@ -32,6 +33,8 @@ const signInController = new SignInController();
 export class AuthForm extends Component {
   render() {
     const fields = makeFields(FIELDS_DATA, { className: css.field });
+
+    const Form = withMessage(withError(FormBase, 'signIn'), 'signIn');
 
     return this.compile(tpl, {
       ...this.props,

@@ -7,10 +7,19 @@ import { Window } from '~/src/components/Window';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { Page } from '../Page';
 import { wrapper } from '~/src/view/View';
+import { UserController } from '~/src/controller';
+
+const userController = new UserController();
 
 export class ChangePasswordPage extends Component {
   constructor(props: TComponentProps) {
     super(props, 'main');
+  }
+
+  init() {
+    userController.checkUser();
+
+    super.init();
   }
 
   render() {

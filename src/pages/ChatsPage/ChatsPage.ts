@@ -6,10 +6,19 @@ import { Component, TComponentProps } from '~/src/view/Component';
 import { ChatList } from '~/src/components/ChatList';
 import { ChatWindow } from '~/src/components/ChatWindow';
 import { Page } from '../Page';
+import { UserController } from '~/src/controller';
+
+const userController = new UserController();
 
 export class ChatsPage extends Component {
   constructor(props: TComponentProps) {
     super(props, 'main');
+  }
+
+  init() {
+    userController.checkUser();
+
+    super.init();
   }
 
   render() {

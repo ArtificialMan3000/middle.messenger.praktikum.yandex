@@ -2,6 +2,7 @@ import { TSignUpRequest, AuthAPI } from '~/src/api/authApi';
 import { store } from '~/src/store';
 import { validateForm } from '../fieldValidation';
 import { markInvalid, markValid } from '~/src/view/View';
+import RouterManagement from '../RouterManagement';
 
 export class SignUpController {
   AuthAPI: AuthAPI;
@@ -36,20 +37,29 @@ export class SignUpController {
   signUp(formData: FormData) {
     const requestData = this.prepareSignUpData(formData);
     store.setState('user.signUp.query.isLoading', true);
+    store.setState('user.signUp.query.error', null);
 
     this.AuthAPI.signUp(requestData)
       .then((result) => {
         store.setState('user.signUp.query.isLoading', false);
-        const responseData = JSON.parse(result.response);
+
         if (result.status === 200) {
           store.setState('user.signUp.query.error', null);
-          // this.router.go(`/chats/${responseData.id}`);
+          RouterManagement.go(`/chats`);
         } else {
-          store.setState('user.signUp.query.error', responseData.reason);
+          const responseData = JSON.parse(result.response);
+          store.setState(
+            'user.signUp.query.error',
+            `${result.status} ${responseData.reason}`
+          );
         }
       })
-      .catch(() => {
-        store.setState('user.signUp.query.error', 'Запрос прерван');
+      .catch((err) => {
+        if (err.message) {
+          store.setState('user.signUp.query.error', err.message);
+        } else {
+          store.setState('user.signUp.query.error', 'Запрос прерван');
+        }
       });
   }
 

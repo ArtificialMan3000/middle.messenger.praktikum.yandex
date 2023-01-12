@@ -30,18 +30,21 @@ export class AuthAPI extends BaseAPI {
   }
 
   signIn(data: TSignInRequest) {
-    return myFetch(`${AuthAPI.URL}/signin`, {
+    const res = myFetch(`${AuthAPI.URL}/signin`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'content-type': 'application/json', // Данные отправляем в формате JSON
       },
     });
+    return res;
   }
 
   getUser() {
-    console.log(2);
-    
     return myFetch(`${AuthAPI.URL}/user`);
+  }
+
+  logout() {
+    return myFetch(`${AuthAPI.URL}/logout`, { method: 'POST' });
   }
 }

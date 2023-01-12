@@ -161,4 +161,4 @@ function connectRouterToStore() {
 connectRouterToStore();
 
 export default router;
-export type { RouterManagement };
+export type { RouterManagement as TRouterManagement };

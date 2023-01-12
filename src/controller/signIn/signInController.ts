@@ -2,6 +2,7 @@ import { TSignInRequest, AuthAPI } from '~/src/api/authApi';
 import { store } from '~/src/store';
 import { validateForm } from '../fieldValidation';
 import { markInvalid, markValid } from '~/src/view/View';
+import RouterManagement from '../RouterManagement';
 
 export class SignInController {
   AuthAPI: AuthAPI;
@@ -25,19 +26,26 @@ export class SignInController {
   signIn(formData: FormData) {
     const requestData = this.prepareSignInData(formData);
     store.setState('user.signIn.query.isLoading', true);
+    store.setState('user.signIn.query.error', null);
 
     this.AuthAPI.signIn(requestData)
       .then((result) => {
         store.setState('user.signIn.query.isLoading', false);
-        const responseData = JSON.parse(result.response);
+
         if (result.status === 200) {
           store.setState('user.signIn.query.error', null);
+          RouterManagement.go('/chats');
         } else {
+          const responseData = JSON.parse(result.response);
           store.setState('user.signIn.query.error', responseData.reason);
         }
       })
-      .catch(() => {
-        store.setState('user.signIn.query.error', 'Запрос прерван');
+      .catch((err) => {
+        if (err.message) {
+          store.setState('user.signIn.query.error', err.message);
+        } else {
+          store.setState('user.signIn.query.error', 'Запрос прерван');
+        }
       });
   }
 

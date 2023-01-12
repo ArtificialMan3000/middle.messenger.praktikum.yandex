@@ -79,10 +79,6 @@ window.addEventListener('DOMContentLoaded', () => {
     .use<TComponentPropsType<E404Page>>(ROUTES.E404.path, E404Page, {})
     .default<TComponentPropsType<E404Page>>(E404Page, {})
     .start();
-
-  const userController = new UserController();
-
-  userController.checkUser();
 });
 
 

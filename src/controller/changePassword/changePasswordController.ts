@@ -1,4 +1,3 @@
-import { constructRouter, Router } from '~/src/controller';
 import { store } from '~/src/store';
 import { validateForm } from '../fieldValidation';
 import { markInvalid, markValid } from '~/src/view/View';
@@ -9,12 +8,9 @@ export class ChangePasswordController {
 
   FORM_FIELDS: string[];
 
-  router: Router;
-
   constructor() {
     this.UserAPI = new UserAPI();
     this.FORM_FIELDS = ['oldPassword', 'newPassword'];
-    this.router = constructRouter();
   }
 
   prepareData(formData: FormData) {
@@ -29,23 +25,32 @@ export class ChangePasswordController {
   changePassword(formData: FormData) {
     const requestData = this.prepareData(formData);
     store.setState('user.changePassword.query.isLoading', true);
+    store.setState('user.changePassword.query.error', null);
+    store.setState('user.changePassword.message', null);
 
-    this.UserAPI.changePassword(requestData)
+    return this.UserAPI.changePassword(requestData)
       .then((result) => {
         store.setState('user.changePassword.query.isLoading', false);
-        const responseData = JSON.parse(result.response);
         if (result.status === 200) {
           store.setState('user.changePassword.query.error', null);
-          this.router.go(`/profile`);
+          store.setState(
+            'user.changePassword.message',
+            'Пароль успешно изменён'
+          );
         } else {
+          const errorData = JSON.parse(result.response);
           store.setState(
             'user.changePassword.query.error',
-            responseData.reason
+            `${result.status} ${errorData.reason}`
           );
         }
       })
-      .catch(() => {
-        store.setState('user.changePassword.query.error', 'Запрос прерван');
+      .catch((err) => {
+        if (err.message) {
+          store.setState('user.changePassword.query.error', err.message);
+        } else {
+          store.setState('user.changePassword.query.error', 'Запрос прерван');
+        }
       });
   }
 
@@ -80,7 +85,9 @@ export class ChangePasswordController {
     }
 
     if (invalids.length === 0) {
-      this.changePassword(formData);
+      this.changePassword(formData).then(() => {
+        form.reset();
+      });
     }
   };
 }

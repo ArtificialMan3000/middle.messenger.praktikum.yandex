@@ -6,7 +6,8 @@ import { ButtonLink } from '~/src/view/ui/ButtonLink';
 import { makeFields } from '../makeFields';
 import { SignUpController } from '~/src/controller';
 import { outputForm } from '~/src/model/features/outputForm';
-import { Form } from '~/src/view/ui/Form';
+import { Form as FormBase } from '~/src/view/ui/Form';
+import { withError, withMessage } from '~/src/hocs';
 
 const FIELDS_DATA = [
   {
@@ -58,6 +59,8 @@ const signUpController = new SignUpController();
 export class RegForm extends Component {
   render() {
     const fields = makeFields(FIELDS_DATA, { className: css.field });
+
+    const Form = withMessage(withError(FormBase, 'signUp'), 'signUp');
 
     return this.compile(tpl, {
       ...this.props,
