@@ -7,6 +7,7 @@ import { ChatList } from '~/src/components/ChatList';
 import { ChatWindow } from '~/src/components/ChatWindow';
 import { Page } from '../Page';
 import { UserController } from '~/src/controller';
+import { withChats } from '~/src/hocs';
 
 const userController = new UserController();
 
@@ -22,13 +23,15 @@ export class ChatsPage extends Component {
   }
 
   render() {
+    const ChatListWithChats = withChats(ChatList);
+
     return this.compile(tpl, {
       Page: new Page(
         {
           children: wrapper(contentTpl, {
             css,
             className: css.page,
-            ChatList: new ChatList({ className: css.chats }),
+            ChatList: new ChatListWithChats({ className: css.chats }),
             MainChat: new ChatWindow({
               className: css.mainChat,
               chatNumber: this.props.id,
