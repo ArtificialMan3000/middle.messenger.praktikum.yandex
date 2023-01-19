@@ -1,5 +1,6 @@
 import { ChatController, TChatData } from '~/src/controller';
 import { Component } from '~/src/view/Component';
+import { Button } from '../Button';
 import { ChatListItem } from '../ChatListItem';
 import tpl from './ChatList.hbs';
 import * as css from './ChatList.module.scss';
@@ -21,18 +22,25 @@ export class ChatList extends Component<TProps> {
     const { chatsData = [] } = this.props;
 
     const chats = chatsData.map((chatData) => {
-      return new ChatListItem({
-        className: css.item,
-        title: chatData.title,
-        avatarSrc: chatData.avatar ?? undefined,
-        lastMessage: chatData.last_message?.content,
-        newMessagesCounter: chatData.unread_count,
-      });
+      return new ChatListItem(
+        {
+          className: css.item,
+          title: chatData.title,
+          avatarSrc: chatData.avatar ?? undefined,
+          lastMessage: chatData.last_message?.content,
+          newMessagesCounter: chatData.unread_count,
+        },
+        'li'
+      );
     });
 
     return this.compile(tpl, {
       css,
       chats,
+      NewChatButton: new Button({
+        text: 'Создать чат',
+        events: { click: [chatController.onCreateChatButtonClick] },
+      }),
     });
   }
 }

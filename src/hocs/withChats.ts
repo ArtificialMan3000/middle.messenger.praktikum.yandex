@@ -5,7 +5,7 @@ export const withChats = function withChats(
   ComponentClass: IComponentConstructor
 ) {
   return connect((state) => {
-    const chatsData = state.chat?.list;
-    return { chatsData };
+    const chatsData = state.chat?.list ?? [];
+    return { chatsData: [...chatsData] };
   })(ComponentClass);
 };

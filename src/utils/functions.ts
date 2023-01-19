@@ -91,3 +91,5 @@ export function randomInt(max: number) {
 export function isDefined(variable: unknown) {
   return typeof variable !== 'undefined' && variable !== null;
 }
+
+console.log(isEqual([{ num: [1, 2] }], [{ num: [1] }]));

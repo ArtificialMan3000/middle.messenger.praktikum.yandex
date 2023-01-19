@@ -20,12 +20,23 @@ export function connect<TProps extends Record<string, unknown>>(
       ) {
         const [props, ...restArgs] = args;
         let propsFromState = mapStateToProps(store.getState());
+        console.log('propsFromState', propsFromState);
+
         super({ ...props, ...propsFromState }, ...restArgs);
 
         store.on(StoreEvents.Updated, () => {
           const newPropsFromState = mapStateToProps(store.getState());
-
+          // console.log(propsFromState?.chatsData, newPropsFromState?.chatsData);
+          console.log(
+            propsFromState?.chatsData?.length,
+            newPropsFromState?.chatsData?.length
+          );
+          console.log(
+            propsFromState?.chatsData?.[0],
+            newPropsFromState?.chatsData?.[0]
+          );
           if (!isEqual(propsFromState, newPropsFromState)) {
+            console.log(ComponentClass.name, 'new chats');
             this.setProps({ ...mapStateToProps(store.getState()) });
           }
 

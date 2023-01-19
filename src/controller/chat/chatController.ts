@@ -21,8 +21,12 @@ export class ChatController {
     this.ChatApi = new ChatAPI();
   }
 
-  getChats() {
-    this.ChatApi.read()
+  async createChat(title: string) {
+    return this.ChatApi.create({ title });
+  }
+
+  async getChats() {
+    return this.ChatApi.read({ limit: 9000, offset: 0 })
       .then((result) => {
         if (result.status === 200) {
           const responseData = JSON.parse(result.response);
@@ -44,4 +48,16 @@ export class ChatController {
         }
       });
   }
+
+  onCreateChatButtonClick = async (evt: Event) => {
+    evt.preventDefault();
+
+    const chatName = prompt('Введите имя чата');
+
+    if (chatName) {
+      await this.createChat(chatName);
+
+      await this.getChats();
+    }
+  };
 }
