@@ -13,7 +13,9 @@ type TProps = {
 
 export class ChatList extends Component<TProps> {
   init() {
-    chatController.getChats();
+    if (!this.props.chatsData || this.props.chatsData.length === 0) {
+      chatController.getChats();
+    }
 
     super.init();
   }
@@ -29,6 +31,11 @@ export class ChatList extends Component<TProps> {
           avatarSrc: chatData.avatar ?? undefined,
           lastMessage: chatData.last_message?.content,
           newMessagesCounter: chatData.unread_count,
+          events: {
+            click: [
+              (evt: Event) => chatController.onChatClick(evt, chatData.id),
+            ],
+          },
         },
         'li'
       );

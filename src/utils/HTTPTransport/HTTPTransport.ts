@@ -12,7 +12,7 @@ const METHODS: TMethodsDictionary = {
   DELETE: 'DELETE',
 };
 
-function queryStringify(data: Record<string, string>) {
+function queryStringify(data: Record<string, unknown>) {
   return Object.entries(data).reduce((acc, entry, index) => {
     const amp = index ? '&' : '';
     return `${acc}${amp}${entry[0]}=${entry[1]}`;
@@ -20,13 +20,9 @@ function queryStringify(data: Record<string, string>) {
 }
 
 function concatUrlWithParams(url: string, params: string) {
-  let delimiter = '';
-  if (url.includes('?')) {
-    if (!url.endsWith('&')) {
-      delimiter = '&';
-    } else {
-      delimiter = '?';
-    }
+  let delimiter = '?';
+  if (url.includes('?') && !url.endsWith('&')) {
+    delimiter = '&';
   }
   return `${url}${delimiter}${params}`;
 }

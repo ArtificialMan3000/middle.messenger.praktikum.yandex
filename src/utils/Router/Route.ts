@@ -99,6 +99,7 @@ export class Route<TProps extends TComponentProps> {
     }
 
     this.#component.show();
+    this.#component.setProps({ ...params });
   }
 
   // Pathname must be like '/path/to/:param1/:param2/further'

@@ -6,12 +6,12 @@ import { E500Page } from '~/src/pages/E500Page';
 import { ProfilePage } from '~/src/pages/ProfilePage';
 import { RegPage } from '~/src/pages/RegPage';
 import { AuthPage } from '~/src/pages/AuthPage';
-import { UserController } from '~/src/controller';
 import RouterManagement, {
   RouteTypes,
 } from '~/src/controller/RouterManagement';
 import './tests';
 import { TComponentPropsType } from './typings/utils';
+import { messagesController } from './controller/messages';
 
 const ROUTES = {
   MAIN: {
@@ -81,5 +81,4 @@ window.addEventListener('DOMContentLoaded', () => {
     .start();
 });
 
-
-
+window.messagesController = messagesController;

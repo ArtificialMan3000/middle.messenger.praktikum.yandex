@@ -1,3 +1,4 @@
+import { messagesController } from '~/src/controller/messages';
 import { AuthAPI } from '~/src/api/authApi';
 import { store } from '~/src/store';
 import RouterManagement from '../RouterManagement';
@@ -22,12 +23,12 @@ export class UserController {
     this.AuthAPI = new AuthAPI();
   }
 
-  checkUser() {
+  async checkUser() {
     store.setState('app.isLoading', true);
 
     // store.setState('user.isSignedIn', false);
     // store.setState('user.data', null);
-    this.AuthAPI.getUser()
+    await this.AuthAPI.getUser()
       .then((result) => {
         if (result.status === 200) {
           const responseData: TUserData = JSON.parse(result.response);
@@ -59,6 +60,9 @@ export class UserController {
           store.setState('app.isPrivate', false);
           store.setState('user.isSignedIn', false);
           store.setState('user.data', null);
+
+          messagesController.closeAll();
+
           RouterManagement.go('/auth');
         } else {
           store.setState('user.logout.query.error', 'Неизвестная ошибка');

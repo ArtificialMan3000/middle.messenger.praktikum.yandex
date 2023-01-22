@@ -40,7 +40,7 @@ export class AuthAPI extends BaseAPI {
     return res;
   }
 
-  getUser() {
+  async getUser() {
     return myFetch(`${AuthAPI.URL}/user`);
   }
 

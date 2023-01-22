@@ -1,3 +1,4 @@
+import RouterManagement from '~/src/controller/RouterManagement';
 import { ChatAPI } from '~/src/api/chatApi';
 import { store } from '~/src/store';
 import { TUserData } from '../user';
@@ -26,7 +27,7 @@ export class ChatController {
   }
 
   async getChats() {
-    return this.ChatApi.read({ limit: 9000, offset: 0 })
+    return this.ChatApi.read({ limit: 9000 })
       .then((result) => {
         if (result.status === 200) {
           const responseData = JSON.parse(result.response);
@@ -48,6 +49,45 @@ export class ChatController {
         }
       });
   }
+
+  selectChat(id: number) {
+    const chatList = (store.getState()?.chat?.list ?? []) as TChatData[];
+
+    const chat = chatList.find((chatData) => {
+      return chatData.id === id;
+    });
+
+    store.setState('chat.selected', { ...chat });
+  }
+
+  async getSingleChat(id: number) {
+    if (!store.getState()?.chat?.list) {
+      await this.getChats();
+    }
+
+    this.selectChat(id);
+  }
+
+  addUserToChat(userId: number, chatId: number) {
+    return this.ChatApi.addUser({ users: [userId], chatId });
+  }
+
+  async openMessagesTunnel(userId: number, chatId: number) {
+    try {
+      const result = await this.ChatApi.getToken(chatId);
+      const { token } = result.response;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  onChatClick = (evt: Event, chatId: number) => {
+    evt.preventDefault();
+
+    // this.selectChat(chatId);
+
+    RouterManagement.go(`/chats/${chatId}`);
+  };
 
   onCreateChatButtonClick = async (evt: Event) => {
     evt.preventDefault();

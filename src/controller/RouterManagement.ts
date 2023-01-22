@@ -126,8 +126,6 @@ class RouterManagement extends Router {
 const router = new RouterManagement();
 
 function setActualStatus(isPrivate: boolean) {
-  console.log('redirect', isPrivate);
-
   if (isPrivate) {
     router.setStatus(RouterStatus.PRIVATE);
   }

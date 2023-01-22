@@ -5,37 +5,37 @@ import { Message } from '../Message';
 import tpl from './ChatMain.hbs';
 import * as css from './ChatMain.module.scss';
 import { MessageForm } from '~/src/view/ui/MessageForm';
+import { messagesController, TChatMessage } from '~/src/controller/messages';
 
-export class ChatMain extends Component {
+type TChatMessageWithDirection = TChatMessage & {
+  direction: 'in' | 'out';
+};
+
+type TProps = {
+  chatId?: number;
+  messagesData?: TChatMessageWithDirection[];
+};
+
+export class ChatMain extends Component<TProps> {
   render() {
+    const { messagesData = [], chatId } = this.props;
+
+    const messages = messagesData.map((messageData) => {
+      return new Message(
+        {
+          className: css.message,
+          content: messageData.content,
+          direction: messageData.direction,
+        },
+        'li'
+      );
+    });
+
     return this.compile(tpl, {
       css,
-      messages: [
-        new Message(
-          {
-            className: css.message,
-            type: 'in',
-            content: 'Привет! Как дела?',
-          },
-          'li'
-        ),
-        new Message(
-          {
-            className: css.message,
-            type: 'out',
-            content: 'Привет! Всё хорошо',
-          },
-          'li'
-        ),
-      ],
+      messages,
       MessageForm: new MessageForm({
         className: css.input,
-        onInputTextFocus: (evt) => {
-          setValidityStatus(evt.target as HTMLInputElement);
-        },
-        onInputTextBlur: (evt) => {
-          setValidityStatus(evt.target as HTMLInputElement);
-        },
         events: {
           submit: [
             (evt: Event) => {
@@ -44,14 +44,8 @@ export class ChatMain extends Component {
                 outputForm(evt.target as HTMLFormElement);
               }
             },
-            (evt: Event) => {
-              evt.preventDefault();
-              const form = evt.target as HTMLFormElement;
-              const inputs = form.querySelectorAll('input');
-              inputs.forEach((input) => {
-                setValidityStatus(input);
-              });
-            },
+            (evt: Event) =>
+              messagesController.onMessagesFormSubmit(evt, chatId),
           ],
         },
       }),

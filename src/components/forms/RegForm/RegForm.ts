@@ -7,7 +7,7 @@ import { makeFields } from '../makeFields';
 import { SignUpController } from '~/src/controller';
 import { outputForm } from '~/src/model/features/outputForm';
 import { Form as FormBase } from '~/src/view/ui/Form';
-import { withError, withMessage } from '~/src/hocs';
+import { withError, withStatusMessage } from '~/src/hocs';
 
 const FIELDS_DATA = [
   {
@@ -60,7 +60,7 @@ export class RegForm extends Component {
   render() {
     const fields = makeFields(FIELDS_DATA, { className: css.field });
 
-    const Form = withMessage(withError(FormBase, 'signUp'), 'signUp');
+    const Form = withStatusMessage(withError(FormBase, 'signUp'), 'signUp');
 
     return this.compile(tpl, {
       ...this.props,

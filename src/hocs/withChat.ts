@@ -1,11 +1,11 @@
 import { connect } from '../store/connect';
 import { IComponentConstructor } from '../view/Component';
 
-export const withChats = function withChats(
+export const withChat = function withChat(
   ComponentClass: IComponentConstructor
 ) {
   return connect((state) => {
-    const chatsData = state.chat?.list ?? [];
-    return { chatsData: [...chatsData] };
+    const chatData = state.chat?.selected ?? {};
+    return { chatData: { ...chatData } };
   })(ComponentClass);
 };

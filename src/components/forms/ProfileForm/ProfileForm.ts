@@ -8,7 +8,7 @@ import { ProfileController } from '~/src/controller/profile';
 import { outputForm } from '~/src/model/features/outputForm';
 import { makeFields } from '../makeFields';
 import { UserController, TUserData, TFieldName } from '~/src/controller';
-import { withError, withMessage } from '~/src/hocs';
+import { withError, withStatusMessage } from '~/src/hocs';
 
 const profileController = new ProfileController();
 const userController = new UserController();
@@ -74,7 +74,7 @@ export class ProfileForm extends Component<TProps> {
 
     const fields = makeFields(fieldsDataWithValues, { className: css.field });
 
-    const Form = withMessage(withError(FormBase, 'profile'), 'profile');
+    const Form = withStatusMessage(withError(FormBase, 'profile'), 'profile');
 
     return this.compile(tpl, {
       ...this.props,

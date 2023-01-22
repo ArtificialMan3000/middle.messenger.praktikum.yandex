@@ -13,23 +13,6 @@ type TProps = {
 };
 
 export class MessageInputText extends Component<TProps> {
-  _addEvents() {
-    const { onFocus, onBlur } = this.props;
-
-    const input = this.element.querySelector('input');
-
-    if (input) {
-      if (onFocus) {
-        input.addEventListener('focus', onFocus);
-      }
-      if (onBlur) {
-        input.addEventListener('blur', onBlur);
-      }
-    }
-
-    super._addEvents();
-  }
-
   render() {
     const { validationText } = this.props;
     return this.compile(tpl, {

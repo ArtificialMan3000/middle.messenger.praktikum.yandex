@@ -2,7 +2,7 @@ import { connect } from '~/src/store/connect';
 import { IComponentConstructor } from '~/src/view/Component';
 import { TQueryType } from './types';
 
-export const withMessage = function withMessage<
+export const withStatusMessage = function withStatusMessage<
   TProps extends Record<string, unknown>
 >(ComponentClass: IComponentConstructor<TProps>, queryType: TQueryType) {
   return connect<TProps>((state) => {

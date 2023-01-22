@@ -65,6 +65,7 @@ export class Router {
 
   protected _onRoute(pathname: string) {
     let route = this.getRoute(pathname);
+    // debugger;
     if (!route) {
       if (this.defaultRoute) {
         route = this.defaultRoute;

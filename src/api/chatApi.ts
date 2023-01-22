@@ -10,6 +10,11 @@ type TCreateChatRequest = {
   title: string;
 };
 
+type TAddUserRequest = {
+  users: number[];
+  chatId: number;
+};
+
 const httpTransport = new HTTPTransport();
 
 export class ChatAPI extends BaseAPI {
@@ -28,10 +33,23 @@ export class ChatAPI extends BaseAPI {
   read(data: TReadChatsRequest = {}) {
     return myFetch(`${ChatAPI.URL}/`, {
       method: 'GET',
+      body: data,
+    });
+  }
+
+  addUser(data: TAddUserRequest) {
+    return myFetch(`${ChatAPI.URL}/users`, {
+      method: 'PUT',
       body: JSON.stringify(data),
       headers: {
         'content-type': 'application/json',
       },
+    });
+  }
+
+  getToken(chatId: number) {
+    return myFetch(`${ChatAPI.URL}/token/${chatId}`, {
+      method: 'POST',
     });
   }
 }

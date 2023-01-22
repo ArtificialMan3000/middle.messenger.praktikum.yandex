@@ -8,8 +8,6 @@ import * as css from './MessageForm.module.scss';
 type TProps = {
   message?: string;
   errorText?: string;
-  onInputTextFocus?: EventListener;
-  onInputTextBlur?: EventListener;
 };
 
 export class MessageForm extends Component<TProps> {
@@ -18,8 +16,7 @@ export class MessageForm extends Component<TProps> {
   }
 
   render() {
-    const { onInputTextFocus, onInputTextBlur, message, errorText } =
-      this.props;
+    const { message, errorText } = this.props;
 
     // Not button here. Send form by pressing 'enter'
     return this.compile(tpl, {
@@ -29,8 +26,6 @@ export class MessageForm extends Component<TProps> {
       InputFile: new MessageInputFile({ className: css.inputFile }),
       InputText: new MessageInputText({
         className: css.inputText,
-        onFocus: onInputTextFocus,
-        onBlur: onInputTextBlur,
         validationText: validationRules.message.description,
       }),
     });

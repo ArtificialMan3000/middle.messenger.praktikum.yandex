@@ -9,7 +9,7 @@ import { makeFields } from '../makeFields';
 import { Form as FormBase } from '~/src/view/ui/Form';
 import { outputForm } from '~/src/model/features/outputForm';
 import { SignInController } from '~/src/controller';
-import { withError, withMessage } from '~/src/hocs';
+import { withError, withStatusMessage } from '~/src/hocs';
 
 const FIELDS_DATA = [
   {
@@ -34,7 +34,7 @@ export class AuthForm extends Component {
   render() {
     const fields = makeFields(FIELDS_DATA, { className: css.field });
 
-    const Form = withMessage(withError(FormBase, 'signIn'), 'signIn');
+    const Form = withStatusMessage(withError(FormBase, 'signIn'), 'signIn');
 
     return this.compile(tpl, {
       ...this.props,

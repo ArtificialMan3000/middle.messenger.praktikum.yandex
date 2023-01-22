@@ -6,7 +6,7 @@ import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { Form as FormBase } from '~/src/view/ui/Form';
 import { makeFields } from '../makeFields';
 import { outputForm } from '~/src/model/features/outputForm';
-import { withError, withMessage } from '~/src/hocs';
+import { withError, withStatusMessage } from '~/src/hocs';
 import { ChangePasswordController } from '~/src/controller';
 
 const changePasswordController = new ChangePasswordController();
@@ -39,7 +39,7 @@ export class ChangePasswordForm extends Component {
   render() {
     const fields = makeFields(FIELDS_DATA, { className: css.field });
 
-    const Form = withMessage(
+    const Form = withStatusMessage(
       withError(FormBase, 'changePassword'),
       'changePassword'
     );
