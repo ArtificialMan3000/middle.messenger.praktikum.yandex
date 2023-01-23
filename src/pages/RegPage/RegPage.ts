@@ -17,7 +17,6 @@ export class RegPage extends Component {
   render() {
     return this.compile(tpl, {
       Page: new Page({
-        css,
         children: new Window({
           header: 'Регистрация',
           content: new RegForm({}),

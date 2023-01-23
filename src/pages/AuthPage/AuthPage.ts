@@ -20,7 +20,6 @@ export class AuthPage extends Component {
 
   render() {
     return this.compile(tpl, {
-      css,
       Page: new Page(
         {
           children: new Window({
