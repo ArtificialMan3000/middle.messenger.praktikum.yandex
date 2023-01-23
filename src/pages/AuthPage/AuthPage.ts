@@ -1,5 +1,4 @@
 import tpl from './AuthPage.hbs';
-import * as css from './AuthPage.module.scss';
 import { AuthForm } from '~/src/components/forms/AuthForm';
 import { Window } from '~/src/components/Window';
 import { Component, TComponentProps } from '~/src/view/Component';
@@ -21,7 +20,6 @@ export class AuthPage extends Component {
 
   render() {
     return this.compile(tpl, {
-      css,
       Page: new Page(
         {
           children: new Window({
