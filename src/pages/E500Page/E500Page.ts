@@ -15,7 +15,7 @@ export class E500Page extends Component {
           css,
           className: makeClassNames(css.container, sharedCss.dangerBg),
           ToChatLink: new Link({
-            href: '/chats',
+            href: '/messenger',
             text: 'Убежать',
             className: css.backlink,
           }),

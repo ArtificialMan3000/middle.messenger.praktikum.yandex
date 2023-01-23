@@ -9,10 +9,6 @@ export enum StoreEvents {
 class Store extends EventBus {
   #state: TState = {};
 
-  // constructor() {
-  //   super();
-  // }
-
   getState() {
     return this.#state;
   }

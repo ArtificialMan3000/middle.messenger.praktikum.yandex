@@ -81,7 +81,7 @@ export class ChatController {
 
     // this.selectChat(chatId);
 
-    RouterManagement.go(`/chats/${chatId}`);
+    RouterManagement.go(`/messenger/${chatId}`);
   };
 
   onCreateChatButtonClick = async (evt: Event) => {

@@ -1,4 +1,3 @@
-import { MessageInputFile } from '~/src/view/ui/MessageInputFile';
 import { MessageInputText } from '~/src/view/ui/MessageInputText';
 import { validationRules } from '~/src/controller/fieldValidation';
 import { Component, TComponentProps } from '~/src/view/Component';
@@ -27,7 +26,6 @@ export class MessageForm extends Component<TProps> {
       css,
       message,
       errorText,
-      // InputFile: new MessageInputFile({ className: css.inputFile }),
       InputText: new MessageInputText({
         className: css.inputText,
         validationText: validationRules.message.description,

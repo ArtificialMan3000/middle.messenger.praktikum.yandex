@@ -9,15 +9,15 @@ const PAGES_INFO = [
   },
   {
     name: 'Регистрация',
-    link: '/reg',
+    link: '/sign-up',
   },
   {
     name: 'Чаты',
-    link: '/chats',
+    link: '/messenger',
   },
   {
     name: 'Профиль',
-    link: '/profile',
+    link: '/settings',
   },
   {
     name: 'Смена пароля',

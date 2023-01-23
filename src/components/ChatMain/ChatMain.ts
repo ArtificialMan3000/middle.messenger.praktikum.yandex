@@ -1,10 +1,9 @@
 import { Component } from '~/src/view/Component';
-import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { outputForm } from '~/src/model/features/outputForm';
 import { Message } from '../Message';
 import tpl from './ChatMain.hbs';
 import * as css from './ChatMain.module.scss';
-import { MessageForm } from '~/src/view/ui/MessageForm';
+import { MessageForm } from '~/src/components/forms/MessageForm';
 import { messagesController, TChatMessage } from '~/src/controller/messages';
 
 type TChatMessageWithDirection = TChatMessage & {

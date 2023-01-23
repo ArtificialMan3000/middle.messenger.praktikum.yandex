@@ -2,7 +2,6 @@ import tpl from './ChangePasswordForm.hbs';
 import * as css from './ChangePasswordForm.module.scss';
 import { Button } from '../../Button';
 import { Component } from '~/src/view/Component';
-import { setValidityStatus } from '~/src/controller/fieldValidation';
 import { Form as FormBase } from '~/src/view/ui/Form';
 import { makeFields } from '../makeFields';
 import { outputForm } from '~/src/model/features/outputForm';

@@ -1,9 +1,7 @@
-import { validationRules } from '~/src/controller/fieldValidation';
 import tpl from './AuthForm.hbs';
 import * as css from './AuthForm.module.scss';
-import { Field } from '../../Field';
 import { Button } from '../../Button';
-import { Component, TComponentProps } from '~/src/view/Component';
+import { Component } from '~/src/view/Component';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';
 import { makeFields } from '../makeFields';
 import { Form as FormBase } from '~/src/view/ui/Form';
@@ -50,7 +48,7 @@ export class AuthForm extends Component {
           ButtonLink({
             className: css.button,
             text: 'Регистрация',
-            location: '/reg',
+            location: '/sign-up',
           }),
         ],
         events: {

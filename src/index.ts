@@ -11,7 +11,6 @@ import RouterManagement, {
 } from '~/src/controller/RouterManagement';
 import './tests';
 import { TComponentPropsType } from './typings/utils';
-import { messagesController } from './controller/messages';
 
 const ROUTES = {
   MAIN: {
@@ -22,11 +21,11 @@ const ROUTES = {
     path: '/auth',
     type: RouteTypes.GUEST,
   },
-  REG: { path: '/reg', type: RouteTypes.GUEST },
-  PROFILE: { path: '/profile', type: RouteTypes.PRIVATE },
+  REG: { path: '/sign-up', type: RouteTypes.GUEST },
+  PROFILE: { path: '/settings', type: RouteTypes.PRIVATE },
   CHANGE_PASSWORD: { path: '/change-password', type: RouteTypes.PRIVATE },
-  CHAT: { path: '/chats/:id', type: RouteTypes.PRIVATE },
-  CHATS: { path: '/chats', type: RouteTypes.PRIVATE },
+  CHAT: { path: '/messenger/:id', type: RouteTypes.PRIVATE },
+  CHATS: { path: '/messenger', type: RouteTypes.PRIVATE },
   E500: { path: '/500', type: RouteTypes.COMMON },
   E404: { path: '/404', type: RouteTypes.COMMON },
 };
@@ -80,5 +79,3 @@ window.addEventListener('DOMContentLoaded', () => {
     .default<TComponentPropsType<E404Page>>(E404Page, {})
     .start();
 });
-
-window.messagesController = messagesController;

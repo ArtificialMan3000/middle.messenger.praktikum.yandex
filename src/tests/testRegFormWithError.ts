@@ -7,6 +7,7 @@ const mock = {
   phone: '1234567890',
 };
 
+// @ts-ignore
 window.testRegFormWithError = function () {
   const form = document.querySelector('form.reg-form');
 

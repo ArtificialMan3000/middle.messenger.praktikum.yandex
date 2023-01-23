@@ -24,7 +24,7 @@ export class FullAvatar extends Component<TProps> {
       this.element.querySelector<HTMLInputElement>('input[type=file]');
 
     if (fileInput) {
-      fileInput.addEventListener('change', function (evt: Event) {
+      fileInput.addEventListener('change', function () {
         const avatar = this.files?.[0];
 
         if (avatar) {

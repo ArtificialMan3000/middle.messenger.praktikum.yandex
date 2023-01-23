@@ -37,7 +37,7 @@ export class ChangePasswordPage extends Component {
             }),
             Backlink: new Backlink({
               text: 'К чатам',
-              location: '/chats',
+              location: '/messenger',
             }),
           }),
         },

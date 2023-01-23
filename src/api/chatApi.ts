@@ -1,4 +1,4 @@
-import { HTTPTransport, BaseAPI, myFetch } from '~/src/utils/HTTPTransport';
+import { BaseAPI, myFetch } from '~/src/utils/HTTPTransport';
 
 type TReadChatsRequest = {
   limit?: number;
@@ -16,8 +16,6 @@ type TAddUserRequest = {
 };
 
 type TRemoveUserRequest = TAddUserRequest;
-
-const httpTransport = new HTTPTransport();
 
 export class ChatAPI extends BaseAPI {
   static URL = 'https://ya-praktikum.tech/api/v2/chats';

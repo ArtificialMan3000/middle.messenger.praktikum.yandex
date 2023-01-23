@@ -9,6 +9,7 @@ const mock = {
   phone: '1234567890',
 };
 
+// @ts-ignore
 window.testRegForm = function () {
   const salt = randomInt(1000);
   const form = document.querySelector('form.reg-form');

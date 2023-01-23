@@ -40,7 +40,7 @@ export class ProfilePage extends Component {
             css,
             Backlink: new Backlink({
               text: 'К чатам',
-              location: '/chats',
+              location: '/messenger',
             }),
             Window: new Window({
               content: new ProfileForm({}),

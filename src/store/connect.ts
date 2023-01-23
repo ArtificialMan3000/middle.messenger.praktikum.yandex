@@ -1,10 +1,5 @@
 import { TState } from './types';
-import { TClass, TComponentPropsType, TConstructor } from '~/src/typings/utils';
-import type {
-  Component,
-  IComponentConstructor,
-  TComponentProps,
-} from '~/src/view/Component';
+import type { IComponentConstructor } from '~/src/view/Component';
 import { store, StoreEvents } from './Store';
 import { isEqual } from '../utils/functions';
 

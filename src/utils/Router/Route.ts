@@ -1,5 +1,5 @@
 // import { isEqual } from '../../utils/isEqual';
-import { TClass, TComponentPropsType, TConstructor } from '~/src/typings/utils';
+import { TClass } from '~/src/typings/utils';
 import type { Component, TComponentProps } from '~/src/view/Component';
 import { renderDOM } from '~/src/view/DOM';
 import { THydratedParams, TParsedTemplate, TParts } from './types';

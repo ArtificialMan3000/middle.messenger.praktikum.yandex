@@ -45,7 +45,7 @@ export class SignUpController {
 
         if (result.status === 200) {
           store.setState('user.signUp.query.error', null);
-          RouterManagement.go(`/chats`);
+          RouterManagement.go(`/messenger`);
         } else {
           const responseData = JSON.parse(result.response);
           store.setState(

@@ -86,8 +86,6 @@ class RouterManagement extends Router {
   }
 
   _onRoute(pathname: string) {
-    // console.log('inherit routes', this.routes);
-
     super._onRoute(pathname);
     this.statusRedirect();
   }
