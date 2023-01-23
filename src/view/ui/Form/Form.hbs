@@ -1,0 +1,16 @@
+{{#if errorText}}
+  <p class="{{css.error}}">Произошла ошибка: {{errorText}}</p>
+{{/if}}
+{{#if message}}
+  <p>{{message}}</p>
+{{/if}}
+<div class="fields">
+  {{#each fields}}
+    {{{this}}}
+  {{/each}}
+</div>
+<div class="{{css.buttons}}">
+  {{#each buttons}}
+    {{{this}}}
+  {{/each}}
+</div>

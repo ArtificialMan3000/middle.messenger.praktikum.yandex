@@ -1,14 +1,11 @@
 import tpl from './Window.hbs';
 import * as css from './Window.module.scss';
-import {
-  Component,
-  extendClassName,
-  TComponentProps,
-} from '~src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
+import { makeClassNames } from '~/src/view/View';
 
 export class Window extends Component {
   constructor(props: TComponentProps) {
-    const className = extendClassName(css.window, props.className);
+    const className = makeClassNames(css.window, props.className);
     super({ ...props, className }, 'div');
   }
 

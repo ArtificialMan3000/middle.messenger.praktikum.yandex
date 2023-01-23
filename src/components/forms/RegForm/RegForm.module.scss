@@ -1,0 +1,21 @@
+@import "~/src/scss/variables";
+
+.field {
+  margin-bottom: 15px;
+}
+
+.buttons {
+  margin-top: 30px;
+}
+
+.button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.error {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: $attention-color;
+  font-size: 10px;
+}

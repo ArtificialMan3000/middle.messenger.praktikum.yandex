@@ -6,48 +6,76 @@ import { E500Page } from '~/src/pages/E500Page';
 import { ProfilePage } from '~/src/pages/ProfilePage';
 import { RegPage } from '~/src/pages/RegPage';
 import { AuthPage } from '~/src/pages/AuthPage';
-import { renderDOM } from './view/DOM';
+import RouterManagement, {
+  RouteTypes,
+} from '~/src/controller/RouterManagement';
+import './tests';
+import { TComponentPropsType } from './typings/utils';
+
+const ROUTES = {
+  MAIN: {
+    path: '/',
+    type: RouteTypes.COMMON,
+  },
+  AUTH: {
+    path: '/auth',
+    type: RouteTypes.GUEST,
+  },
+  REG: { path: '/sign-up', type: RouteTypes.GUEST },
+  PROFILE: { path: '/settings', type: RouteTypes.PRIVATE },
+  CHANGE_PASSWORD: { path: '/change-password', type: RouteTypes.PRIVATE },
+  CHAT: { path: '/messenger/:id', type: RouteTypes.PRIVATE },
+  CHATS: { path: '/messenger', type: RouteTypes.PRIVATE },
+  E500: { path: '/500', type: RouteTypes.COMMON },
+  E404: { path: '/404', type: RouteTypes.COMMON },
+};
 
 window.addEventListener('DOMContentLoaded', () => {
-  const appElement = document.querySelector<HTMLElement>('#app');
-  if (appElement) {
-    const currentPageName = appElement.dataset.page;
-    let CurrentPage;
-
-    switch (currentPageName) {
-      case 'main': {
-        CurrentPage = MainPage;
-        break;
-      }
-      case 'auth': {
-        CurrentPage = AuthPage;
-        break;
-      }
-      case 'reg': {
-        CurrentPage = RegPage;
-        break;
-      }
-      case 'chats': {
-        CurrentPage = ChatsPage;
-        break;
-      }
-      case 'profile': {
-        CurrentPage = ProfilePage;
-        break;
-      }
-      case 'changePassword': {
-        CurrentPage = ChangePasswordPage;
-        break;
-      }
-      case '500': {
-        CurrentPage = E500Page;
-        break;
-      }
-      default: {
-        CurrentPage = E404Page;
-      }
-    }
-
-    renderDOM(appElement, new CurrentPage({}));
-  }
+  RouterManagement.use<TComponentPropsType<MainPage>>(
+    ROUTES.MAIN.path,
+    MainPage,
+    {}
+  )
+    .use<TComponentPropsType<AuthPage>>(
+      ROUTES.AUTH.path,
+      AuthPage,
+      {},
+      ROUTES.AUTH.type,
+      true
+    )
+    .use<TComponentPropsType<RegPage>>(
+      ROUTES.REG.path,
+      RegPage,
+      {},
+      ROUTES.REG.type
+    )
+    .use<TComponentPropsType<ProfilePage>>(
+      ROUTES.PROFILE.path,
+      ProfilePage,
+      {},
+      ROUTES.PROFILE.type,
+      true
+    )
+    .use<TComponentPropsType<ChangePasswordPage>>(
+      ROUTES.CHANGE_PASSWORD.path,
+      ChangePasswordPage,
+      {},
+      ROUTES.CHANGE_PASSWORD.type
+    )
+    .use<TComponentPropsType<ChatsPage>>(
+      ROUTES.CHAT.path,
+      ChatsPage,
+      {},
+      ROUTES.CHAT.type
+    )
+    .use<TComponentPropsType<ChatsPage>>(
+      ROUTES.CHATS.path,
+      ChatsPage,
+      {},
+      ROUTES.CHATS.type
+    )
+    .use<TComponentPropsType<E500Page>>(ROUTES.E500.path, E500Page, {})
+    .use<TComponentPropsType<E404Page>>(ROUTES.E404.path, E404Page, {})
+    .default<TComponentPropsType<E404Page>>(E404Page, {})
+    .start();
 });
