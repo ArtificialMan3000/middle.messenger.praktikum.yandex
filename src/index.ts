@@ -9,7 +9,6 @@ import { AuthPage } from '~/src/pages/AuthPage';
 import RouterManagement, {
   RouteTypes,
 } from '~/src/controller/RouterManagement';
-import './tests';
 import { TComponentPropsType } from './typings/utils';
 
 const ROUTES = {
