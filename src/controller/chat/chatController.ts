@@ -72,13 +72,8 @@ export class ChatController {
     return this.ChatApi.addUser({ users: [userId], chatId });
   }
 
-  async openMessagesTunnel(userId: number, chatId: number) {
-    try {
-      const result = await this.ChatApi.getToken(chatId);
-      const { token } = result.response;
-    } catch (err) {
-      console.error(err);
-    }
+  removeUserFromChat(userId: number, chatId: number) {
+    return this.ChatApi.removeUser({ users: [userId], chatId });
   }
 
   onChatClick = (evt: Event, chatId: number) => {
@@ -98,6 +93,30 @@ export class ChatController {
       await this.createChat(chatName);
 
       await this.getChats();
+    }
+  };
+
+  onAddUserButtonClick = (evt: Event) => {
+    evt.preventDefault();
+
+    const chatId = store.getState().chat.selected.id;
+
+    const userId = prompt('Введите id пользователя');
+
+    if (userId && chatId) {
+      this.addUserToChat(Number(userId), chatId);
+    }
+  };
+
+  onRemoveUserButtonClick = (evt: Event) => {
+    evt.preventDefault();
+
+    const chatId = store.getState().chat.selected.id;
+
+    const userId = prompt('Введите id пользователя');
+
+    if (userId && chatId) {
+      this.removeUserFromChat(Number(userId), chatId);
     }
   };
 }

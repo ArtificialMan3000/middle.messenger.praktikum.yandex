@@ -15,6 +15,8 @@ type TAddUserRequest = {
   chatId: number;
 };
 
+type TRemoveUserRequest = TAddUserRequest;
+
 const httpTransport = new HTTPTransport();
 
 export class ChatAPI extends BaseAPI {
@@ -40,6 +42,16 @@ export class ChatAPI extends BaseAPI {
   addUser(data: TAddUserRequest) {
     return myFetch(`${ChatAPI.URL}/users`, {
       method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+  }
+
+  removeUser(data: TRemoveUserRequest) {
+    return myFetch(`${ChatAPI.URL}/users`, {
+      method: 'DELETE',
       body: JSON.stringify(data),
       headers: {
         'content-type': 'application/json',

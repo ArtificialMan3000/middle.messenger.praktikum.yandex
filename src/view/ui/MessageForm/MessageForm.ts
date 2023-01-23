@@ -4,11 +4,15 @@ import { validationRules } from '~/src/controller/fieldValidation';
 import { Component, TComponentProps } from '~/src/view/Component';
 import tpl from './MessageForm.hbs';
 import * as css from './MessageForm.module.scss';
+import { Button } from '~/src/components/Button';
+import { ChatController } from '~/src/controller/chat';
 
 type TProps = {
   message?: string;
   errorText?: string;
 };
+
+const chatController = new ChatController();
 
 export class MessageForm extends Component<TProps> {
   constructor(props: TComponentProps<TProps>) {
@@ -23,10 +27,20 @@ export class MessageForm extends Component<TProps> {
       css,
       message,
       errorText,
-      InputFile: new MessageInputFile({ className: css.inputFile }),
+      // InputFile: new MessageInputFile({ className: css.inputFile }),
       InputText: new MessageInputText({
         className: css.inputText,
         validationText: validationRules.message.description,
+      }),
+      AddUserButton: new Button({
+        text: 'Добавить пользователя',
+        attributes: { type: 'button' },
+        events: { click: [chatController.onAddUserButtonClick] },
+      }),
+      RemoveUserButton: new Button({
+        text: 'Удалить пользователя',
+        attributes: { type: 'button' },
+        events: { click: [chatController.onRemoveUserButtonClick] },
       }),
     });
   }
