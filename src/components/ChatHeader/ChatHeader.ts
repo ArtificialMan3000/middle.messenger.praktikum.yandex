@@ -12,12 +12,12 @@ export class ChatHeader extends Component<TProps> {
     return this.compile(tpl, {
       css,
       name: this.props.name,
-      Avatar: new MiniAvatar({
-        className: css.avatar,
-        imageSrc: 'img/avatar.jpg',
-        width: 50,
-        height: 50,
-      }),
+      // Avatar: new MiniAvatar({
+      //   className: css.avatar,
+      //   imageSrc: 'img/avatar.jpg',
+      //   width: 50,
+      //   height: 50,
+      // }),
     });
   }
 }

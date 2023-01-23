@@ -39,6 +39,13 @@ export class UserAPI extends BaseAPI {
     });
   }
 
+  changeAvatar(data: FormData) {
+    return myFetch(`${UserAPI.URL}/profile/avatar`, {
+      method: 'PUT',
+      body: data,
+    });
+  }
+
   getUser() {
     return myFetch(`${UserAPI.URL}/user`);
   }

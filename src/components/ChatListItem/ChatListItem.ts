@@ -17,10 +17,10 @@ export class ChatListItem extends Component<TProps> {
       css,
       title,
       lastMessage,
-      Avatar: new MiniAvatar({
-        className: css.avatar,
-        imageSrc: avatarSrc ?? 'img/avatar.jpg',
-      }),
+      // Avatar: new MiniAvatar({
+      //   className: css.avatar,
+      //   imageSrc: avatarSrc ?? 'img/avatar.jpg',
+      // }),
       newMessagesCounter,
     });
   }

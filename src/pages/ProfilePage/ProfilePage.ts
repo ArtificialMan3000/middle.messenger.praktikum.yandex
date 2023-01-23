@@ -2,7 +2,7 @@ import tpl from './ProfilePage.hbs';
 import contentTpl from './ProfilePageContent.hbs';
 import * as css from './ProfilePage.module.scss';
 import { Backlink } from '~/src/components/Backlink';
-import { FullAvatar } from '~/src/components/FullAvatar';
+import { FullAvatar as FullAvatarBase } from '~/src/components/FullAvatar';
 import { ProfileForm as ProfileFormBase } from '~/src/components/forms/ProfileForm';
 import { Window } from '~/src/components/Window';
 import { Component, TComponentProps } from '~/src/view/Component';
@@ -28,6 +28,7 @@ export class ProfilePage extends Component {
 
   render() {
     const ProfileForm = withUserData(ProfileFormBase);
+    const FullAvatar = withUserData(FullAvatarBase);
 
     return this.compile(tpl, {
       ...this.props,
@@ -44,10 +45,7 @@ export class ProfilePage extends Component {
             Window: new Window({
               content: new ProfileForm({}),
             }),
-            FullAvatar: new FullAvatar({
-              imageSrc: 'img/avatar.jpg',
-              name: 'Имя Фамилия',
-            }),
+            FullAvatar: new FullAvatar({}),
           }),
         },
         'div'

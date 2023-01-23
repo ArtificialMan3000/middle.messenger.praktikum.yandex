@@ -64,6 +64,16 @@ export class ProfileController {
       });
   }
 
+  changeAvatar(formData: FormData) {
+    this.UserAPI.changeAvatar(formData).then((result) => {
+      if (result.status === 200) {
+        const responseData = JSON.parse(result.response);
+
+        store.setState('user.data', responseData);
+      }
+    });
+  }
+
   onProfileFormSubmit = (evt: Event) => {
     evt.preventDefault();
 
