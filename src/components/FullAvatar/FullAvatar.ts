@@ -44,9 +44,7 @@ export class FullAvatar extends Component<TProps> {
     const { userData, width = 300, height = 300 } = this.props;
 
     return this.compile(tpl, {
-      imageSrc: userData?.avatar
-        ? `https://ya-praktikum.tech/api/v2/resources/${userData?.avatar}`
-        : '~/static/img/avatar.jpg',
+      imageSrc: `https://ya-praktikum.tech/api/v2/resources/${userData?.avatar}`,
       name: userData?.display_name,
       width,
       height,
