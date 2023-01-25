@@ -7,8 +7,9 @@ import { ChatList } from '~/src/components/ChatList';
 import { ChatWindow } from '~/src/components/ChatWindow';
 import { Page } from '../Page';
 import { UserController, ChatController } from '~/src/controller';
-import { withChatList } from '~/src/hocs';
+import { withChatList, withUserData } from '~/src/hocs';
 import { withChat } from '~/src/hocs/withChat';
+import { MiniProfile } from '~/src/components/MiniProfile';
 
 const userController = new UserController();
 const chatController = new ChatController();
@@ -41,12 +42,15 @@ export class ChatsPage extends Component<TProps> {
 
     const ChatWindowWithChat = withChat(ChatWindow);
 
+    const MiniProfileWithUserData = withUserData(MiniProfile);
+
     return this.compile(tpl, {
       Page: new Page(
         {
           children: wrapper(contentTpl, {
             css,
             className: css.page,
+            Profile: new MiniProfileWithUserData({}),
             ChatList: new ChatListWithChats({ className: css.chats }),
             MainChat: new ChatWindowWithChat({
               className: css.mainChat,
