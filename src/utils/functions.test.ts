@@ -22,7 +22,7 @@ describe('Utils functions', () => {
       const result = set(thisObj, 'a.b', value);
 
       // Assert
-      expect(result).to.equal(obj);
+      expect(result).to.equal(thisObj);
     });
 
     it('should return null, if null passed as first parameter', () => {
@@ -30,7 +30,7 @@ describe('Utils functions', () => {
 
       const result = set(thisObj, 'a.b', value);
 
-      expect(result).to.equal(obj);
+      expect(result).to.equal(thisObj);
     });
 
     it('should throw an error if path is not a string', () => {
@@ -45,6 +45,16 @@ describe('Utils functions', () => {
       const result = set(obj, path, value);
 
       expect((result as any).a.b).to.equal(value);
+    });
+
+    it('should rewrite value if object already has that property', () => {
+      const thisObj = { a: [{ b: 1 }, 'er'] };
+      const thisPath = 'a';
+      const thisValue = [2] as any;
+
+      const result = set(thisObj, thisPath, thisValue);
+
+      expect((result as any).a).to.deep.equal(thisValue);
     });
 
     it('should not return new object', () => {

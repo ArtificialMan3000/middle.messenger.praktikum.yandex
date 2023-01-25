@@ -4,6 +4,7 @@ import * as css from './FullAvatar.module.scss';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { makeClassNames } from '~/src/view/View';
 import { TUserData } from '~/src/controller';
+import { BaseAPI } from '~/src/utils/HTTPTransport';
 
 type TProps = {
   userData?: TUserData | null;
@@ -44,7 +45,7 @@ export class FullAvatar extends Component<TProps> {
     const { userData, width = 300, height = 300 } = this.props;
 
     return this.compile(tpl, {
-      imageSrc: `https://ya-praktikum.tech/api/v2/resources/${userData?.avatar}`,
+      imageSrc: `${BaseAPI.BASE_URL}/resources/${userData?.avatar}`,
       name: userData?.display_name,
       width,
       height,

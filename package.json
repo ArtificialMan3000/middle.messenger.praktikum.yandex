@@ -4,8 +4,8 @@
   "description": "Web chat like Telegram",
   "scripts": {
     "start": "yarn build && ts-node server.ts",
-    "dev": "parcel serve 'static/*.html' 'static/img/*.jpg'",
-    "build": "parcel build 'static/*.html' 'static/img/*.jpg'",
+    "dev": "parcel serve 'static/*.html' 'static/img/*.jpg' 'static/img/*.png'",
+    "build": "parcel build 'static/*.html' 'static/img/*.jpg' 'static/img/*.png'",
     "test": "mocha --require ts-node/register './src/**/*.test.ts'",
     "ts-check": "tsc -noEmit",
     "eslint": "eslint ./",

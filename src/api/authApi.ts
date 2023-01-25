@@ -17,7 +17,7 @@ export type TSignInRequest = {
 };
 
 export class AuthAPI extends BaseAPI {
-  static URL = 'https://ya-praktikum.tech/api/v2/auth';
+  static URL = `${BaseAPI.BASE_URL}/auth`;
 
   signUp(data: TSignUpRequest) {
     return myFetch(`${AuthAPI.URL}/signup`, {

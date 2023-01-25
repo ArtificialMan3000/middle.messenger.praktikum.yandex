@@ -17,7 +17,7 @@ export type TChangeProfileRequest = {
 };
 
 export class UserAPI extends BaseAPI {
-  static URL = 'https://ya-praktikum.tech/api/v2/user';
+  static URL = `${BaseAPI.BASE_URL}/user`;
 
   changePassword(data: TChangePasswordRequest) {
     return myFetch(`${UserAPI.URL}/password`, {

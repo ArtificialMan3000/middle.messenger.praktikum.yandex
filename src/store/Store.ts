@@ -23,3 +23,5 @@ export const store = new Store();
 
 // @ts-ignore
 window.state = store.getState();
+// @ts-ignore
+window.store = store;
