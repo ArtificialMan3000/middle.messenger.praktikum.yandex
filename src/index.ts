@@ -10,6 +10,7 @@ import RouterManagement, {
   RouteTypes,
 } from '~/src/controller/RouterManagement';
 import { TComponentPropsType } from './typings/utils';
+import './style.scss';
 
 const ROUTES = {
   MAIN: {
