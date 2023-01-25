@@ -2,8 +2,17 @@ type TPlainObject<T = any> = {
   [key in string]: T;
 };
 
-export function merge(lhs: TPlainObject, rhs: TPlainObject): TPlainObject {
+export function merge(
+  lhs: TPlainObject,
+  rhs: TPlainObject,
+  level: number
+): TPlainObject {
+  if (level === 0) {
+    return rhs;
+  }
+
   const result = lhs;
+
   Object.keys(rhs).forEach((key) => {
     const lhsValue = lhs[key];
     const rhsValue = rhs[key];
@@ -11,13 +20,15 @@ export function merge(lhs: TPlainObject, rhs: TPlainObject): TPlainObject {
       lhsValue &&
       rhsValue &&
       typeof lhsValue === 'object' &&
-      typeof rhsValue === 'object'
+      typeof rhsValue === 'object' &&
+      rhs.constructor === Object
     ) {
-      result[key] = merge(lhsValue, rhsValue);
+      result[key] = merge(lhsValue, rhsValue, level - 1);
     } else {
       result[key] = rhs[key];
     }
   });
+
   return result;
 }
 
@@ -39,7 +50,7 @@ export function set(
     }
     return { [field]: obj };
   }, {});
-  return merge(object, object2);
+  return merge(object, object2, fields.length);
 }
 
 export function isPlainObject(value: unknown): value is TPlainObject {

@@ -10,6 +10,10 @@ type TCreateChatRequest = {
   title: string;
 };
 
+type TDeleteChatRequest = {
+  chatId: number;
+};
+
 type TAddUserRequest = {
   users: number[];
   chatId: number;
@@ -18,11 +22,21 @@ type TAddUserRequest = {
 type TRemoveUserRequest = TAddUserRequest;
 
 export class ChatAPI extends BaseAPI {
-  static URL = 'https://ya-praktikum.tech/api/v2/chats';
+  static URL = `${BaseAPI.BASE_URL}/chats`;
 
   create(data: TCreateChatRequest) {
     return myFetch(`${ChatAPI.URL}/`, {
       method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+  }
+
+  delete(data: TDeleteChatRequest) {
+    return myFetch(`${ChatAPI.URL}/`, {
+      method: 'DELETE',
       body: JSON.stringify(data),
       headers: {
         'content-type': 'application/json',

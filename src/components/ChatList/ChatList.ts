@@ -27,6 +27,7 @@ export class ChatList extends Component<TProps> {
       return new ChatListItem(
         {
           className: css.item,
+          id: chatData.id,
           title: chatData.title,
           avatarSrc: chatData.avatar ?? undefined,
           lastMessage: chatData.last_message?.content,

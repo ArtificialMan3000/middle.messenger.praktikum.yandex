@@ -1,4 +1,6 @@
 export class BaseAPI {
+  static BASE_URL = 'https://ya-praktikum.tech/api/v2';
+
   // На случай, если забудете переопределить метод и используете его, — выстрелит ошибка
   create(...args: unknown[]) {
     throw new Error('Not implemented');
@@ -8,11 +10,11 @@ export class BaseAPI {
     throw new Error('Not implemented');
   }
 
-  update() {
+  update(...args: unknown[]) {
     throw new Error('Not implemented');
   }
 
-  delete() {
+  delete(...args: unknown[]) {
     throw new Error('Not implemented');
   }
 }

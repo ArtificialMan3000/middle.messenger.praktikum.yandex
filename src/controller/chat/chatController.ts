@@ -26,13 +26,19 @@ export class ChatController {
     return this.ChatApi.create({ title });
   }
 
+  async deleteChat(id: number) {
+    return this.ChatApi.delete({ chatId: id });
+  }
+
   async getChats() {
     return this.ChatApi.read({ limit: 9000 })
       .then((result) => {
         if (result.status === 200) {
           const responseData = JSON.parse(result.response);
+          console.log(responseData);
 
           store.setState('chat.list', responseData);
+          console.log(store.getState());
         } else {
           const errorData = JSON.parse(result.response);
           console.error(
@@ -62,6 +68,8 @@ export class ChatController {
 
   async getSingleChat(id: number) {
     if (!store.getState()?.chat?.list) {
+      console.log('not chat list');
+
       await this.getChats();
     }
 
@@ -96,27 +104,39 @@ export class ChatController {
     }
   };
 
+  onDeleteChatButtonClick = async (evt: Event, chatId: number) => {
+    evt.preventDefault();
+
+    await this.deleteChat(chatId);
+
+    await this.getChats();
+  };
+
   onAddUserButtonClick = (evt: Event) => {
     evt.preventDefault();
 
-    const chatId = store.getState().chat.selected.id;
+    const chatId = store.getState().chat?.selected?.id;
 
-    const userId = prompt('Введите id пользователя');
+    if (chatId) {
+      const userId = prompt('Введите id пользователя');
 
-    if (userId && chatId) {
-      this.addUserToChat(Number(userId), chatId);
+      if (userId) {
+        this.addUserToChat(Number(userId), chatId);
+      }
     }
   };
 
   onRemoveUserButtonClick = (evt: Event) => {
     evt.preventDefault();
 
-    const chatId = store.getState().chat.selected.id;
+    const chatId = store.getState().chat?.selected?.id;
 
-    const userId = prompt('Введите id пользователя');
+    if (chatId) {
+      const userId = prompt('Введите id пользователя');
 
-    if (userId && chatId) {
-      this.removeUserFromChat(Number(userId), chatId);
+      if (userId) {
+        this.removeUserFromChat(Number(userId), chatId);
+      }
     }
   };
 }

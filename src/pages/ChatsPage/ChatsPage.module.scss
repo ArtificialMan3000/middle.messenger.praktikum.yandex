@@ -25,6 +25,9 @@
 .profile {
   width: 100%;
   height: var(--profile-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search {
