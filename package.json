@@ -9,7 +9,8 @@
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
     "ts-check": "tsc -noEmit",
     "eslint": "eslint ./",
-    "stylelint": "stylelint '**/*.@(scss|css)'"
+    "stylelint": "stylelint '**/*.@(scss|css)'",
+    "prepare": "husky install"
   },
   "author": "Alexander Bosikov <legionerab3000@yandex.ru>",
   "license": "ISC",
@@ -38,6 +39,7 @@
     "file-loader": "6.2.0",
     "handlebars-loader": "1.7.3",
     "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.3",
     "jsdom": "21.1.0",
     "mini-css-extract-plugin": "2.7.2",
     "mocha": "10.2.0",
