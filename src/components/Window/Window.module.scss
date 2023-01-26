@@ -14,15 +14,9 @@
 
 .header {
   margin: 0;
+  margin-bottom: 15px;
   border: 1px solid $black;
   font-weight: bold;
   font-size: 20px;
   text-transform: uppercase;
-}
-
-.error {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  color: $attention-color;
-  font-size: 10px;
 }

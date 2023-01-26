@@ -1,12 +1,9 @@
 import tpl from './Button.hbs';
 import * as css from './Button.module.scss';
-import {
-  Component,
-  extendClassName,
-  TComponentProps,
-} from '../../view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
+import { makeClassNames } from '~/src/view/View';
 
-type TProps = TComponentProps & {
+type TProps = {
   text?: string;
   attributes?: {
     type?: string;
@@ -16,10 +13,10 @@ type TProps = TComponentProps & {
 export class Button extends Component<TProps> {
   type: string;
 
-  constructor(props: TProps) {
+  constructor(props: TComponentProps<TProps>) {
     const { className = '', attr } = props;
 
-    const newClassName = extendClassName(css.button, className);
+    const newClassName = makeClassNames(css.button, className);
 
     const type = attr?.type || 'button';
 

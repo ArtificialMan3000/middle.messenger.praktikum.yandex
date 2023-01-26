@@ -1,4 +1,4 @@
-import { Component, TComponentProps } from '~src/view/Component';
+import { Component, TComponentProps } from '~/src/view/Component';
 import tpl from './Input.hbs';
 
 type TProps = TComponentProps & {

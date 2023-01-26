@@ -1,6 +1,6 @@
 import tpl from './MiniAvatar.hbs';
 import * as css from './MiniAvatar.module.scss';
-import { Component } from '~src/view/Component';
+import { Component } from '~/src/view/Component';
 
 export class MiniAvatar extends Component {
   render() {

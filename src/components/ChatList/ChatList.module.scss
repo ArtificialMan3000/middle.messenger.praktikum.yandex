@@ -11,4 +11,10 @@
 
 .item {
   padding: 5px;
+  cursor: pointer;
+}
+
+.newChatItem {
+  display: flex;
+  justify-content: center;
 }

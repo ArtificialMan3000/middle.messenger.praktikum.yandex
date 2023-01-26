@@ -1,12 +1,17 @@
-import { Component } from '~src/view/Component';
+import { Component } from '~/src/view/Component';
 import tpl from './Message.hbs';
 import * as css from './Message.module.scss';
 
+type TProps = {
+  content: string;
+  direction: 'in' | 'out';
+};
+
 export class Message extends Component<TProps> {
   render() {
-    const { type, content } = this.props;
+    const { direction, content } = this.props;
     let classType: string;
-    if (type === 'in') {
+    if (direction === 'in') {
       classType = css.in;
     } else {
       classType = css.out;
@@ -14,7 +19,6 @@ export class Message extends Component<TProps> {
 
     return this.compile(tpl, {
       css: { ...css, type: classType },
-      type,
       content,
     });
   }

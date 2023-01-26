@@ -1,0 +1,13 @@
+@import "~/src/scss/variables";
+
+.name a {
+  font-weight: bold;
+  font-size: 20px;
+  color: $brand-dark;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: underline;
+  }
+}

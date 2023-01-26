@@ -3,11 +3,11 @@ import * as sharedCss from '~/src/scss/shared.module.scss';
 import * as css from './Field.module.scss';
 import { TComponentProps, Component } from '~/src/view/Component';
 import { Input } from '../Input/Input';
-import { combineCssModules } from '~src/view/View';
+import { combineCssModules } from '~/src/view/View';
 
 combineCssModules(css, sharedCss);
 
-type TProps = TComponentProps & {
+type TProps = {
   type?: string;
   id?: string;
   name?: string;
@@ -15,10 +15,12 @@ type TProps = TComponentProps & {
   value?: string;
   placeholder?: string;
   validationText?: string;
+  onFocus?: EventListener;
+  onBlur?: EventListener;
 };
 
 export class Field extends Component<TProps> {
-  constructor(props: TProps) {
+  constructor(props: TComponentProps<TProps>) {
     super(props, 'div');
   }
 
@@ -32,6 +34,8 @@ export class Field extends Component<TProps> {
       value = '',
       placeholder = '',
       validationText = '',
+      onFocus,
+      onBlur,
     } = this.props;
 
     const input: Component = new Input({
@@ -43,6 +47,7 @@ export class Field extends Component<TProps> {
         name,
         value,
       },
+      events: { focus: [onFocus], blur: [onBlur] },
     });
 
     return this.compile(tpl, {
