@@ -5,3 +5,4 @@ dist/*
 todos.js
 
 mochaSetup.js
+webpack.config.js

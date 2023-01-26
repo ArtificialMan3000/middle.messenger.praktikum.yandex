@@ -3,7 +3,7 @@ import { Component } from '~/src/view/Component';
 import { Button } from '../Button';
 import { ChatListItem } from '../ChatListItem';
 import tpl from './ChatList.hbs';
-import * as css from './ChatList.module.scss';
+import css from './ChatList.module.scss';
 
 const chatController = new ChatController();
 

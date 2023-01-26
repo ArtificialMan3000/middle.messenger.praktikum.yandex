@@ -1,6 +1,6 @@
 import tpl from './ProfilePage.hbs';
 import contentTpl from './ProfilePageContent.hbs';
-import * as css from './ProfilePage.module.scss';
+import css from './ProfilePage.module.scss';
 import { Backlink } from '~/src/components/Backlink';
 import { FullAvatar as FullAvatarBase } from '~/src/components/FullAvatar';
 import { ProfileForm as ProfileFormBase } from '~/src/components/forms/ProfileForm';

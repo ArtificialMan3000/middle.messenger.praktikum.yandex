@@ -1,5 +1,5 @@
 import tpl from './AuthForm.hbs';
-import * as css from './AuthForm.module.scss';
+import css from './AuthForm.module.scss';
 import { Button } from '../../Button';
 import { Component } from '~/src/view/Component';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';

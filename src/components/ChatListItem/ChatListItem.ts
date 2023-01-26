@@ -1,7 +1,8 @@
 import { ChatController } from '~/src/controller/chat';
 import { Component } from '~/src/view/Component';
 import tpl from './ChatListItem.hbs';
-import * as css from './ChatListItem.module.scss';
+import css from './ChatListItem.module.scss';
+import '~/src/img/close-icon.png';
 
 type TProps = {
   id: number;

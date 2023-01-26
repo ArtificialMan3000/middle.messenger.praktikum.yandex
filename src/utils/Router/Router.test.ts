@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Component, IComponentConstructor } from '~/src/view/Component';
+import { IComponentConstructor } from '~/src/view/Component';
 import { Router } from './Router';
 
 describe('Router', () => {

@@ -1,5 +1,5 @@
 import tpl from './MiniProfile.hbs';
-import * as css from './MiniProfile.module.scss';
+import css from './MiniProfile.module.scss';
 import { Component } from '~/src/view/Component';
 import { TUserData } from '~/src/controller';
 
