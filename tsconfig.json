@@ -19,5 +19,11 @@
     "allowJs": true,
     "esModuleInterop": true
   },
-  "exclude": ["**/node_modules", "**/.*/", "**/dist", "todos.*"]
+  "exclude": [
+    "**/node_modules",
+    "**/.*/",
+    "**/dist",
+    "todos.*",
+    "mochaSetup.js"
+  ]
 }
