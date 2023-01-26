@@ -1,6 +1,6 @@
 import tpl from './E404Page.hbs';
 import contentTpl from './E404PageContent.hbs';
-import * as css from './E404.module.scss';
+import css from './E404.module.scss';
 import { Component } from '~/src/view/Component';
 import { Link } from '~/src/components/Link';
 import { Page } from '~/src/view/ui/Page';

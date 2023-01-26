@@ -1,4 +1,4 @@
-import * as css from './ButtonLink.module.scss';
+import css from './ButtonLink.module.scss';
 import type { TComponentPropsType } from '~/src/typings/utils';
 import { Link } from '~/src/components/Link';
 

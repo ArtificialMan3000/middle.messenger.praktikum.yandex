@@ -1,6 +1,6 @@
 import { Component } from '~/src/view/Component';
 import tpl from './Message.hbs';
-import * as css from './Message.module.scss';
+import css from './Message.module.scss';
 
 type TProps = {
   content: string;

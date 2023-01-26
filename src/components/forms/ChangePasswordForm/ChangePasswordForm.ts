@@ -1,5 +1,5 @@
 import tpl from './ChangePasswordForm.hbs';
-import * as css from './ChangePasswordForm.module.scss';
+import css from './ChangePasswordForm.module.scss';
 import { Button } from '../../Button';
 import { Component } from '~/src/view/Component';
 import { Form as FormBase } from '~/src/view/ui/Form';

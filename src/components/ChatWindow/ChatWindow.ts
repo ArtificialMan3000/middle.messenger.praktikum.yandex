@@ -4,7 +4,7 @@ import { Component } from '~/src/view/Component';
 import { ChatHeader } from '../ChatHeader';
 import { ChatMain } from '../ChatMain';
 import tpl from './ChatWindow.hbs';
-import * as css from './ChatWindow.module.scss';
+import css from './ChatWindow.module.scss';
 
 type TProps = {
   chatData?: TChatData;
