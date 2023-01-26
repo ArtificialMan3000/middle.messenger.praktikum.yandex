@@ -1,5 +1,5 @@
 import tpl from './LoaderPlug.hbs';
-import * as css from './LoaderPlug.module.scss';
+import css from './LoaderPlug.module.scss';
 import { Component } from '~/src/view/Component';
 
 export class LoaderPlug extends Component {

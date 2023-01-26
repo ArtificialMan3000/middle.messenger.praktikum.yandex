@@ -1,5 +1,5 @@
 import tpl from './Form.hbs';
-import * as css from './Form.module.scss';
+import css from './Form.module.scss';
 import { Component, TComponentProps } from '~/src/view/Component';
 
 type TProps = {

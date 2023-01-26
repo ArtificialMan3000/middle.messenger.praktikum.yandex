@@ -7,7 +7,7 @@
 
 Приложение поддерживает регистрацию, изменение данных профиля, создание чатов, добавление и удаление других пользователей из чата и обмен сообщениями.
 
-При разработке использовались typescript, eslint, stylelint, parcel, handlebars, scss. Для серверной части - express.
+При разработке используются typescript, eslint, stylelint, webpack, handlebars, scss, mocha, chai. Для серверной части - express.
 
 ## Установка
 
@@ -23,9 +23,17 @@ yarn install
 yarn start
 ```
 
+## Тесты
+
+```sh
+yarn test
+```
+
 После запуска проект доступен по адресу http://localhost:3000
 
-[Интернет-версия](https://tranquil-babka-e91d4b.netlify.app/)
+[Интернет-версия](https://web-chat-rj49.onrender.com)
+
+Онлайн версия хостится с помощью сервиса [render.com](render.com)
 
 ## Стиль разработки
 

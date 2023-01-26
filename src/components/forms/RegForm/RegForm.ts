@@ -1,5 +1,5 @@
 import tpl from './RegForm.hbs';
-import * as css from './RegForm.module.scss';
+import css from './RegForm.module.scss';
 import { Button } from '../../Button';
 import { Component } from '~/src/view/Component';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';

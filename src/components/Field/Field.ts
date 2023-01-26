@@ -1,6 +1,6 @@
 import tpl from './Field.hbs';
-import * as sharedCss from '~/src/scss/shared.module.scss';
-import * as css from './Field.module.scss';
+import sharedCss from '~/src/scss/shared.module.scss';
+import css from './Field.module.scss';
 import { TComponentProps, Component } from '~/src/view/Component';
 import { Input } from '../Input/Input';
 import { combineCssModules } from '~/src/view/View';

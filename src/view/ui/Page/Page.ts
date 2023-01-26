@@ -1,5 +1,5 @@
 import tpl from './Page.hbs';
-import * as css from './Page.module.scss';
+import css from './Page.module.scss';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { LoaderPlug } from '../LoaderPlug';
 

@@ -1,7 +1,7 @@
 import tpl from './E500Page.hbs';
 import contentTpl from './E500PageContent.hbs';
-import * as css from './E500.module.scss';
-import * as sharedCss from '~/src/scss/shared.module.scss';
+import css from './E500.module.scss';
+import sharedCss from '~/src/scss/shared.module.scss';
 import { Component } from '~/src/view/Component';
 import { Link } from '~/src/components/Link';
 import { Page } from '~/src/view/ui/Page';

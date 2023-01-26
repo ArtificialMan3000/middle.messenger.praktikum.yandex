@@ -1,5 +1,5 @@
 import tpl from './Backlink.hbs';
-import * as css from './Backlink.module.scss';
+import css from './Backlink.module.scss';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { Link } from '../Link';
 import { makeClassNames } from '~/src/view/View';

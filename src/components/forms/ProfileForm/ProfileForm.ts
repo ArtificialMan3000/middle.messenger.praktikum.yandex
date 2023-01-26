@@ -1,5 +1,5 @@
 import tpl from './ProfileForm.hbs';
-import * as css from './ProfileForm.module.scss';
+import css from './ProfileForm.module.scss';
 import { Button } from '../../Button';
 import { Component } from '~/src/view/Component';
 import { ButtonLink } from '~/src/view/ui/ButtonLink';

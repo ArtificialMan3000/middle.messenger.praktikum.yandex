@@ -1,5 +1,5 @@
 import tpl from './Button.hbs';
-import * as css from './Button.module.scss';
+import css from './Button.module.scss';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { makeClassNames } from '~/src/view/View';
 

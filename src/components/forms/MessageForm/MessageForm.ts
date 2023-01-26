@@ -2,7 +2,7 @@ import { MessageInputText } from '~/src/view/ui/MessageInputText';
 import { validationRules } from '~/src/controller/fieldValidation';
 import { Component, TComponentProps } from '~/src/view/Component';
 import tpl from './MessageForm.hbs';
-import * as css from './MessageForm.module.scss';
+import css from './MessageForm.module.scss';
 import { Button } from '~/src/components/Button';
 import { ChatController } from '~/src/controller/chat';
 

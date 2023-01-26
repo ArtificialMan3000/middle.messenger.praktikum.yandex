@@ -1,6 +1,6 @@
 import tpl from './ChangePasswordPage.hbs';
 import contentTpl from './ChangePasswordPageContent.hbs';
-import * as css from './ChangePassword.module.scss';
+import css from './ChangePassword.module.scss';
 import { Backlink } from '~/src/components/Backlink';
 import { ChangePasswordForm } from '~/src/components/forms/ChangePasswordForm';
 import { Window } from '~/src/components/Window';

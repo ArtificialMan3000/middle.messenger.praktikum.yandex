@@ -1,5 +1,5 @@
 import tpl from './Window.hbs';
-import * as css from './Window.module.scss';
+import css from './Window.module.scss';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { makeClassNames } from '~/src/view/View';
 

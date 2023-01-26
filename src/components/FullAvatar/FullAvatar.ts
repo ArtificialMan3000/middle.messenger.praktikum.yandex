@@ -1,6 +1,6 @@
 import { ProfileController } from '~/src/controller/profile';
 import tpl from './FullAvatar.hbs';
-import * as css from './FullAvatar.module.scss';
+import css from './FullAvatar.module.scss';
 import { Component, TComponentProps } from '~/src/view/Component';
 import { makeClassNames } from '~/src/view/View';
 import { TUserData } from '~/src/controller';

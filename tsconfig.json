@@ -1,4 +1,9 @@
 {
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true,
+    "require": ["tsconfig-paths/register"]
+  },
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -9,9 +14,17 @@
     "strictNullChecks": true,
     "sourceMap": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "allowJs": true
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "allowJs": true,
+    "esModuleInterop": true
   },
-  "exclude": ["**/node_modules", "**/.*/", "**/dist", "todos.*"]
+  "include": ["./*.ts", "src"],
+  "exclude": [
+    "**/node_modules",
+    "**/.*/",
+    "**/dist",
+    "todos.*",
+    "mochaSetup.js"
+  ]
 }
