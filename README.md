@@ -1,5 +1,3 @@
-[Пул реквест второго спринта](https://github.com/ArtificialMan3000/middle.messenger.praktikum.yandex/pull/3)
-
 # Веб-мессенджер
 
 Веб-приложение для общения в виде чатов.  
@@ -25,7 +23,7 @@ yarn start
 
 После запуска проект доступен по адресу http://localhost:3000
 
-[Интернет-версия](https://tranquil-babka-e91d4b.netlify.app/)
+[Интернет-версия](https://tb-chat.netlify.app/)
 
 ## Стиль разработки
 
